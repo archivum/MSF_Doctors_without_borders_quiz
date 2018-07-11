@@ -67,6 +67,9 @@
     transition-duration: 0.3s;
     -webkit-transition-property: color, background-color;
     transition-property: color, background-color;
+    font-family: 'FreightSans Pro';
+    font-weight: 600;
+    font-style: normal;
   }
   button:hover, button:focus, button:active {
     background-color: #b11515;

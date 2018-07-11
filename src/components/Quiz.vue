@@ -264,6 +264,9 @@
     float: left;
     margin-top: 10px;
     cursor: pointer;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
   }
 
   [v-cloak] {
@@ -293,6 +296,9 @@
     padding-bottom: 10px;
     max-width: 800px;
     color: white;
+    font-family: 'FreightSans Pro';
+    font-weight: bold;
+    font-style: normal;
   }
 
   .questions-input {
@@ -359,6 +365,9 @@
     color: #630808;
     padding-right: 20px;
     padding-left: 20px;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
   }
 
   .answer:hover {
@@ -439,16 +448,25 @@
   .results h3 {
     font-size: 30px;
     font-weight: bold;
+    font-family: 'FreightSans Pro';
+    font-weight: bold;
+    font-style: normal;
   }
 
   .results p {
     font-size: 20px;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
   }
 
   .results .u-full-width {
     height: 50px;
     border-radius: 0px;
     margin-bottom: 5px;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
   }
 
   input[type="checkbox"] {
@@ -462,6 +480,9 @@
 
   label > .label-body {
     display: inline;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
   }
 
   .agree {
@@ -476,6 +497,12 @@
     background-color: #ea0029;
     opacity: 1;
     color: white;
+  }
+
+  a {
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
   }
 
   @media only screen and (max-width: 600px) {

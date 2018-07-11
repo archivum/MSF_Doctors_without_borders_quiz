@@ -86,6 +86,9 @@
     color: #231f20;
     margin-bottom: 0;
     font-size: 20px;
+    font-family: 'FreightSans Pro Book';
+    font-weight: normal;
+    font-style: normal;
   }
 
   .columns {
@@ -140,18 +143,24 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     background-color: #231f20;
-    font-weight: bold;
-;
-
+    font-family: 'FreightSans Pro';
+    font-weight: 600;
+    font-style: normal;
   }
 
   .block-header-content {
     max-width: 800px;
+    font-family: 'FreightSans Pro';
+    font-weight: 600;
+    font-style: normal;
   }
 
   .block-copy p {
     padding-top: 40px;
     padding-bottom: 40px;
+    font-family: 'FreightSans Pro Book';
+    font-weight: normal;
+    font-style: normal;
   }
 
   .block-img {
@@ -168,6 +177,9 @@
     font-size: 33px;
     color: #ea0029;
     line-height: 30px;
+    font-family: 'FreightSans Pro';
+    font-weight: 600;
+    font-style: normal;
   }
 
   .quote span {
@@ -182,7 +194,9 @@
     font-size: 19px;
     text-transform: uppercase;
     padding-top: 55px;
+    font-family: 'FreightSans Pro';
     font-weight: bold;
+    font-style: normal;
   }
 
   h4 span {
