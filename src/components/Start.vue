@@ -140,6 +140,9 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
   ul {
     margin-bottom: 0;
     list-style-type: none;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
   }
 
   ul span {
@@ -155,7 +158,9 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
     background-color: #ea0029;
     line-height: 58px;
     text-transform: uppercase;
+    font-family: 'FreightSans Pro';
     font-weight: bold;
+    font-style: normal;
   }
 
   h3 {
@@ -168,11 +173,17 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
     line-height: 55px;
     /*text-transform: uppercase;*/
     /*font-weight: bold;*/
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
   }
 
   button {
     margin-top: 20px;
     margin-left: -10px;
+    font-family: 'FreightSans Pro';
+    font-weight: bold;
+    font-style: normal;
   }
 
 
@@ -184,12 +195,17 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
 
   .copy1 {
     font-size: 19px;
+    font-family: 'FreightSans Pro Book';
+    font-weight: normal;
+    font-style: normal;
   }
 
 
   .copy2 {
-font-size: 22px;
+    font-size: 22px;
+    font-family: 'FreightSans Pro';
     font-weight: bold;
+    font-style: normal;
   }
   .info {
     color: #231f20;
@@ -197,7 +213,9 @@ font-size: 22px;
     margin-top: 5px;
     text-decoration: underline;
     cursor: pointer;
-    font-weight: bold;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
   }
   .info span {
     margin-left: 10px;
