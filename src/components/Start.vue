@@ -4,7 +4,7 @@
     <div class="full-width-container container">
       <div class="row row-v-align full-bg">
         <div class="five offset-by-five columns " v-if="showOverlay">
-          <img class="overlay-close" @click="toggleOverlay" src="../../static/img/x.svg"><
+          <img class="overlay-close" @click="toggleOverlay" src="../../static/img/x.svg">
           <div class="overlay">
             <p class="copy1">
               All Doctors Without Borders/Médecins Sans Frontières (MSF) humanitarian aid workers are compassionate,
