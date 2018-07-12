@@ -10,7 +10,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 
   /*App shell*/
 
