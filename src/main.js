@@ -6,7 +6,6 @@ import router from './router'
 import './css/fonts.css'
 import './css/normalize.css'
 import './css/skeleton.css'
-import '../static/css/main.css'
 
 Vue.config.productionTip = false
 
