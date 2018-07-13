@@ -12,8 +12,11 @@
 
 <style>
 
-  /*App shell*/
+  
 
+
+</style>
+<style scoped>
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -21,13 +24,21 @@
     text-align: center;
     color: #2c3e50;
   }
+  #app >>> .full-width-container {
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    clear: both;
+    margin: 0 auto;
+  }
+  /*App shell*/
 
-  .row {
+  #app >>> .row {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .row-v-align {
+  #app >>> .row-v-align {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -36,20 +47,20 @@
 
   /*Links*/
 
-  a {
+  #app >>> a {
     color: white !important;
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
   }
 
-  a:hover {
+  #app >>> a:hover {
     /*color: white;*/
   }
 
   /*Button styles*/
 
-  button {
+  #app >>> button {
     height: 55px;
     background-color: #ea0029;
     border-radius: 50px;
@@ -71,7 +82,7 @@
     font-weight: 600;
     font-style: normal;
   }
-  button:hover, button:focus, button:active {
+  #app >>> button:hover, #app >>> button:focus, #app >>> button:active {
     background-color: #b11515;
     color: white;
   }
@@ -79,15 +90,6 @@
 
   /*Full width container*/
 
-  .full-width-container {
-    height: 100vh;
-    width: 100%;
-    max-width: 100%;
-    clear: both;
-    margin: 0 auto;
-  }
 
   /*Full width background image*/
-
-
 </style>
