@@ -7,6 +7,7 @@ import './css/fonts.css'
 import './css/normalize.css'
 import './css/skeleton.css'
 
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
