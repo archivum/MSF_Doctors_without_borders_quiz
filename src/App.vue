@@ -10,12 +10,6 @@
   }
 </script>
 
-<style>
-
-  
-
-
-</style>
 <style scoped>
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
