@@ -12,14 +12,16 @@
 
 <style>
 
-  .full-width-container {
-      height: 100vh;
-      width: 100%;
-      max-width: 100%;
-      clear: both;
-      margin: 0 auto;
-    }
-    
+  /*App shell*/
+
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+
   .row {
     padding-left: 20px;
     padding-right: 20px;
@@ -74,13 +76,18 @@
     color: white;
   }
 
-</style>
-<style scoped>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+
+  /*Full width container*/
+
+  .full-width-container {
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    clear: both;
+    margin: 0 auto;
   }
+
+  /*Full width background image*/
+
+
 </style>
