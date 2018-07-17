@@ -9,6 +9,12 @@ import './css/skeleton.css'
 
 Vue.config.productionTip = false
 
+$(document).ready(
+	function() {
+		$('#loader').fadeOut("slow")
+	}
+)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
