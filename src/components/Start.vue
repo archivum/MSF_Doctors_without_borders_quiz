@@ -139,6 +139,7 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
 
   ul {
     margin-bottom: 0;
+    font-size: 1.8rem;
     list-style-type: none;
     font-family: 'FreightSans Pro';
     font-weight: 500;
@@ -146,17 +147,21 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
   }
 
   ul span {
+    margin-left: 7px;
     font-weight: bold;
+    
   }
 
   h2 {
     display: inline;
     box-shadow: 10px 0 0 #ea0029, -10px 0 0 #ea0029;
     color: white;
-    font-size: 38px;
+/*    font-size: 38px;*/
+/*    line-height: 58px;*/
+    font-size: 3.8rem;
+    line-height: 5.8rem;
     text-align: left;
     background-color: #ea0029;
-    line-height: 58px;
     text-transform: uppercase;
     font-family: 'FreightSans Pro';
     font-weight: bold;
@@ -167,10 +172,14 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
     display: inline;
     box-shadow: 10px 0 0 #231f20, -10px 0 0 #231f20;
     color: white;
+/*
     font-size: 37px;
+    line-height: 55px;
+*/
+    font-size: 3.7rem;
+    line-height: 5.5rem;
     text-align: left;
     background-color: #000000;
-    line-height: 55px;
     /*text-transform: uppercase;*/
     /*font-weight: bold;*/
     font-family: 'FreightSans Pro';
@@ -185,16 +194,23 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
     font-weight: bold;
     font-style: normal;
   }
+    .overlay button{
+        margin-top: 5px;
+        margin-left: 0px;
+    }
 
 
   .info-black {
-    margin-left: -10px;
+    margin-left: 0px;
     margin-top: 5px;
     cursor: pointer;
   }
+    .info-black span{
+        font-size: 1.6rem;
+    }
 
   .copy1 {
-    font-size: 19px;
+    font-size: 1.9rem;
     font-family: 'FreightSans Pro Book';
     font-weight: normal;
     font-style: normal;
@@ -202,7 +218,7 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
 
 
   .copy2 {
-    font-size: 22px;
+    font-size: 2.2rem;
     font-family: 'FreightSans Pro';
     font-weight: bold;
     font-style: normal;
@@ -217,12 +233,10 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
     font-weight: 500;
     font-style: normal;
   }
-  .info span {
-    margin-left: 10px;
-  }
 
   .info span {
     margin-left: 7px;
+    font-size: 1.6rem;
   }
 
   .info-icon {
@@ -238,8 +252,32 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
     display: inline-block;
     height: 23px;
     width: 23px;
-    padding-bottom: 30px;
+    padding-bottom: 7rem;
     padding-right: 10px;
   }
+
+/* Larger than mobile */
+@media (min-width: 400px) {
+    h2{
+        font-size: 3.8rem;
+        line-height: 5.8rem;      
+    }
+    h3{
+        font-size: 3.7rem;
+        line-height: 5.5rem;
+    }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
 
 </style>

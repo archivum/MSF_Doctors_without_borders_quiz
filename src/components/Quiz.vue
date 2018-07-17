@@ -299,6 +299,7 @@
     font-family: 'FreightSans Pro';
     font-weight: bold;
     font-style: normal;
+    font-size: 3.4rem;
   }
 
   .questions-input {
@@ -454,7 +455,7 @@
   }
 
   .results h3 {
-    font-size: 30px;
+    font-size: 3rem;
     font-weight: bold;
     font-family: 'FreightSans Pro';
     font-weight: bold;
@@ -462,7 +463,7 @@
   }
 
   .results p {
-    font-size: 20px;
+    font-size: 2rem;
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
@@ -484,6 +485,10 @@
   .results .skip {
     clear: left;
     float: left;
+    font-weight: 500;
+    font-size: 1.6rem;
+    padding-left: 82px;
+    text-transform: uppercase;
   }
 
   label > .label-body {
