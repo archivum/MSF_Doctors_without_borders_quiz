@@ -4,8 +4,10 @@
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
-          <div v-show="index === questionIndex" class="row full-bg ">
+          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'url(' + question.images + ')' }" class="row full-bg ">
+            
             <div class="eight columns offset-by-two quiz">
+<!--              <div id='bg-img'><img :src="question.images"/></div>-->
               <div class='quizLogo'><img :src="quiz.logo"/></div>
               <h3 class="question">{{ question.text }}</h3>
               <ul class="questions-input">
@@ -22,7 +24,7 @@
               </ul>
               <div class="progress-and-button" v-if="questionIndex > 0">
                 <div class="button-back" v-on:click="prev">
-                  < Back
+                  Back
                 </div>
                 <div class="progress-container">
                   <div class="progress" v-bind:style="{ width: questionIndex * 50 + 'px' }"></div>
@@ -30,9 +32,6 @@
                 </div>
 
               </div>
-              <!--<div class="bg-img">-->
-              <!--<img :src="question.image"/>-->
-              <!--</div>-->
             </div>
           </div>
         </div>
@@ -62,7 +61,7 @@
           </div>
         </div>
       </div>
-      <div v-show="questionIndex === quiz.questions.length+1">
+      <div v-show="questionIndex === quiz.questions.length">
       </div>
     </div>
 
@@ -78,7 +77,7 @@
 
     questions: [{
       text: "Discussing world issues with friends, you:",
-      image: '/static/img/img1.jpg',
+      images: '/static/img/img1.jpg',
       responses: [{
         text: 'Get excited about expanding your world-view',
         value: 'Batman'
@@ -100,7 +99,7 @@
     },
       {
         text: "To get your daily dose of international news, you:",
-        image: '/static/img/img2.jpg',
+        images: '/static/img/img2.jpg',
         responses: [{
           text: 'Scour the web for articles from a variety of sources',
           value: 'The Flash'
@@ -121,7 +120,7 @@
       },
       {
         text: "Friends ask you to help a local, non-profit organization. You offer to:",
-        image: '/static/img/img3.jpg',
+        images: '/static/img/img3.jpg',
         responses: [{
           text: 'Volunteer',
           value: 'Superman'
@@ -142,7 +141,7 @@
       },
       {
         text: "Your neighbour knocks on your door with a petition to support an emergency happening in another country. You:",
-        image: '/static/img/img4.jpg',
+        images: '/static/img/img4.jpg',
         responses: [{
           text: 'Immediately sign without reading',
           value: 'Batman'
@@ -163,7 +162,7 @@
       },
       {
         text: "Imagine you’re off on your first MSF mission, to an area with limited access to the rest of the world. What do you pack first? ",
-        image: '/static/img/img5.jpg',
+        images: '/static/img/img5.jpg',
         responses: [{
           text: 'A portable movie projector',
           value: 'The Flash'
@@ -195,12 +194,12 @@
     },
     updated() {
       console.log(this.userResponses)
+      console.log(this.questionIndex)
     },
     methods: {
       // Go to next question
       next: function () {
         this.questionIndex++;
-        // alert(this.questionIndex)
       },
       // Go to previous question
       prev: function () {
@@ -284,6 +283,7 @@
   }
 
   .quizLogo {
+/*    position: absolute;*/
     float: left;
     margin-bottom: 50px;
   }
@@ -416,19 +416,27 @@
   }
 
 
-  .bg-img {
-    background: url("../../static/img/form.jpg") center center;
+  #bg-img {
+/*    background: url("../../static/img/form.jpg") center center;*/
     height: 100%;
     background-size: cover;
+    background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
-    z-index: -1;
+/*     z-index: -1; */
     position: fixed;
     top: 0;
     left: 0;
-
   }
-
+/*
+    .bg-img{
+        background: url("../../static/img/form.jpg") center center;
+    height: 100vh;
+    background-size: cover;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    }
+*/
   /*Quiz - End*/
 
   /*Results almost in*/
