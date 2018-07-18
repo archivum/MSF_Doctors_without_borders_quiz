@@ -3,7 +3,7 @@
     <img class='logo' src="../../static/img/logo-lg.png"/>
     <div class="full-width-container container">
       <div class="row row-v-align full-bg">
-        <div class="five offset-by-five columns " v-if="showOverlay">
+        <div class="columns " :class="bigScreen ? `five offset-by-five` : `eight offset-by-2`" v-if="showOverlay">
           <img class="overlay-close" @click="toggleOverlay" src="../../static/img/x.svg">
           <div class="overlay">
             <p class="copy1">
@@ -30,7 +30,7 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
           </div>
           <div class="darken"></div>
         </div>
-        <div class="six offset-by-six columns" v-else="showOverlay">
+        <div class="columns" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
           <h2 class="opacity-70">Take the doctors</h2><br>
           <h2>Without borders quiz</h2><br>
           <h3 class="opacity-58">What kind of humanitarian</h3><br>
@@ -58,13 +58,26 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
     name: 'Start',
     data() {
       return {
-        showOverlay: false
+        showOverlay: false,
+        bigScreen: true
       }
+    },
+    mounted() {
+      this.handleResize()
     },
     methods: {
       toggleOverlay() {
         this.showOverlay = !this.showOverlay;
+      },
+      handleResize() {
+        this.bigScreen = window.innerWidth >= 1000
       }
+    },
+    mounted: function () {
+      window.addEventListener('resize', this.handleResize)
+    },
+    beforeDestroy: function () {
+      window.removeEventListener('resize', this.handleResize)
     }
   }
 
@@ -126,7 +139,7 @@ a {
 }
 
 .full-bg {
-    background: url("../../static/img/start.jpg") center center;
+    background: url("../../static/img/start.jpg") 15% center;
     height: 100vh;
     background-size: cover;
     background-repeat:  no-repeat;
