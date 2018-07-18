@@ -4,6 +4,7 @@ const quiz = {
     questions: [{
       text: "Discussing world issues with friends, you:",
       images: '/static/img/img1.jpg',
+      imagesMobile: '/static/img/img1_mobile.jpg',
       responses: [{
         text: 'Get excited about expanding your world-view',
         value: 0
@@ -26,6 +27,7 @@ const quiz = {
       {
         text: "To get your daily dose of international news, you:",
         images: '/static/img/img2.jpg',
+        imagesMobile: '/static/img/img2.jpg',
         responses: [{
           text: 'Scour the web for articles from a variety of sources',
           value: 0
@@ -47,6 +49,7 @@ const quiz = {
       {
         text: "Friends ask you to help a local, non-profit organization. You offer to:",
         images: '/static/img/img3.jpg',
+        imagesMobile: '/static/img/img3_mobile.jpg',
         responses: [{
           text: 'Volunteer',
           value: 0
@@ -68,6 +71,7 @@ const quiz = {
       {
         text: "Your neighbour knocks on your door with a petition to support an emergency happening in another country. You:",
         images: '/static/img/img4.jpg',
+        imagesMobile: '/static/img/img4_mobile.jpg',
         responses: [{
           text: 'Immediately sign without reading',
           value: 0
@@ -89,6 +93,7 @@ const quiz = {
       {
         text: "Imagine you’re off on your first MSF mission, to an area with limited access to the rest of the world. What do you pack first? ",
         images: '/static/img/img5.jpg',
+        imagesMobile: '/static/img/img5_mobile.jpg',
         responses: [{
           text: 'A portable movie projector',
           value: 0

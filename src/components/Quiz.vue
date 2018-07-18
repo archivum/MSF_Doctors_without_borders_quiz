@@ -5,7 +5,7 @@
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
-          <div v-show="index === questionIndex" v-bind:style="{ 'background': 'radial-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)), url(' + question.images + ') no-repeat center', 'background-size':'cover' }" class="row full-bg ">
+          <div v-show="index === questionIndex" v-bind:style="{ 'background': 'radial-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)), url(' + question[property] + ')'}" class="row full-bg ">
             <div class="eight columns offset-by-two quiz">
               <div class='quizLogo'><img :src="quiz.logo"/></div>
               <h3 class="question">{{ question.text }}</h3>
@@ -80,7 +80,8 @@
         userResponses: Array(),
         showLoader: false,
         loaderTimeout: 1000,
-        loaderBackground: ''
+        loaderBackground: '',
+        property: 'images'
       }
     },
     components: {
@@ -93,7 +94,8 @@
       // Go to next question
       next: function () {
         this.showLoader = true
-        this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1].images : '/static/img/form.jpg'
+        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
+        this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
         let vm = this
         setTimeout(function() {
           vm.questionIndex ++
@@ -102,7 +104,8 @@
       // Go to previous question
       prev: function () {
         this.showLoader = true
-        this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)].images
+        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
+        this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
         let vm = this
         setTimeout(function() {
           vm.questionIndex --
@@ -379,11 +382,12 @@ input[type="radio"] {
 }
 
   .full-bg {
-    background: url("/static/img/form.jpg") center center;
+    background: url("/static/img/form.jpg");
     height: 100vh;
-    background-size: cover;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-position: 20% center !important;
 }
 
 
@@ -471,7 +475,7 @@ label > .label-body {
     color: white;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .questions-input li {
       width: 100%;
   }
@@ -497,6 +501,9 @@ label > .label-body {
   .answer {
     opacity: 1;
     border: none;
+  }
+  .full-bg {
+    background: url("/static/img/form_mobile.jpg");
   }
   .questions-input li,
   .questions-input li label {

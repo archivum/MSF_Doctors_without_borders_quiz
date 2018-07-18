@@ -53,7 +53,6 @@ export default {
 
 <style lang="css" scoped>
 .quiz-loader {
-    back
     display: block;
     z-index: 999999;
     position: fixed;
@@ -64,7 +63,7 @@ export default {
     background-size: cover;
     background-repeat:  no-repeat;
     background-attachment: fixed;
-    background-position: center center;
+    background-position: 20% center;
 }
 
 img {
