@@ -64,6 +64,7 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
     },
     mounted() {
       this.handleResize()
+      window.addEventListener('resize', this.handleResize)
     },
     methods: {
       toggleOverlay() {
@@ -72,9 +73,6 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
       }
-    },
-    mounted: function () {
-      window.addEventListener('resize', this.handleResize)
     },
     beforeDestroy: function () {
       window.removeEventListener('resize', this.handleResize)

@@ -37,13 +37,13 @@
         <!-- SIGN UP FORM SECTION -->
         <div class='results' v-show="questionIndex === quiz.questions.length">
           <div class="row row-v-align full-bg">
-            <div class="results-flex">
-              <div class="four columns">
+            <div class="content">
+              <div class="columns" :class="bigScreen ? `four offset-by-two` : `eight offset-by-two`">
                 <h3>Your results are almost in!</h3>
                 <p>Will you stand with us? We need people like you who will speak out when the world needs you to act.
                   Sign up now.</p>
               </div>
-              <div class="four columns">
+              <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
                 <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput">
                 <input class="u-full-width" type="email" placeholder="Last Name" id="lastnameInput">
                 <input class="u-full-width" type="email" placeholder="Email" id="emailInput">
@@ -81,7 +81,8 @@
         showLoader: false,
         loaderTimeout: 1000,
         loaderBackground: '',
-        property: 'images'
+        property: 'images',
+        bigScreen: true
       }
     },
     components: {
@@ -89,6 +90,13 @@
     },
     created() {
       this.loaderBackground = this.quiz.questions[0].images
+    },
+    mounted() {
+      this.handleResize()
+      window.addEventListener('resize', this.handleResize)
+    },
+    beforeDestroy: function () {
+      window.removeEventListener('resize', this.handleResize)
     },
     methods: {
       // Go to next question
@@ -128,10 +136,12 @@
           }
         }
         return maxEl;
+      },
+      handleResize() {
+        this.bigScreen = window.innerWidth >= 1000
       }
-    }
   }
-
+}
 
 </script>
 
@@ -161,8 +171,8 @@ button a {
 }
 
 .row {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
 }
 .row-v-align {
     display: flex;
@@ -410,11 +420,8 @@ input[type="radio"] {
     text-align: left;
 }
 
-.results-flex {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 20rem;
+.results .content {
+  margin-top: 15vh;
 }
 
 .results h3 {
