@@ -25,18 +25,22 @@
             <div class="info-black">
               <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>Your answers shed light on prevailing attitudes and preferences
 which in turn inform our fundraising decisions. People like you
-help us tell the story of the people who need us. Thank you! <a href="">View our Privacy Policy here.</a></span>
+help us tell the story of the people who need us. Thank you!<br><a href="">View our Privacy Policy here.</a></span>
             </div>
           </div>
           <div class="darken"></div>
         </div>
         <div class="six offset-by-six columns" v-else="showOverlay">
-          <h2>Take the doctors <br>without borders quiz</h2><br>
-          <h3>What kind of humanitarian<br> aid worker are you?</h3>
+          <h2 class="opacity-70">Take the doctors</h2><br>
+          <h2>Without borders quiz</h2><br>
+          <h3 class="opacity-58">What kind of humanitarian</h3><br>
+          <h3>aid worker are you?</h3>
           <br>
-          <button>
-            <router-link to="/quiz">Start Quiz</router-link>
-          </button>
+          <router-link to="/quiz">
+            <button>
+              Start Quiz
+            </button>
+          </router-link>
           <div class="info">
             <img class="info-icon" src="../../static/img/info-b.svg" alt=""><span @click="toggleOverlay">Click for more information</span>
           </div>
@@ -85,7 +89,7 @@ a {
     clear: both;
     margin: 0 auto;
 }
-    
+
 .row {
     padding-left: 20px;
     padding-right: 20px;
@@ -97,7 +101,7 @@ a {
     align-items: center;
     justify-content: center;
 }
-    
+
 .overlay {
     position: relative;
     z-index: 1;
@@ -171,32 +175,44 @@ ul span {
 
 h2 {
     display: inline;
-    box-shadow: 10px 0 0 #ea0029, -10px 0 0 #ea0029;
+    box-shadow: 10px 0 0 rgba(238, 0, 0, 1), -10px 0 0 rgba(238, 0, 0, 1);
     color: white;
     /*    font-size: 38px;*/
     /*    line-height: 58px;*/
     font-size: 3.8rem;
     line-height: 5.8rem;
     text-align: left;
-    background-color: #ea0029;
+    background-color: rgba(238, 0, 0, 1);
     text-transform: uppercase;
     font-family: 'FreightSans Pro';
     font-weight: bold;
     font-style: normal;
 }
 
-h3 {
-    display: inline;
-    box-shadow: 10px 0 0 #231f20, -10px 0 0 #231f20;
-    color: white;
-    font-size: 3.7rem;
-    line-height: 5.5rem;
-    text-align: left;
-    background-color: #000000;
-    font-family: 'FreightSans Pro';
-    font-weight: 500;
-    font-style: normal;
+h2.opacity-70 {
+  box-shadow: 10px 0 0 rgba(238, 0, 0, 0.7), -10px 0 0 rgba(238, 0, 0, 0.7);
+  background-color: rgba(238, 0, 0, 0.7);
 }
+
+h3 {
+  display: inline;
+  box-shadow: 10px 0 0 rgba(35, 31, 32,1), -10px 0 0 rgba(35, 31, 32,1);
+  color: white;
+  font-size: 3.7rem;
+  line-height: 5.5rem;
+  text-align: left;
+  background-color: rgba(35, 31, 32,1);
+  /*text-transform: uppercase;*/
+  /*font-weight: bold;*/
+  font-family: 'FreightSans Pro';
+  font-weight: 500;
+  font-style: normal;
+}
+
+h3.opacity-58 {
+    box-shadow: 10px 0 0 rgba(35, 31, 32,0.58), -10px 0 0 rgba(35, 31, 32, 0.58);
+    background: rgba(35, 31, 32, 0.58);
+  }
 
 /*Button styles*/
 button {
@@ -223,12 +239,12 @@ button {
     margin-top: 20px;
     margin-left: -10px;
 }
-    
+
 button:hover, button:focus, button:active {
     background-color: #b11515;
     color: white;
 }
-    
+
 .overlay button{
     margin-top: 5px;
     margin-left: 0px;
@@ -238,24 +254,34 @@ button:hover, button:focus, button:active {
     margin-left: 0px;
     margin-top: 5px;
     cursor: pointer;
-}
-.info-black span{
-    font-size: 1.6rem;
-}
+    font-family: 'FreightSans Pro';
+    font-weight: 600;
+    font-style: normal;
+    line-height: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .info-black a{
+    font-family: 'FreightSans Pro';
+    font-weight: 600 !important;
+    font-style: normal;
+    text-decoration: underline !important;
+  }
 
 .copy1 {
     font-size: 1.9rem;
     font-family: 'FreightSans Pro Book';
     font-weight: normal;
     font-style: normal;
+    line-height: 2.3rem;
 }
-
 
 .copy2 {
     font-size: 2.2rem;
     font-family: 'FreightSans Pro';
     font-weight: bold;
     font-style: normal;
+    line-height: 2.8rem;
 }
 .info {
     color: #231f20;
@@ -293,7 +319,7 @@ button:hover, button:focus, button:active {
 @media (min-width: 400px) {
     h2{
         font-size: 3.8rem;
-        line-height: 5.8rem;      
+        line-height: 5.8rem;
     }
     h3{
         font-size: 3.7rem;
