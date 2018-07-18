@@ -34,9 +34,11 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
           <h2>Take the doctors <br>without borders quiz</h2><br>
           <h3>What kind of humanitarian<br> aid worker are you?</h3>
           <br>
-          <button>
-            <router-link to="/quiz">Start Quiz</router-link>
-          </button>
+          <router-link to="/quiz">
+            <button>
+              Start Quiz
+            </button>
+          </router-link>
           <div class="info">
             <img class="info-icon" src="../../static/img/info-b.svg" alt=""><span @click="toggleOverlay">Click for more information</span>
           </div>
@@ -149,7 +151,7 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
   ul span {
     margin-left: 7px;
     font-weight: bold;
-    
+
   }
 
   h2 {
@@ -260,7 +262,7 @@ help us tell the story of the people who need us. Thank you! <a href="">View our
 @media (min-width: 400px) {
     h2{
         font-size: 3.8rem;
-        line-height: 5.8rem;      
+        line-height: 5.8rem;
     }
     h3{
         font-size: 3.7rem;

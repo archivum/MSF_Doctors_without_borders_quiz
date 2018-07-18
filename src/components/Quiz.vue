@@ -1,11 +1,12 @@
 <template>
   <div id="quiz">
+    <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground"></quiz-loader>
     <div>
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
           <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'url(' + question.images + ')' }" class="row full-bg ">
-            
+
             <div class="eight columns offset-by-two quiz">
 <!--              <div id='bg-img'><img :src="question.images"/></div>-->
               <div class='quizLogo'><img :src="quiz.logo"/></div>
@@ -69,141 +70,45 @@
 </template>
 
 <script>
-
+  import QuizLoader from './QuizLoader.vue'
+  import {quiz} from '../lib/utils.js'
   /* eslint-disable */
-
-  const quiz = {
-    logo: '/static/img/quizLogo.png',
-
-    questions: [{
-      text: "Discussing world issues with friends, you:",
-      images: '/static/img/img1.jpg',
-      responses: [{
-        text: 'Get excited about expanding your world-view',
-        value: 'Batman'
-      },
-        {
-          text: 'Gear up for a vocal debate —\n' +
-          'you love a good discussion',
-          value: 'Superman'
-        },
-        {
-          text: 'Listen carefully, trying to understand all perspectives',
-          value: 'The Flash'
-        },
-        {
-          text: 'Listen well, weigh-in often, invite everyone to have their say',
-          value: 'Superman'
-        }
-      ]
-    },
-      {
-        text: "To get your daily dose of international news, you:",
-        images: '/static/img/img2.jpg',
-        responses: [{
-          text: 'Scour the web for articles from a variety of sources',
-          value: 'The Flash'
-        },
-          {
-            text: 'Read (and comment on) anything you can get your hands on',
-            value: 'Batman'
-          },
-          {
-            text: 'Stick to your favourite, reputable news outlets',
-            value: 'Superman'
-          },
-          {
-            text: 'Read and share a lot on social media to spread awareness on big issue',
-            value: 'Supermans'
-          }
-        ]
-      },
-      {
-        text: "Friends ask you to help a local, non-profit organization. You offer to:",
-        images: '/static/img/img3.jpg',
-        responses: [{
-          text: 'Volunteer',
-          value: 'Superman'
-        },
-          {
-            text: 'Start a peer-to-peer fundraising campaign',
-            value: 'The Flash'
-          },
-          {
-            text: 'Review the organization’s “About Us” section of their website',
-            value: 'Batman'
-          },
-          {
-            text: 'Go door-to-door with a petition, raising awareness',
-            value: 'Batman'
-          }
-        ]
-      },
-      {
-        text: "Your neighbour knocks on your door with a petition to support an emergency happening in another country. You:",
-        images: '/static/img/img4.jpg',
-        responses: [{
-          text: 'Immediately sign without reading',
-          value: 'Batman'
-        },
-          {
-            text: 'Sign and offer to share with your friends on social media',
-            value: 'The Flash'
-          },
-          {
-            text: 'Offer to read the petition and think about the implications of signing',
-            value: 'Superman'
-          },
-          {
-            text: 'Sign, then knock on doors to recruit your neighbours to the cause',
-            value: 'Superman'
-          }
-        ]
-      },
-      {
-        text: "Imagine you’re off on your first MSF mission, to an area with limited access to the rest of the world. What do you pack first? ",
-        images: '/static/img/img5.jpg',
-        responses: [{
-          text: 'A portable movie projector',
-          value: 'The Flash'
-        },
-          {
-            text: 'Speakers for your music player',
-            value: 'Batman'
-          },
-          {
-            text: 'Your favourite novels',
-            value: 'Superman'
-          },
-          {
-            text: 'A deck of cards',
-            value: 'Superman'
-          }
-        ]
-      },
-    ]
-  }
 
   export default {
     data() {
       return {
         quiz: quiz,
         questionIndex: 0,
-        userResponses: Array()
+        userResponses: Array(),
+        showLoader: false,
+        loaderTimeout: 1000,
+        loaderBackground: ''
       }
     },
-    updated() {
-      console.log(this.userResponses)
-      console.log(this.questionIndex)
+    components: {
+      QuizLoader
+    },
+    mounted() {
+      this.loaderBackground = this.quiz.questions[0].images
     },
     methods: {
       // Go to next question
       next: function () {
-        this.questionIndex++;
+        this.showLoader = true
+        this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1].images : '/static/img/form.jpg'
+        let vm = this
+        setTimeout(function() {
+          vm.questionIndex ++
+        }, vm.loaderTimeout / 2)
       },
       // Go to previous question
       prev: function () {
-        this.questionIndex--;
+        this.showLoader = true
+        this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)].images
+        let vm = this
+        setTimeout(function() {
+          vm.questionIndex --
+        }, vm.loaderTimeout / 2)
       },
       score: function () {
         //find the highest occurence in responses
@@ -374,6 +279,7 @@
   .answer:hover {
     background: white;
     opacity: 1;
+    cursor: pointer;
   }
 
   .answer:active {
@@ -399,6 +305,7 @@
     height: 5px;
     background-color: #ea0029;
     float: left;
+    transition: all .3s;
   }
 
   .progress-bar {
@@ -409,7 +316,7 @@
   }
 
   .full-bg {
-    background: url("../../static/img/form.jpg") center center;
+    background: url("/static/img/form.jpg") center center;
     height: 100vh;
     background-size: cover;
     background-repeat:  no-repeat;
@@ -532,6 +439,10 @@
       -khtml-flex-wrap: wrap;
       flex-wrap: wrap;
     }
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
   }
 
 </style>
