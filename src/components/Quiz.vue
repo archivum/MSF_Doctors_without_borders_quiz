@@ -4,7 +4,7 @@
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
-          <div v-show="index === questionIndex" v-bind:style="{ 'background': 'radial-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)), url(' + question.images + ') no-repeat center' }" class="row full-bg ">
+          <div v-show="index === questionIndex" v-bind:style="{ 'background': 'radial-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)), url(' + question.images + ') no-repeat center', 'background-size':'cover' }" class="row full-bg ">
             <div class="eight columns offset-by-two quiz">
               <div class='quizLogo'><img :src="quiz.logo"/></div>
               <h3 class="question">{{ question.text }}</h3>
@@ -237,6 +237,10 @@ a {
     font-style: normal;
     cursor: pointer;
 }
+
+button a {
+  font-weight: bold;
+}
     
 /*Full width container*/
 .full-width-container {
@@ -310,7 +314,7 @@ button {
     -webkit-transition-property: color, background-color;
     transition-property: color, background-color;
     font-family: 'FreightSans Pro';
-    font-weight: 600;
+    font-weight: bold;
     font-style: normal;
 }
     
@@ -562,18 +566,51 @@ label > .label-body {
 }
 
 @media only screen and (max-width: 600px) {
-    .questions-input li {
-        width: 100%;
-    }
-    .row-v-align {
-        flex-direction: row;
-        -webkit-flex-wrap: wrap;
-        -moz-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-        -o-flex-wrap: wrap;
-        -khtml-flex-wrap: wrap;
-        flex-wrap: wrap;
-    }
+  .questions-input li {
+      width: 100%;
+  }
+  .row-v-align {
+      flex-direction: row;
+      -webkit-flex-wrap: wrap;
+      -moz-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      -o-flex-wrap: wrap;
+      -khtml-flex-wrap: wrap;
+      flex-wrap: wrap;
+  }
+  .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .quiz {
+    padding-top: 2rem;
+  }
+  .answer p {
+    color: #fff;
+  }
+  .answer {
+    opacity: 1;
+    border: none;
+  }
+  .questions-input li,
+  .questions-input li label {
+    margin-bottom: 0;
+  }
+  .questions-input li:nth-child(1) .answer {
+    background-color: #780505;
+  }
+  .questions-input li:nth-child(2) .answer {
+    background-color: #690505;
+  }
+  .questions-input li:nth-child(3) .answer {
+    background-color: #550505;
+  }
+  .questions-input li:nth-child(4) .answer {
+    background-color: #460000;
+  }
 }
 
+.four.columns {
+  max-width: 700px;
+}
 </style>
