@@ -28,7 +28,7 @@ export default {
         required: false
     }
   },
-  mounted() {
+  created() {
     this.showLoader()
   },
   watch: {

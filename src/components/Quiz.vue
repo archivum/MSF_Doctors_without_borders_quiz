@@ -1,7 +1,7 @@
 <template>
   <div id="quiz">
     <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground"></quiz-loader>
-    <div>
+    <div class="quiz-container">
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
@@ -86,7 +86,7 @@
     components: {
       QuizLoader
     },
-    mounted() {
+    created() {
       this.loaderBackground = this.quiz.questions[0].images
     },
     methods: {
