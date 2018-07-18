@@ -387,7 +387,7 @@ input[type="radio"] {
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
-    background-position: 20% center !important;
+    background-position: 20% center;
 }
 
 
@@ -504,6 +504,7 @@ label > .label-body {
   }
   .full-bg {
     background: url("/static/img/form_mobile.jpg");
+    background-position: center top;
   }
   .question {
     font-size: 3rem;

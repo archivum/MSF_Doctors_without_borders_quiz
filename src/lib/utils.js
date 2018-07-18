@@ -27,7 +27,7 @@ const quiz = {
       {
         text: "To get your daily dose of international news, you:",
         images: '/static/img/img2.jpg',
-        imagesMobile: '/static/img/img2.jpg',
+        imagesMobile: '/static/img/img2_mobile.jpg',
         responses: [{
           text: 'Scour the web for articles from a variety of sources',
           value: 0
