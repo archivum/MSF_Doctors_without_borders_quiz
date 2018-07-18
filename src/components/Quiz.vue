@@ -4,8 +4,7 @@
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
-          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'url(' + question.images + ')' }" class="row full-bg">
-            
+          <div v-show="index === questionIndex" v-bind:style="{ 'background': 'radial-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)), url(' + question.images + ') no-repeat center' }" class="row full-bg ">
             <div class="eight columns offset-by-two quiz">
               <div class='quizLogo'><img :src="quiz.logo"/></div>
               <h3 class="question">{{ question.text }}</h3>
@@ -253,7 +252,6 @@ a {
     padding-left: 20px;
     padding-right: 20px;
 }
-
 .row-v-align {
     display: flex;
     flex-direction: row;
@@ -262,6 +260,15 @@ a {
 }
     
 /*Quiz*/
+.img-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(35, 31, 32,.8);
+}
+
 .fade-enter-active {
     transition: opacity .5s;
 }
@@ -400,7 +407,7 @@ input[type="radio"] {
     opacity: 0.8;
     min-height: 70px;
     border-style: solid;
-    border-color: #630808;
+    border-color: rgb(155, 7, 7);
     border-width: thin;
     min-width: 100%;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -415,9 +422,10 @@ input[type="radio"] {
 
 .answer p {
     margin-bottom: 0;
-    color: #630808;
-    padding-right: 20px;
-    padding-left: 20px;
+    color: rgb(99, 8, 8);
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 1.75rem;
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
@@ -488,11 +496,11 @@ input[type="radio"] {
     text-align: left;
 }
 
-
 .results-flex {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20rem;
 }
 
 .results h3 {
