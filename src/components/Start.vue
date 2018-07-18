@@ -36,9 +36,11 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
           <h3 class="opacity-58">What kind of humanitarian</h3><br>
           <h3>aid worker are you?</h3>
           <br>
-          <button>
-            <router-link to="/quiz">Start Quiz</router-link>
-          </button>
+          <router-link to="/quiz">
+            <button>
+              Start Quiz
+            </button>
+          </router-link>
           <div class="info">
             <img class="info-icon" src="../../static/img/info-b.svg" alt=""><span @click="toggleOverlay">Click for more information</span>
           </div>
@@ -87,7 +89,7 @@ a {
     clear: both;
     margin: 0 auto;
 }
-    
+
 .row {
     padding-left: 20px;
     padding-right: 20px;
@@ -99,7 +101,7 @@ a {
     align-items: center;
     justify-content: center;
 }
-    
+
 .overlay {
     position: relative;
     z-index: 1;
@@ -211,7 +213,7 @@ h3.opacity-58 {
     box-shadow: 10px 0 0 rgba(35, 31, 32,0.58), -10px 0 0 rgba(35, 31, 32, 0.58);
     background: rgba(35, 31, 32, 0.58);
   }
-  
+
 /*Button styles*/
 button {
     height: 55px;
@@ -237,12 +239,12 @@ button {
     margin-top: 20px;
     margin-left: -10px;
 }
-    
+
 button:hover, button:focus, button:active {
     background-color: #b11515;
     color: white;
 }
-    
+
 .overlay button{
     margin-top: 5px;
     margin-left: 0px;
@@ -258,7 +260,7 @@ button:hover, button:focus, button:active {
     line-height: 2rem;
     font-size: 1.5rem;
   }
-  
+
   .info-black a{
     font-family: 'FreightSans Pro';
     font-weight: 600 !important;
@@ -317,7 +319,7 @@ button:hover, button:focus, button:active {
 @media (min-width: 400px) {
     h2{
         font-size: 3.8rem;
-        line-height: 5.8rem;      
+        line-height: 5.8rem;
     }
     h3{
         font-size: 3.7rem;
