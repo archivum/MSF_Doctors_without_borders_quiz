@@ -505,6 +505,9 @@ label > .label-body {
   .full-bg {
     background: url("/static/img/form_mobile.jpg");
   }
+  .question {
+    font-size: 3rem;
+  }
   .questions-input li,
   .questions-input li label {
     margin-bottom: 0;
