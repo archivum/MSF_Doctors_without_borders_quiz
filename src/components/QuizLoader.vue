@@ -63,7 +63,7 @@ export default {
     background-size: cover;
     background-repeat:  no-repeat;
     background-attachment: fixed;
-    background-position: 20% center;
+    background-position: center center;
 }
 
 img {
