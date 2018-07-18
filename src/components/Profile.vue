@@ -111,7 +111,8 @@
         color: #ea0029;
         font-size: 2.8rem;
         text-align: left;
-        font-weight: bold;
+        font-family: 'FreightSans Pro';
+        font-weight: 600;
         line-height: 3.3rem;
     }
 
@@ -149,7 +150,7 @@
     }
 
     .block-header-content {
-        max-width: 650px;
+        max-width: 750px;
         font-family: 'FreightSans Pro';
         font-weight: 600;
         font-style: normal;
