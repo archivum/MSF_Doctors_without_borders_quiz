@@ -70,19 +70,42 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
 
 <style scoped>
 
+/*Links*/
+a {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-
-  .row {
+/*Full width container*/
+.full-width-container {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    padding: 0px 0px;
+    clear: both;
+    margin: 0 auto;
+}
+    
+.row {
     padding-left: 20px;
     padding-right: 20px;
-  }
+}
 
-  .overlay {
+.row-v-align {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+    
+.overlay {
     position: relative;
     z-index: 1;
-  }
+}
 
-  .overlay-close {
+.overlay-close {
     position: absolute;
     z-index: 1;
     top: 40px;
@@ -91,24 +114,24 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
     height: 30px;
     width: 30px;
     cursor: pointer;
-  }
+}
 
-  .logo {
+.logo {
     position: absolute;
     z-index: 2;
     left: 40px;
     top: 25px;
-  }
+}
 
-  .full-bg {
+.full-bg {
     background: url("../../static/img/start.jpg") center center;
     height: 100vh;
     background-size: cover;
     background-repeat:  no-repeat;
     background-attachment: fixed;
-  }
+}
 
-  .darken {
+.darken {
     position: absolute;
     background-color: black;
     height: 100vh;
@@ -117,15 +140,14 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
     left: 0;
     opacity: 0.7;
     z-index: 0;
-  }
+}
 
-  .container {
+.container {
     text-align: left;
     color: white;
-  }
+}
 
-
-  p {
+p {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
@@ -133,33 +155,28 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently */
     cursor: pointer;
-  }
+}
 
-  .text-boxy {
-
-  }
-
-  ul {
+ul {
     margin-bottom: 0;
     font-size: 1.8rem;
     list-style-type: none;
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
-  }
+}
 
-  ul span {
+ul span {
     margin-left: 7px;
     font-weight: bold;
-    
-  }
+}
 
-  h2 {
+h2 {
     display: inline;
     box-shadow: 10px 0 0 rgba(238, 0, 0, 1), -10px 0 0 rgba(238, 0, 0, 1);
     color: white;
-/*    font-size: 38px;*/
-/*    line-height: 58px;*/
+    /*    font-size: 38px;*/
+    /*    line-height: 58px;*/
     font-size: 3.8rem;
     line-height: 5.8rem;
     text-align: left;
@@ -168,51 +185,70 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
     font-family: 'FreightSans Pro';
     font-weight: bold;
     font-style: normal;
-  }
+}
 
-  h2.opacity-70 {
-    box-shadow: 10px 0 0 rgba(238, 0, 0, 0.7), -10px 0 0 rgba(238, 0, 0, 0.7);
-    background-color: rgba(238, 0, 0, 0.7);
-  }
+h2.opacity-70 {
+  box-shadow: 10px 0 0 rgba(238, 0, 0, 0.7), -10px 0 0 rgba(238, 0, 0, 0.7);
+  background-color: rgba(238, 0, 0, 0.7);
+}
 
-  h3 {
-    display: inline;
-    box-shadow: 10px 0 0 rgba(35, 31, 32,1), -10px 0 0 rgba(35, 31, 32,1);
-    color: white;
-/*
-    font-size: 37px;
-    line-height: 55px;
-*/
-    font-size: 3.7rem;
-    line-height: 5.5rem;
-    text-align: left;
-    background-color: rgba(35, 31, 32,1);
-    /*text-transform: uppercase;*/
-    /*font-weight: bold;*/
-    font-family: 'FreightSans Pro';
-    font-weight: 500;
-    font-style: normal;
-  }
+h3 {
+  display: inline;
+  box-shadow: 10px 0 0 rgba(35, 31, 32,1), -10px 0 0 rgba(35, 31, 32,1);
+  color: white;
+  font-size: 3.7rem;
+  line-height: 5.5rem;
+  text-align: left;
+  background-color: rgba(35, 31, 32,1);
+  /*text-transform: uppercase;*/
+  /*font-weight: bold;*/
+  font-family: 'FreightSans Pro';
+  font-weight: 500;
+  font-style: normal;
+}
 
-  h3.opacity-58 {
+h3.opacity-58 {
     box-shadow: 10px 0 0 rgba(35, 31, 32,0.58), -10px 0 0 rgba(35, 31, 32, 0.58);
     background: rgba(35, 31, 32, 0.58);
   }
-
-  button {
+  
+/*Button styles*/
+button {
+    height: 55px;
+    background-color: #ea0029;
+    border-radius: 50px;
+    border: none;
+    width: 275px;
+    font-size: 2.6rem;
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    overflow: hidden;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: color, background-color;
+    transition-property: color, background-color;
+    font-family: 'FreightSans Pro';
+    font-weight: 600;
+    font-style: normal;
     margin-top: 20px;
     margin-left: -10px;
-    font-family: 'FreightSans Pro';
-    font-weight: bold;
-    font-style: normal;
-  }
-    .overlay button{
-        margin-top: 5px;
-        margin-left: 0px;
-    }
+}
+    
+button:hover, button:focus, button:active {
+    background-color: #b11515;
+    color: white;
+}
+    
+.overlay button{
+    margin-top: 5px;
+    margin-left: 0px;
+}
 
-
-  .info-black {
+.info-black {
     margin-left: 0px;
     margin-top: 5px;
     cursor: pointer;
@@ -230,22 +266,22 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
     text-decoration: underline !important;
   }
 
-  .copy1 {
+.copy1 {
     font-size: 1.9rem;
     font-family: 'FreightSans Pro Book';
     font-weight: normal;
     font-style: normal;
     line-height: 2.3rem;
-  }
+}
 
-  .copy2 {
+.copy2 {
     font-size: 2.2rem;
     font-family: 'FreightSans Pro';
     font-weight: bold;
     font-style: normal;
     line-height: 2.8rem;
-  }
-  .info {
+}
+.info {
     color: #231f20;
     margin-left: -10px;
     margin-top: 5px;
@@ -254,29 +290,28 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
-  }
+}
 
-  .info span {
+.info span {
     margin-left: 7px;
     font-size: 1.6rem;
-  }
+}
 
-  .info-icon {
+.info-icon {
     float: left;
     display: inline-block;
     height: 23px;
     width: 23px;
+}
 
-  }
-
-  .info-icon-black {
+.info-icon-black {
     float: left;
     display: inline-block;
     height: 23px;
     width: 23px;
     padding-bottom: 7rem;
     padding-right: 10px;
-  }
+}
 
 /* Larger than mobile */
 @media (min-width: 400px) {
