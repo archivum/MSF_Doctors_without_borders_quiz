@@ -1,6 +1,6 @@
 <template>
     <div class="quiz-loader" :style="backgroundUrl ? { 'background-image': 'url(' + backgroundUrl + ')' } : {'background-color': '#fff'}">
-        <img src="/static/img/favicon.ico" width="100">
+        <img src="/static/img/logo.svg" width="100">
     </div>
 </template>
 
