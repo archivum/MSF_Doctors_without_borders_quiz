@@ -20,12 +20,12 @@
     color: #2c3e50;
 }
 
-#app >>> .row {
+.row {
     padding-left: 20px;
     padding-right: 20px;
 }
 
-#app >>> .row-v-align {
+.row-v-align {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,7 +33,7 @@
 }
 
 /*Links*/
-#app >>> a {
+a {
     color: white !important;
     text-decoration: none;
     font-weight: bold;
@@ -41,12 +41,12 @@
 }
 
 
-#app >>> a:hover {
+a:hover {
 /*color: white;*/
 }
 
 /*Button styles*/
-#app >>> button {
+button {
     height: 55px;
     background-color: #ea0029;
     border-radius: 50px;
@@ -68,13 +68,13 @@
     font-weight: 600;
     font-style: normal;
 }
-#app >>> button:hover, #app >>> button:focus, #app >>> button:active {
+button:hover, button:focus, button:active {
     background-color: #b11515;
     color: white;
 }
 
 /*Full width container*/
-#app >>> .full-width-container {
+.full-width-container {
     height: 100vh;
     width: 100%;
     max-width: 100%;
@@ -82,7 +82,7 @@
     clear: both;
     margin: 0 auto;
 }
-#app >>> button {
+button {
     height: 55px;
     background-color: #ea0029;
     border-radius: 50px;
