@@ -21,9 +21,9 @@
                   </label>
                 </li>
               </ul>
-              <div class="progress-and-button" v-if="questionIndex > 0">
+              <div class="progress-and-button">
                 <div class="button-back" v-on:click="prev">
-                  Back
+                  &#60; Back
                 </div>
                 <div class="progress-container">
                   <div class="progress" v-bind:style="{ width: questionIndex * 50 + 'px' }"></div>

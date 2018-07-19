@@ -213,7 +213,7 @@ h3 span {
     padding-bottom: 40px;
     font-size: 33px;
     color: #ea0029;
-    line-height: 30px;
+    line-height: 40px;
     font-family: 'FreightSans Pro';
     font-weight: 600;
     font-style: normal;
@@ -222,8 +222,8 @@ h3 span {
 .quote span {
     color: #231f20;
     font-size: 28px;
-    float: left;
-    padding-top: 10px;
+    display: block;
+    text-align: left;
     padding-left: 30px;
 }
 
