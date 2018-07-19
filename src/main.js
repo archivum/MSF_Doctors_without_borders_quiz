@@ -7,9 +7,15 @@ import './css/fonts.css'
 import './css/normalize.css'
 import './css/skeleton.css'
 
+// Plugins
+import VModal from 'vue-js-modal'
+
+Vue.use(VModal)
+
 Vue.config.productionTip = false
 
-if(window.location.pathname === '') {
+if(window.location.pathname === '' || window.location.pathname === '/profile') {
+    $('#loader').show()
     $(document).ready(
     function() {
         $('#loader').fadeOut("slow")

@@ -8,7 +8,7 @@
           ability
           to evaluate a situation quickly and take responsible action to reduce suffering.</p>
         <h4>Tell your friends you're<br><span>a First Responder</span></h4>
-        <button>Share Now</button>
+        <button @click="showModal">Share Now</button>
       </div>
     </div>
     <div class="row block-copy">
@@ -33,52 +33,44 @@
           failure.”<span> – Dr. James Orbinski</span>
         </div>
         <h4>Tell your friends you're<br><span>a First Responder</span></h4>
-        <button>Share Now</button>
+        <button @click="showModal">Share Now</button>
       </div>
     </div>
+    <modal name="share-modal" :adaptive="true" width="50%" :maxWidth="600" :minWidth="300">
+        <div class="share-modal">
+            <div class="sharing-element" @click="shareFb">Facebook Share&nbsp;&nbsp;&nbsp;<i class="fab fa-facebook-square"></i></div>
+            <div class="sharing-element">Twitter Share&nbsp;&nbsp;&nbsp;<i class="fab fa-twitter"></i></div>
+            <div class="sharing-element">Save Image&nbsp;&nbsp;&nbsp;<i class="fa fa-download"></i></div>
+            <button>SAVE & SHARE&nbsp;&nbsp;&nbsp;<i class="fa fa-triangle"></i></button>
+        </div>
+    </modal>
   </div>
 </template>
 
 <script>
-
+import {profiles} from '../lib/utils.js'
   /* eslint-disable */
 
-  const profiles = {
-
-    profile: [{
-      title: "first responder",
-      desc: 'You understand the value of quickly assessing a situation and responding appropriately. You have a unique ability to evaluate a situation quickly and take responsible action to reduce suffering.',
-      responses: [{
-        text: 'Get excited about expanding your world-view',
-        value: 'Batman'
-      },
-        {
-          text: 'Gear up for a vocal debate —\n' +
-          'you love a good discussion',
-          value: 'Superman'
-        },
-        {
-          text: 'Listen carefully, trying to understand all perspectives',
-          value: 'The Flash'
-        },
-        {
-          text: 'Listen well, weigh-in often, invite everyone to have their say',
-          value: 'Superman'
-        }
-      ]
-    }
-    ]
-  }
-
   export default {
-    name: 'Profile'
+    name: 'Profile',
+    methods: {
+        showModal () {
+            this.$modal.show('share-modal');
+        },
+        shareFb () {
+            FB.ui({
+              method: 'share',
+              href: 'https://developers.facebook.com/docs/',
+            }, function(response){});
+        }
+    }
   }
 
 
 </script>
 
 <style scoped>
-    
+
 body {
     background-color: white;
 }
@@ -90,7 +82,7 @@ a {
     font-weight: bold;
     cursor: pointer;
 }
-    
+
 /*Full width container*/
 .full-width-container {
     height: 100%;
@@ -100,7 +92,7 @@ a {
     clear: both;
     margin: 0 auto;
 }
-    
+
 .row {
     padding-left: 20px;
     padding-right: 20px;
@@ -264,10 +256,52 @@ button {
     font-weight: 600;
     font-style: normal;
 }
-    
+
 button:hover, button:focus, button:active {
     background-color: #b11515;
     color: white;
+}
+
+/* Modal */
+
+.share-modal {
+    background-color: #ea0029;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0px 0px 20px 20px;
+    -moz-border-radius: 0px 0px 20px 20px;
+    -webkit-border-radius: 0px 0px 20px 20px;
+}
+
+.share-modal button {
+    width: 100%;
+    -webkit-box-shadow: 2px -10px 10px -3px rgba(0,0,0,0.15);
+    -moz-box-shadow: 2px -10px 10px -3px rgba(0,0,0,0.15);
+    box-shadow: 2px -10px 10px -3px rgba(0,0,0,0.15);
+    margin-bottom: -1rem !important;
+}
+
+.sharing-element {
+     font-weight: 600;
+     width: 100%;
+     flex-basis: 25%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: #fff;
+     font-size: 2rem;
+     transition: all .3s;
+     -moz-transition: all .3s;
+     -webkit-transition: all .3s;
+}
+
+.sharing-element:hover {
+    background-color: #b11515;
+    cursor: pointer;
 }
 
 </style>

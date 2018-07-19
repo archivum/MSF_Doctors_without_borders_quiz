@@ -425,3 +425,12 @@ td,
 th {
   padding: 0;
 }
+
+/* CUSTOM */
+
+.v--modal-box {
+    overflow: visible !important;
+    border-radius: 0px 0px 20px 20px !important;
+    -moz-border-radius: 0px 0px 20px 20px !important;
+    -webkit-border-radius: 0px 0px 20px 20px !important;
+}

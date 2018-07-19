@@ -115,4 +115,31 @@ const quiz = {
     ]
   }
 
-  export {quiz}
+  const profiles = {
+
+    profile: [{
+      title: "first responder",
+      desc: 'You understand the value of quickly assessing a situation and responding appropriately. You have a unique ability to evaluate a situation quickly and take responsible action to reduce suffering.',
+      responses: [{
+        text: 'Get excited about expanding your world-view',
+        value: 'Batman'
+      },
+        {
+          text: 'Gear up for a vocal debate —\n' +
+          'you love a good discussion',
+          value: 'Superman'
+        },
+        {
+          text: 'Listen carefully, trying to understand all perspectives',
+          value: 'The Flash'
+        },
+        {
+          text: 'Listen well, weigh-in often, invite everyone to have their say',
+          value: 'Superman'
+        }
+      ]
+    }
+    ]
+  }
+
+  export {quiz, profiles}

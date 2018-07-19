@@ -55,7 +55,7 @@
                 <button>
                   <router-link :to="{ path: 'Profile' }">Continue</router-link>
                 </button>
-                <span class="skip"><router-link :to="{ path: 'Profile' }">Skip this step</router-link></span>
+                <span class="skip"><router-link :to="{ path: 'profile' }">Skip this step</router-link></span>
               </div>
             </div>
           </div>
