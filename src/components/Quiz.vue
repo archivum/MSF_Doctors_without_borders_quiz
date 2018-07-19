@@ -23,9 +23,12 @@
                 </li>
               </ul>
               <div class="progress-and-button">
-                <div class="button-back" v-on:click="prev">
+                <div class="button-back" v-on:click="prev" v-if="questionIndex > 0">
                   &#60; Back
                 </div>
+                <router-link class="button-back" to="/" v-else>
+                  &#60; Back
+                </router-link>
                 <div class="progress-container">
                   <div class="progress" v-bind:style="{ width: questionIndex * 50 + 'px' }"></div>
                   <div class="progress-bar"></div>
@@ -56,7 +59,7 @@
                 <button>
                   <router-link :to="{ path: 'Profile' }">Continue</router-link>
                 </button>
-                <span class="skip"><router-link :to="{ path: 'profile' }">Skip this step</router-link></span>
+                <span class="skip"><router-link :to="{ path: 'profile/' + profile }">Skip this step</router-link></span>
               </div>
             </div>
           </div>
@@ -85,7 +88,9 @@
         loaderTimeout: 1000,
         loaderBackground: '',
         property: 'images',
-        bigScreen: true
+        bigScreen: true,
+        profile: 0,
+        tl: ''
       }
     },
     components: {
@@ -97,6 +102,7 @@
     mounted() {
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
+      setTimeout(this.animateQuiz, this.loaderTimeout)
     },
     beforeDestroy: function () {
       window.removeEventListener('resize', this.handleResize)
@@ -109,7 +115,8 @@
         this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
         let vm = this
         setTimeout(function() {
-          vm.questionIndex ++
+          vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length)
+          vm.questionIndex === vm.quiz.questions.length ? vm.computeScore() : ''
         }, vm.loaderTimeout / 2)
       },
       // Go to previous question
@@ -119,30 +126,35 @@
         this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
         let vm = this
         setTimeout(function() {
-          vm.questionIndex --
+          vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
         }, vm.loaderTimeout / 2)
       },
-      score: function () {
-        //find the highest occurence in responses
-        var modeMap = {};
-        var maxEl = this.userResponses[0],
-          maxCount = 1;
-        for (var i = 0; i < this.userResponses.length; i++) {
-          var el = this.userResponses[i];
-          if (modeMap[el] == null)
-            modeMap[el] = 1;
-          else
-            modeMap[el]++;
-          if (modeMap[el] > maxCount) {
-            maxEl = el;
-            maxCount = modeMap[el];
-          }
-        }
-        return maxEl;
+      computeScore() {
+        let vm = this
+        let score = 0
+        this.userResponses.map((answer) => score += answer)
+        10 <= score && score < 18 ? this.profile = 1 : 18 <= score && score < 26 ? this.profile = 3 : 26 <= score && score < 34 ? this.profile = 0 : this.profile = 2
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
+      },
+      animateQuiz(delay = .2) {
+        this.tl = new TimelineMax()
+          this.tl
+            .staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
+      },
+      resetAnimation() {
+        $('.question').css('opacity', '0')
+        $('.questions-input').css('opacity', '0')
+        $('.progress-and-button').css('opacity', '0')
       }
+  },
+  watch: {
+    showLoader(newValue, oldValue) {
+      if(!newValue) {
+        this.tl.restart(true, false)
+      }
+    }
   }
 }
 
@@ -192,14 +204,6 @@ button a {
   width: 100%;
   height: 100%;
   background: rgba(35, 31, 32,.8);
-}
-
-.fade-enter-active {
-    transition: opacity .5s;
-}
-
-.fade-enter {
-    opacity: 0;
 }
 
 #app {
@@ -289,6 +293,7 @@ input[type="radio"] {
     font-weight: bold;
     font-style: normal;
     font-size: 3.4rem;
+    opacity: 0;
 }
 
 .questions-input {
@@ -317,6 +322,7 @@ input[type="radio"] {
     -o-align-items: stretch;
     -khtml-align-items: stretch;
     align-items: stretch;
+    opacity: 0;
 }
 
 .questions-input li {
@@ -374,6 +380,7 @@ input[type="radio"] {
 .progress-and-button {
     display: inline-block;
     float: left;
+    opacity: 0;
 }
 
 .progress-container {
