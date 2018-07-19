@@ -27,10 +27,16 @@
 which in turn inform our fundraising decisions. People like you
 help us tell the story of the people who need us. Thank you!<br><a href="">View our Privacy Policy here.</a></span>
             </div>
+            <div class="info-black-mobile">
+              <span>Your answers shed light on prevailing attitudes and preferences
+which in turn inform our fundraising decisions. People like you
+help us tell the story of the people who need us. Thank you!<br><a href="">View our <u>Privacy Policy</u> here.</a></span>
+            </div>
           </div>
           <div class="darken"></div>
         </div>
         <div class="columns" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
+          <img class='logo-mobile' src="../../static/img/logo_mobile.png"/><br>
           <h2 class="opacity-70">Take the doctors</h2><br>
           <h2>Without borders quiz</h2><br>
           <h3 class="opacity-58">What kind of humanitarian</h3><br>
@@ -43,6 +49,9 @@ help us tell the story of the people who need us. Thank you!<br><a href="">View 
           </router-link>
           <div class="info">
             <img class="info-icon" src="../../static/img/info-b.svg" alt=""><span @click="toggleOverlay">Click for more information</span>
+          </div>
+          <div class="info-mobile">
+            <span @click="toggleOverlay">Tap here for more information</span>
           </div>
         </div>
       </div>
@@ -245,7 +254,7 @@ button {
     -webkit-transition-property: color, background-color;
     transition-property: color, background-color;
     font-family: 'FreightSans Pro';
-    font-weight: 600;
+    font-weight: bold;
     font-style: normal;
     margin-top: 20px;
     margin-left: -10px;
@@ -326,6 +335,11 @@ button:hover, button:focus, button:active {
     padding-right: 10px;
 }
 
+.info-mobile {
+  text-align: center;
+  text-decoration: underline;
+}
+
 /* Larger than mobile */
 @media (min-width: 400px) {
     h2{
@@ -336,6 +350,64 @@ button:hover, button:focus, button:active {
         font-size: 3.7rem;
         line-height: 5.5rem;
     }
+    .logo-mobile,
+    .info-mobile,
+    .info-black-mobile {
+      display: none;
+    }
+}
+
+@media (max-width:400px){
+  .logo,
+  .info,
+  .info-black {
+    display: none;
+  }
+  .columns {
+    margin: auto 0 0;
+  }
+  h2 {
+    font-size: 3rem;
+    line-height: 4.5rem;
+  }
+  h3 {
+    font-size: 2.8rem;
+    line-height: 4rem;
+    font-weight: 600;
+  }
+  .full-bg{
+    background: url("../../static/img/start_mobile.jpg") center center;
+    background-size: cover;
+  }
+  button {
+    margin-top: .5rem;
+  }
+  .overlay {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .overlay-close {
+    top: 10px;
+    right: 10px;
+  }
+  .copy1,
+  .copy2 {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  .overlay li {
+    margin-bottom: .5rem;
+    line-height: 1.8rem;
+    text-align: left;
+  }
+  .overlay button {
+    margin: 1.5rem auto;
+  }
+  .info-black-mobile {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    padding: 0 3.2rem;
+  }
 }
 
 /* Larger than phablet (also point when grid becomes active) */
