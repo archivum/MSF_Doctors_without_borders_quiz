@@ -27,6 +27,11 @@ export default new Router({
       path: '/start',
       name: 'Start',
       component: Start
+    },
+    {
+      path: '/privacy',
+      name: 'Privacy',
+      component: Start
     }
   ]
 })
