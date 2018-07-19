@@ -265,6 +265,10 @@ input[type="radio"] {
     padding-top: 150px;
 }
 
+.quiz-container {
+  opacity: 0;
+}
+
 .quizLogo {
     /*    position: absolute;*/
     float: left;
