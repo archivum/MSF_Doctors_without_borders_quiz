@@ -3,21 +3,15 @@
     <div class="row block-header">
       <div class="block-header-content">
         <h3><span>Your humanitarian and worker profile is</span></h3>
-        <h2><span>First responder</span></h2>
-        <p>You understand the value of quickly assessing a situation and responding appropriately. You have a unique
-          ability
-          to evaluate a situation quickly and take responsible action to reduce suffering.</p>
-        <h4>Tell your friends you're<br><span>a First Responder</span></h4>
+        <h2><span>{{ profile.title }}</span></h2>
+        <p>{{ profile.desc }}</p>
+        <h4>Tell your friends you're<br><span>{{ profile.title }}</span></h4>
         <button @click="showModal">Share Now</button>
       </div>
     </div>
     <div class="row block-copy">
       <div class="eight offset-by-two columns">
-        <p>Everyone can be a humanitarian: it’s about compassion and taking action to support people who are suffering,
-          no matter who they are or where they live.
-          <span>Be a humanitarian by contributing to Doctors Without Borders’ life-saving work. Get informed about issues
-          happening in other countries, become an advocate or supporter, give a gift, or even come work with us. Share
-          your profile with your networks, and invite them to ask themselves, “What kind of humanitarian are you?”</span>
+        <p>{{ profile.paragraph }}
         </p>
       </div>
     </div>
@@ -25,14 +19,10 @@
     </div>
     <div class="row block-quote">
       <div class="eight offset-by-two columns">
-        <p>Doctors Without Borders responds quickly and effectively in emergencies. Our teams are often the first on the
-          scene, as for example during the devastating Ebola outbreak in West Africa, or providing medical care to the
-          displaced Rohingya people in Myanmar.</p>
         <div class="quote">
-          “Humanitarianism is not a tool to end war or create peace. It is a citizen's response to political
-          failure.”<span> – Dr. James Orbinski</span>
+          “{{ profile.quote }}”<span> – {{ profile.author }}</span>
         </div>
-        <h4>Tell your friends you're<br><span>a First Responder</span></h4>
+        <h4>Tell your friends you're<br><span>{{ profile.title }}</span></h4>
         <button @click="showModal">Share Now</button>
       </div>
     </div>
@@ -53,6 +43,11 @@ import {profiles} from '../lib/utils.js'
 
   export default {
     name: 'Profile',
+    computed: {
+        profile() {
+            return profiles.profile[this.$route.params.id]
+        }
+    },
     methods: {
         showModal () {
             this.$modal.show('share-modal');

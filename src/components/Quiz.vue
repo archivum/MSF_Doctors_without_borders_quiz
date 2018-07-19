@@ -59,7 +59,7 @@
                 <button>
                   <router-link :to="{ path: 'Profile' }">Continue</router-link>
                 </button>
-                <span class="skip"><router-link :to="{ path: 'profile?id=' + profile }">Skip this step</router-link></span>
+                <span class="skip"><router-link :to="{ path: 'profile/' + profile }">Skip this step</router-link></span>
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@
         let vm = this
         let score = 0
         this.userResponses.map((answer) => score += answer)
-        0 <= score && score < 15 ? this.profile = 1 : 15 <= score && score < 25 ? this.profile = 3 : 25 <= score && score < 35 ? this.profile = 0 : this.profile = 2
+        10 <= score && score < 18 ? this.profile = 1 : 18 <= score && score < 26 ? this.profile = 3 : 26 <= score && score < 34 ? this.profile = 0 : this.profile = 2
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
