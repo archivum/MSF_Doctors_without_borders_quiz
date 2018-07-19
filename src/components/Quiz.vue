@@ -609,12 +609,8 @@ label > .label-body {
   .quiz {
     padding-top: 2rem;
   }
-  .answer p {
-    color: #fff;
-  }
   .answer {
-    opacity: 1;
-    border: none;
+    box-sizing: border-box;
   }
   .full-bg {
     background: url("/static/img/form_mobile.jpg");
@@ -626,18 +622,6 @@ label > .label-body {
   .questions-input li,
   .questions-input li label {
     margin-bottom: 0;
-  }
-  .questions-input li:nth-child(1) .answer {
-    background-color: #780505;
-  }
-  .questions-input li:nth-child(2) .answer {
-    background-color: #690505;
-  }
-  .questions-input li:nth-child(3) .answer {
-    background-color: #550505;
-  }
-  .questions-input li:nth-child(4) .answer {
-    background-color: #460000;
   }
 }
 
