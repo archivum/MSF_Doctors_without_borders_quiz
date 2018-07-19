@@ -41,7 +41,7 @@
         <!-- SIGN UP FORM SECTION -->
         <div class='results' v-show="questionIndex === quiz.questions.length">
           <div class="row row-v-align full-bg">
-            <div class='quizLogo'><img :src="quiz.logo"/></div>
+            <div class='quizLogo'><img :src="quiz.logo2"/></div> <!--UPDATE-->
             <div class="content">
               <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
                 <h3>Your results are <span class="result-head">almost&nbsp;in!</span></h3>
@@ -534,7 +534,7 @@ label > .label-body {
     color: white;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .quizLogo {
     margin: auto 1rem 0;
   }
@@ -640,12 +640,8 @@ label > .label-body {
   .quiz {
     padding-top: 2rem;
   }
-  .answer p {
-    color: #fff;
-  }
   .answer {
-    opacity: 1;
-    border: none;
+    box-sizing: border-box;
   }
   .full-bg {
     background: url("/static/img/form_mobile.jpg");
@@ -657,18 +653,6 @@ label > .label-body {
   .questions-input li,
   .questions-input li label {
     margin-bottom: 0;
-  }
-  .questions-input li:nth-child(1) .answer {
-    background-color: #780505;
-  }
-  .questions-input li:nth-child(2) .answer {
-    background-color: #690505;
-  }
-  .questions-input li:nth-child(3) .answer {
-    background-color: #550505;
-  }
-  .questions-input li:nth-child(4) .answer {
-    background-color: #460000;
   }
 }
 

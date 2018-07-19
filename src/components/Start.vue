@@ -341,7 +341,7 @@ button:hover, button:focus, button:active {
 }
 
 /* Larger than mobile */
-@media (min-width: 400px) {
+@media (min-width: 420px) {
     h2{
         font-size: 3.8rem;
         line-height: 5.8rem;
@@ -357,7 +357,7 @@ button:hover, button:focus, button:active {
     }
 }
 
-@media (max-width:400px){
+@media (max-width:420px){
   .logo,
   .info,
   .info-black {
