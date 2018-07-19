@@ -40,7 +40,7 @@
             <div class='quizLogo'><img :src="quiz.logo"/></div>
             <div class="content">
               <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
-                <h3>Your results are almost&nbsp;in!</h3>
+                <h3>Your results are <span class="result-head">almost&nbsp;in!</span></h3>
                 <p>Will you stand with us? We need people like you who will speak out when the world needs you to act.
                   Sign up now.</p>
               </div>
@@ -499,6 +499,38 @@ label > .label-body {
     background-color: #ea0029;
     opacity: 1;
     color: white;
+}
+    
+@media (max-width: 400px) {
+    .results .content{
+        margin-top: 30px;
+    }
+    .results h3{
+        font-size: 2.5rem;
+        line-height: 2.8rem;
+        margin-bottom: 0.5rem;
+    }
+    .result-head{
+        display: block;
+    }
+    .results p{
+        font-size: 1.6rem;
+        line-height: 2rem;
+    }
+    .quizLogo{
+        display: none;
+    }
+    .agree{
+        margin-bottom: 30px;
+    }
+    label > .label-body{
+        font-size: 1.4rem;
+        line-height: 1.5rem;
+        margin-top: 1.8rem;
+    }
+    input[type="checkbox"] {
+        margin-top: 2rem;
+    }
 }
 
 @media only screen and (max-width: 768px) {
