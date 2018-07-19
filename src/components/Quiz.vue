@@ -1,4 +1,5 @@
 <template>
+  <transition name="fade">
   <div id="quiz">
     <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground"></quiz-loader>
     <div class="quiz-container">
@@ -66,6 +67,7 @@
     </div>
 
   </div>
+</transition>
 </template>
 
 <script>
@@ -500,7 +502,7 @@ label > .label-body {
     opacity: 1;
     color: white;
 }
-    
+
 @media (max-width: 400px) {
     .results .content{
         margin-top: 30px;
@@ -588,7 +590,7 @@ label > .label-body {
 .four.columns {
   max-width: 700px;
 }
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active {
   transition: opacity .5s;
 }
 </style>

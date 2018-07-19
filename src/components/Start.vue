@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="start">
     <img class='logo' src="../../static/img/logo-lg.png"/>
     <div class="full-width-container container">
       <div class="row row-v-align full-bg">

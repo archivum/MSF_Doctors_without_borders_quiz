@@ -14,18 +14,15 @@ Vue.use(VModal)
 
 Vue.config.productionTip = false
 
-if(window.location.pathname === '' || window.location.pathname === '/profile') {
-    $('#loader').show()
-    $(document).ready(
-    function() {
-        $('#loader').fadeOut("slow")
-    }
-)
-}
-else {
-    $('#loader').hide()
-}
+// if(window.location.pathname === '/' || window.location.pathname === '/profile') {
+//     $('#loader').show()
+//     window.onload = function() { $('#loader').fadeOut("slow") }
+// }
+// else {
+//     $('#loader').hide()
+// }
 
+$(document).ready(function() { window.location.pathname === '/' ? $('#loader').fadeOut("slow") : $('#loader').hide() })
 
 /* eslint-disable no-new */
 new Vue({
