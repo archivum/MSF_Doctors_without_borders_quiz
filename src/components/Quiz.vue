@@ -504,35 +504,89 @@ label > .label-body {
 }
 
 @media (max-width: 400px) {
-    .results .content{
-        margin-top: 30px;
-    }
-    .results h3{
-        font-size: 2.5rem;
-        line-height: 2.8rem;
-        margin-bottom: 0.5rem;
-    }
-    .result-head{
-        display: block;
-    }
-    .results p{
-        font-size: 1.6rem;
-        line-height: 2rem;
-    }
-    .quizLogo{
-        display: none;
-    }
-    .agree{
-        margin-bottom: 30px;
-    }
-    label > .label-body{
-        font-size: 1.4rem;
-        line-height: 1.5rem;
-        margin-top: 1.8rem;
-    }
-    input[type="checkbox"] {
-        margin-top: 2rem;
-    }
+  .quizLogo {
+    margin: auto 1rem 0;
+  }
+  .quiz .question {
+    margin: auto 1rem;
+  }
+  .results .content{
+    margin-top: 120px;
+  }
+  .results h3{
+    font-size: 2.5rem;
+    line-height: 2.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .result-head{
+    display: block;
+  }
+  .results p{
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+  .agree{
+    margin-bottom: 30px;
+  }
+  label > .label-body{
+    font-size: 1.4rem;
+    line-height: 1.5rem;
+    margin-top: 1.8rem;
+  }
+  input[type="checkbox"] {
+    margin-top: 2rem;
+  }
+  .button-back {
+    display: none;
+  }
+  .row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .progress-and-button {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .progress-container {
+    margin: 0;
+    width: 100%;
+  }
+  .progress-bar {
+    width: 100%;
+  }
+  .question {
+    margin: 0;
+  }
+  .questions-input {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+  }
+  .quiz {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+  }
+  .results .row {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .results .quizLogo {
+    display: none;
+  }
+  .results .columns.eight {
+    text-align: center;
+  }
+  .results .columns.eight .agree {
+    text-align: left;
+  }
+  .results .skip {
+    display: block;
+    padding: 0;
+    float: none;
+  }
 }
 
 @media only screen and (max-width: 768px) {
