@@ -17,7 +17,7 @@
             </p>
             <ul>
               <li>Questions: <span>5</span></li>
-              <li>Estimated Time: <span>2 min</span></li>
+              <li>Estimated Time: <span>2</span> min</li>
             </ul>
             <button>
               <router-link to="/quiz">Start Quiz</router-link>
@@ -137,7 +137,7 @@ a {
 }
 
 .full-bg {
-    background: url("../../static/img/start.jpg") 15% center;
+    background: url("../../static/img/start.jpg") top center;
     height: 100vh;
     background-size: cover;
     background-repeat:  no-repeat;
@@ -282,7 +282,7 @@ button:hover, button:focus, button:active {
 .copy1 {
     font-size: 1.9rem;
     font-family: 'FreightSans Pro Book';
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
     line-height: 2.3rem;
 }
@@ -290,7 +290,7 @@ button:hover, button:focus, button:active {
 .copy2 {
     font-size: 2.2rem;
     font-family: 'FreightSans Pro';
-    font-weight: bold;
+    font-weight: 600;
     font-style: normal;
     line-height: 2.8rem;
 }
