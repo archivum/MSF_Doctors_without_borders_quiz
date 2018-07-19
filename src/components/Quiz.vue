@@ -1,11 +1,11 @@
 <template>
   <div id="quiz">
-    <div>
+    <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground"></quiz-loader>
+    <div class="quiz-container">
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
-          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'url(' + question.images + ')' }" class="row full-bg">
-            
+          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)), url(' + question[property] + ')'}" class="row full-bg ">
             <div class="eight columns offset-by-two quiz">
               <div class='quizLogo'><img :src="quiz.logo"/></div>
               <h3 class="question">{{ question.text }}</h3>
@@ -21,9 +21,9 @@
                   </label>
                 </li>
               </ul>
-              <div class="progress-and-button" v-if="questionIndex > 0">
+              <div class="progress-and-button">
                 <div class="button-back" v-on:click="prev">
-                  Back
+                  &#60; Back
                 </div>
                 <div class="progress-container">
                   <div class="progress" v-bind:style="{ width: questionIndex * 50 + 'px' }"></div>
@@ -37,13 +37,13 @@
         <!-- SIGN UP FORM SECTION -->
         <div class='results' v-show="questionIndex === quiz.questions.length">
           <div class="row row-v-align full-bg">
-            <div class="results-flex">
-              <div class="four columns">
+            <div class="content">
+              <div class="columns" :class="bigScreen ? `four offset-by-two` : `eight offset-by-two`">
                 <h3>Your results are almost in!</h3>
                 <p>Will you stand with us? We need people like you who will speak out when the world needs you to act.
                   Sign up now.</p>
               </div>
-              <div class="four columns">
+              <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
                 <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput">
                 <input class="u-full-width" type="email" placeholder="Last Name" id="lastnameInput">
                 <input class="u-full-width" type="email" placeholder="Email" id="emailInput">
@@ -68,141 +68,56 @@
 </template>
 
 <script>
-
+  import QuizLoader from './QuizLoader.vue'
+  import {quiz} from '../lib/utils.js'
   /* eslint-disable */
-
-  const quiz = {
-    logo: '/static/img/quizLogo.png',
-
-    questions: [{
-      text: "Discussing world issues with friends, you:",
-      images: '/static/img/img1.jpg',
-      responses: [{
-        text: 'Get excited about expanding your world-view',
-        value: 'Batman'
-      },
-        {
-          text: 'Gear up for a vocal debate —\n' +
-          'you love a good discussion',
-          value: 'Superman'
-        },
-        {
-          text: 'Listen carefully, trying to understand all perspectives',
-          value: 'The Flash'
-        },
-        {
-          text: 'Listen well, weigh-in often, invite everyone to have their say',
-          value: 'Superman'
-        }
-      ]
-    },
-      {
-        text: "To get your daily dose of international news, you:",
-        images: '/static/img/img2.jpg',
-        responses: [{
-          text: 'Scour the web for articles from a variety of sources',
-          value: 'The Flash'
-        },
-          {
-            text: 'Read (and comment on) anything you can get your hands on',
-            value: 'Batman'
-          },
-          {
-            text: 'Stick to your favourite, reputable news outlets',
-            value: 'Superman'
-          },
-          {
-            text: 'Read and share a lot on social media to spread awareness on big issue',
-            value: 'Supermans'
-          }
-        ]
-      },
-      {
-        text: "Friends ask you to help a local, non-profit organization. You offer to:",
-        images: '/static/img/img3.jpg',
-        responses: [{
-          text: 'Volunteer',
-          value: 'Superman'
-        },
-          {
-            text: 'Start a peer-to-peer fundraising campaign',
-            value: 'The Flash'
-          },
-          {
-            text: 'Review the organization’s “About Us” section of their website',
-            value: 'Batman'
-          },
-          {
-            text: 'Go door-to-door with a petition, raising awareness',
-            value: 'Batman'
-          }
-        ]
-      },
-      {
-        text: "Your neighbour knocks on your door with a petition to support an emergency happening in another country. You:",
-        images: '/static/img/img4.jpg',
-        responses: [{
-          text: 'Immediately sign without reading',
-          value: 'Batman'
-        },
-          {
-            text: 'Sign and offer to share with your friends on social media',
-            value: 'The Flash'
-          },
-          {
-            text: 'Offer to read the petition and think about the implications of signing',
-            value: 'Superman'
-          },
-          {
-            text: 'Sign, then knock on doors to recruit your neighbours to the cause',
-            value: 'Superman'
-          }
-        ]
-      },
-      {
-        text: "Imagine you’re off on your first MSF mission, to an area with limited access to the rest of the world. What do you pack first? ",
-        images: '/static/img/img5.jpg',
-        responses: [{
-          text: 'A portable movie projector',
-          value: 'The Flash'
-        },
-          {
-            text: 'Speakers for your music player',
-            value: 'Batman'
-          },
-          {
-            text: 'Your favourite novels',
-            value: 'Superman'
-          },
-          {
-            text: 'A deck of cards',
-            value: 'Superman'
-          }
-        ]
-      },
-    ]
-  }
 
   export default {
     data() {
       return {
         quiz: quiz,
         questionIndex: 0,
-        userResponses: Array()
+        userResponses: Array(),
+        showLoader: false,
+        loaderTimeout: 1000,
+        loaderBackground: '',
+        property: 'images',
+        bigScreen: true
       }
     },
-    updated() {
-      console.log(this.userResponses)
-      console.log(this.questionIndex)
+    components: {
+      QuizLoader
+    },
+    created() {
+      this.loaderBackground = this.quiz.questions[0].images
+    },
+    mounted() {
+      this.handleResize()
+      window.addEventListener('resize', this.handleResize)
+    },
+    beforeDestroy: function () {
+      window.removeEventListener('resize', this.handleResize)
     },
     methods: {
       // Go to next question
       next: function () {
-        this.questionIndex++;
+        this.showLoader = true
+        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
+        this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
+        let vm = this
+        setTimeout(function() {
+          vm.questionIndex ++
+        }, vm.loaderTimeout / 2)
       },
       // Go to previous question
       prev: function () {
-        this.questionIndex--;
+        this.showLoader = true
+        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
+        this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
+        let vm = this
+        setTimeout(function() {
+          vm.questionIndex --
+        }, vm.loaderTimeout / 2)
       },
       score: function () {
         //find the highest occurence in responses
@@ -221,10 +136,12 @@
           }
         }
         return maxEl;
+      },
+      handleResize() {
+        this.bigScreen = window.innerWidth >= 1000
       }
-    }
   }
-
+}
 
 </script>
 
@@ -238,7 +155,11 @@ a {
     font-style: normal;
     cursor: pointer;
 }
-    
+
+button a {
+  font-weight: bold;
+}
+
 /*Full width container*/
 .full-width-container {
     height: 100%;
@@ -248,20 +169,28 @@ a {
     clear: both;
     margin: 0 auto;
 }
-    
-.row {
-    padding-left: 20px;
-    padding-right: 20px;
-}
 
+.row {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
 .row-v-align {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
-    
+
 /*Quiz*/
+.img-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(35, 31, 32,.8);
+}
+
 .fade-enter-active {
     transition: opacity .5s;
 }
@@ -303,15 +232,15 @@ button {
     -webkit-transition-property: color, background-color;
     transition-property: color, background-color;
     font-family: 'FreightSans Pro';
-    font-weight: 600;
+    font-weight: bold;
     font-style: normal;
 }
-    
+
 button:hover, button:focus, button:active {
     background-color: #b11515;
     color: white;
 }
-    
+
 .button-back {
     color: white;
     float: left;
@@ -400,7 +329,7 @@ input[type="radio"] {
     opacity: 0.8;
     min-height: 70px;
     border-style: solid;
-    border-color: #630808;
+    border-color: rgb(155, 7, 7);
     border-width: thin;
     min-width: 100%;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -415,9 +344,10 @@ input[type="radio"] {
 
 .answer p {
     margin-bottom: 0;
-    color: #630808;
-    padding-right: 20px;
-    padding-left: 20px;
+    color: rgb(99, 8, 8);
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 1.75rem;
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
@@ -426,7 +356,8 @@ input[type="radio"] {
 .answer:hover {
     background: white;
     opacity: 1;
-}
+    cursor: pointer;
+  }
 
 .answer:active {
     background-color: #ea0029;
@@ -460,12 +391,13 @@ input[type="radio"] {
     float: left;
 }
 
-.full-bg {
-    background: url("../../static/img/form.jpg") center center;
+  .full-bg {
+    background: url("/static/img/form.jpg");
     height: 100vh;
-    background-size: cover;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-position: center center;
 }
 
 
@@ -488,11 +420,8 @@ input[type="radio"] {
     text-align: left;
 }
 
-
-.results-flex {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+.results .content {
+  margin-top: 15vh;
 }
 
 .results h3 {
@@ -553,19 +482,62 @@ label > .label-body {
     color: white;
 }
 
-@media only screen and (max-width: 600px) {
-    .questions-input li {
-        width: 100%;
-    }
-    .row-v-align {
-        flex-direction: row;
-        -webkit-flex-wrap: wrap;
-        -moz-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-        -o-flex-wrap: wrap;
-        -khtml-flex-wrap: wrap;
-        flex-wrap: wrap;
-    }
+@media only screen and (max-width: 768px) {
+  .questions-input li {
+      width: 100%;
+  }
+  .row-v-align {
+      flex-direction: row;
+      -webkit-flex-wrap: wrap;
+      -moz-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      -o-flex-wrap: wrap;
+      -khtml-flex-wrap: wrap;
+      flex-wrap: wrap;
+  }
+  .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .quiz {
+    padding-top: 2rem;
+  }
+  .answer p {
+    color: #fff;
+  }
+  .answer {
+    opacity: 1;
+    border: none;
+  }
+  .full-bg {
+    background: url("/static/img/form_mobile.jpg");
+    background-position: center top;
+  }
+  .question {
+    font-size: 3rem;
+  }
+  .questions-input li,
+  .questions-input li label {
+    margin-bottom: 0;
+  }
+  .questions-input li:nth-child(1) .answer {
+    background-color: #780505;
+  }
+  .questions-input li:nth-child(2) .answer {
+    background-color: #690505;
+  }
+  .questions-input li:nth-child(3) .answer {
+    background-color: #550505;
+  }
+  .questions-input li:nth-child(4) .answer {
+    background-color: #460000;
+  }
 }
 
+.four.columns {
+  max-width: 700px;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
 </style>
