@@ -37,9 +37,10 @@
         <!-- SIGN UP FORM SECTION -->
         <div class='results' v-show="questionIndex === quiz.questions.length">
           <div class="row row-v-align full-bg">
+            <div class='quizLogo'><img :src="quiz.logo"/></div>
             <div class="content">
-              <div class="columns" :class="bigScreen ? `four offset-by-two` : `eight offset-by-two`">
-                <h3>Your results are almost in!</h3>
+              <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
+                <h3>Your results are almost&nbsp;in!</h3>
                 <p>Will you stand with us? We need people like you who will speak out when the world needs you to act.
                   Sign up now.</p>
               </div>
@@ -49,7 +50,7 @@
                 <input class="u-full-width" type="email" placeholder="Email" id="emailInput">
                 <label class="agree">
                   <input type="checkbox">
-                  <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. Learn more here.</span>
+                  <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <u>Learn more here.</u></span>
                 </label>
                 <button>
                   <router-link :to="{ path: 'Profile' }">Continue</router-link>
@@ -264,6 +265,10 @@ input[type="radio"] {
     padding-top: 150px;
 }
 
+.quiz-container {
+  opacity: 0;
+}
+
 .quizLogo {
     /*    position: absolute;*/
     float: left;
@@ -421,7 +426,7 @@ input[type="radio"] {
 }
 
 .results .content {
-  margin-top: 15vh;
+  margin-top: 30vh;
 }
 
 .results h3 {
@@ -448,8 +453,12 @@ input[type="radio"] {
     font-style: normal;
 }
 
+input[type="email"] {
+  color: black;
+}
+
 input[type="checkbox"] {
-    margin-top: 20px;
+    margin-top: 1rem;
 }
 
 .results .skip {
@@ -459,6 +468,14 @@ input[type="checkbox"] {
     font-size: 1.6rem;
     padding-left: 82px;
     text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.results .quizLogo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 2rem;
 }
 
 label > .label-body {
@@ -466,10 +483,12 @@ label > .label-body {
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
+    margin-top: .5rem;
 }
 
 .agree {
-    margin-bottom: 40px;
+  display: inline-flex;
+  margin-bottom: 40px;
 }
 
 .agree input {

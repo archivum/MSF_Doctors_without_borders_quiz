@@ -9,11 +9,17 @@ import './css/skeleton.css'
 
 Vue.config.productionTip = false
 
-$(document).ready(
-	function() {
-		$('#loader').fadeOut("slow")
-	}
+if(window.location.pathname === '') {
+    $(document).ready(
+    function() {
+        $('#loader').fadeOut("slow")
+    }
 )
+}
+else {
+    $('#loader').hide()
+}
+
 
 /* eslint-disable no-new */
 new Vue({
