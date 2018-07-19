@@ -209,6 +209,7 @@ h3 span {
     font-family: 'FreightSans Pro';
     font-weight: 600;
     font-style: normal;
+    text-align: left;
 }
 
 .quote span {
@@ -216,7 +217,6 @@ h3 span {
     font-size: 28px;
     display: block;
     text-align: left;
-    padding-left: 30px;
 }
 
 h4 {
