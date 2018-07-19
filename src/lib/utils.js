@@ -8,12 +8,12 @@ const quiz = {
       imagesMobile: '/static/img/img1_mobile.jpg',
       responses: [{
         text: 'Get excited about expanding your world-view',
-        value: 0
+        value: 6
       },
         {
           text: 'Gear up for a vocal debate —\n' +
           'you love a good discussion',
-          value: 1
+          value: 8
         },
         {
           text: 'Listen carefully, trying to understand all perspectives',
@@ -21,7 +21,7 @@ const quiz = {
         },
         {
           text: 'Listen well, weigh-in often, invite everyone to have their say',
-          value: 3
+          value: 4
         }
       ]
     },
@@ -31,19 +31,19 @@ const quiz = {
         imagesMobile: '/static/img/img2_mobile.jpg',
         responses: [{
           text: 'Scour the web for articles from a variety of sources',
-          value: 0
+          value: 6
         },
           {
             text: 'Read (and comment on) anything you can get your hands on',
-            value: 1
+            value: 4
           },
           {
             text: 'Stick to your favourite, reputable news outlets',
-            value: 2
+            value: 8
           },
           {
             text: 'Read and share a lot on social media to spread awareness on big issue',
-            value: 3
+            value: 2
           }
         ]
       },
@@ -53,11 +53,11 @@ const quiz = {
         imagesMobile: '/static/img/img3_mobile.jpg',
         responses: [{
           text: 'Volunteer',
-          value: 0
+          value: 6
         },
           {
             text: 'Start a peer-to-peer fundraising campaign',
-            value: 1
+            value: 4
           },
           {
             text: 'Review the organization’s “About Us” section of their website',
@@ -65,7 +65,7 @@ const quiz = {
           },
           {
             text: 'Go door-to-door with a petition, raising awareness',
-            value: 3
+            value: 8
           }
         ]
       },
@@ -75,11 +75,11 @@ const quiz = {
         imagesMobile: '/static/img/img4_mobile.jpg',
         responses: [{
           text: 'Immediately sign without reading',
-          value: 0
+          value: 6
         },
           {
             text: 'Sign and offer to share with your friends on social media',
-            value: 1
+            value: 4
           },
           {
             text: 'Offer to read the petition and think about the implications of signing',
@@ -87,7 +87,7 @@ const quiz = {
           },
           {
             text: 'Sign, then knock on doors to recruit your neighbours to the cause',
-            value: 3
+            value: 8
           }
         ]
       },
@@ -97,11 +97,11 @@ const quiz = {
         imagesMobile: '/static/img/img5_mobile.jpg',
         responses: [{
           text: 'A portable movie projector',
-          value: 0
+          value: 6
         },
           {
             text: 'Speakers for your music player',
-            value: 1
+            value: 8
           },
           {
             text: 'Your favourite novels',
@@ -109,7 +109,7 @@ const quiz = {
           },
           {
             text: 'A deck of cards',
-            value: 3
+            value: 4
           }
         ]
       },

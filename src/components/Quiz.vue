@@ -41,7 +41,7 @@
         <!-- SIGN UP FORM SECTION -->
         <div class='results' v-show="questionIndex === quiz.questions.length">
           <div class="row row-v-align full-bg">
-            <div class='quizLogo'><img :src="quiz.logo2"/></div>
+            <div class='quizLogo'><img :src="quiz.logo"/></div>
             <div class="content">
               <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
                 <h3>Your results are <span class="result-head">almost&nbsp;in!</span></h3>
@@ -59,7 +59,7 @@
                 <button>
                   <router-link :to="{ path: 'Profile' }">Continue</router-link>
                 </button>
-                <span class="skip"><router-link :to="{ path: 'profile' }">Skip this step</router-link></span>
+                <span class="skip"><router-link :to="{ path: 'profile?id=' + profile }">Skip this step</router-link></span>
               </div>
             </div>
           </div>
@@ -89,6 +89,7 @@
         loaderBackground: '',
         property: 'images',
         bigScreen: true,
+        profile: 0,
         tl: ''
       }
     },
@@ -114,7 +115,8 @@
         this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
         let vm = this
         setTimeout(function() {
-          vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length - 1)
+          vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length)
+          vm.questionIndex === vm.quiz.questions.length ? vm.computeScore() : ''
         }, vm.loaderTimeout / 2)
       },
       // Go to previous question
@@ -127,23 +129,11 @@
           vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
         }, vm.loaderTimeout / 2)
       },
-      score: function () {
-        //find the highest occurence in responses
-        var modeMap = {};
-        var maxEl = this.userResponses[0],
-          maxCount = 1;
-        for (var i = 0; i < this.userResponses.length; i++) {
-          var el = this.userResponses[i];
-          if (modeMap[el] == null)
-            modeMap[el] = 1;
-          else
-            modeMap[el]++;
-          if (modeMap[el] > maxCount) {
-            maxEl = el;
-            maxCount = modeMap[el];
-          }
-        }
-        return maxEl;
+      computeScore() {
+        let vm = this
+        let score = 0
+        this.userResponses.map((answer) => score += answer)
+        0 <= score && score < 15 ? this.profile = 1 : 15 <= score && score < 25 ? this.profile = 3 : 25 <= score && score < 35 ? this.profile = 0 : this.profile = 2
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
