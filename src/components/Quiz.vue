@@ -510,7 +510,7 @@ label > .label-body {
     color: white;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .quizLogo {
     margin: auto 1rem 0;
   }
