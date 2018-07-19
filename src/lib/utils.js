@@ -1,5 +1,6 @@
 const quiz = {
     logo: '/static/img/quizLogo.png',
+    logo2: '/static/img/logo_mobile.png',
 
     questions: [{
       text: "Discussing world issues with friends, you:",
