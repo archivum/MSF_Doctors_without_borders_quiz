@@ -19,7 +19,7 @@ export default new Router({
       component: Quiz
     },
     {
-      path: '/profile',
+      path: '/profile/:id',
       name: 'Profile',
       component: Profile
     },
