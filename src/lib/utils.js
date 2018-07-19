@@ -1,6 +1,6 @@
 const quiz = {
     logo: '/static/img/quizLogo.png',
-    logo2: '/static/img/logo_mobile.png', 
+    logo2: '/static/img/logo_mobile.png',
 
     questions: [{
       text: "Discussing world issues with friends, you:",
@@ -146,6 +146,36 @@ const quiz = {
       quote: "Humanitarian responsibility has no frontiers.",
       author: 'Dr. James Orbinski'
     }
+    ],
+    categories: [
+      {
+        label: 'Negotiator',
+        value: 2,
+        id: 1,
+        min: 10,
+        max: 17
+      },
+      {
+        label: 'Networker',
+        value: 4,
+        id: 3,
+        min: 18,
+        max: 25
+      },
+      {
+        label: 'First Responder',
+        value: 6,
+        id: 0,
+        min: 26,
+        max: 33
+      },
+      {
+        label: 'Advocate',
+        value: 8,
+        id: 2,
+        min: 34,
+        max: 40
+      }
     ]
   }
 

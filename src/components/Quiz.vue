@@ -75,7 +75,7 @@
 
 <script>
   import QuizLoader from './QuizLoader.vue'
-  import {quiz} from '../lib/utils.js'
+  import {quiz, profiles} from '../lib/utils.js'
   /* eslint-disable */
 
   export default {
@@ -132,8 +132,32 @@
       computeScore() {
         let vm = this
         let score = 0
-        this.userResponses.map((answer) => score += answer)
-        10 <= score && score < 18 ? this.profile = 1 : 18 <= score && score < 26 ? this.profile = 3 : 26 <= score && score < 34 ? this.profile = 0 : this.profile = 2
+        let categories = []
+        this.userResponses.map((answer) => {
+          score += answer
+          let index = categories.findIndex((element) => element.value === answer)
+          index !== -1 ? categories[index].count ++ : categories.push({value: answer, count: 1})
+        })
+
+        categories.sort((a, b) => {
+          return b.count - a.count
+        })
+
+        if(categories.length === 1 || categories[0].count > categories[1].count) {
+          let categoryIndex = profiles.categories.findIndex((element) => {
+            return element.value === categories[0].value
+          })
+          this.profile = profiles.categories[categoryIndex].id
+        }
+        else {
+          let vm = this
+          profiles.categories.map((item) => {
+            if(score >= item.min && score <= item.max) {
+              vm.profile = item.id
+              return
+            }
+          })
+        }
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
