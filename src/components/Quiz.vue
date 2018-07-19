@@ -41,7 +41,7 @@
         <!-- SIGN UP FORM SECTION -->
         <div class='results' v-show="questionIndex === quiz.questions.length">
           <div class="row row-v-align full-bg">
-            <div class='quizLogo'><img :src="quiz.logo"/></div>
+            <div class='quizLogo'><img :src="quiz.logo2"/></div> <!--UPDATE-->
             <div class="content">
               <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
                 <h3>Your results are <span class="result-head">almost&nbsp;in!</span></h3>
