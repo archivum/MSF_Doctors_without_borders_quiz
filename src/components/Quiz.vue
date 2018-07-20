@@ -30,7 +30,7 @@
                   &#60; Back
                 </router-link>
                 <div class="progress-container">
-                  <div class="progress" v-bind:style="{ width: questionIndex * 50 + 'px' }"></div>
+                  <div class="progress" v-bind:style="{ width: questionIndex / quiz.questions.length * 100 + '%' }"></div>
                   <div class="progress-bar"></div>
                 </div>
 
@@ -200,13 +200,17 @@
       animateQuiz(delay = .2) {
         this.tl = new TimelineMax()
         this.tl2 = new TimelineMax()
-          this.tl
-            .staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
-
-          this.tl2
-            .staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
-
-          this.tl2.addPause(0)
+        
+        if(this.is_touch_device()){
+          this.tl.set($(".progress-and-button"),{x: 0, opacity: 1})
+          this.tl.staggerFromTo([$(".question"), $(".questions-input")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
+          this.tl2.staggerFromTo([$(".question"), $(".questions-input")], .8, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
+        } else {
+          this.tl.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
+          this.tl2.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
+        }
+          
+        this.tl2.addPause(0)
       },
       resetAnimation() {
         $('.question').css('opacity', '0')
@@ -349,7 +353,7 @@ input[type="radio"] {
 }
 
 .quizLogo {
-    /*    position: absolute;*/
+    /* position: absolute; */
     float: left;
     margin-bottom: 50px;
 }
@@ -585,10 +589,11 @@ label > .label-body {
 
 @media (max-width: 420px) {
   .quizLogo {
+    position: absolute;
     margin: auto 1rem 0;
   }
   .quiz .question {
-    margin: auto 1rem;
+    margin: auto 2rem 2rem;
   }
   .results .content{
     margin-top: 120px;
@@ -640,14 +645,11 @@ label > .label-body {
     margin: 0;
   }
   .questions-input {
-    position: absolute;
-    bottom: 0;
     margin-bottom: 0;
   }
   .quiz {
-    position: absolute;
-    bottom: 0;
     height: 100%;
+    float: none;
   }
   .results .row {
     padding-left: 20px !important;
@@ -688,13 +690,17 @@ label > .label-body {
   }
   .quiz {
     padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
   }
   .answer {
     box-sizing: border-box;
+    min-height: 100px;
   }
   .full-bg {
     background: url("/static/img/form_mobile.jpg");
     background-position: center top;
+    overflow: hidden;
   }
   .question {
     font-size: 3rem;
@@ -702,6 +708,33 @@ label > .label-body {
   .questions-input li,
   .questions-input li label {
     margin-bottom: 0;
+  }
+  .answer p {
+    color: #fff;
+    font-size: 2.5rem;
+  }
+  .questions-input li:nth-child(1) .answer {
+    background-color: #780505;
+  }
+  .questions-input li:nth-child(2) .answer {
+    background-color: #690505;
+  }
+  .questions-input li:nth-child(3) .answer {
+    background-color: #550505;
+  }
+  .questions-input li:nth-child(4) .answer {
+    background-color: #460000;
+  }
+  .answer.response-selected {
+    background-color: white !important;
+    opacity: 0.8;
+  }
+  .answer.response-selected p {
+    color: rgb(99, 8, 8) !important;
+  }
+  .progress,
+  .progress-bar {
+    height: 10px;
   }
 }
 
