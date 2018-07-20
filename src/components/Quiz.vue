@@ -105,8 +105,10 @@
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout)
-      document.addEventListener('touchstart', this.handleTouchStart, false);
-      document.addEventListener('touchmove', this.handleTouchMove, false);
+      if(this.is_touch_device()){
+        document.addEventListener('touchstart', this.handleTouchStart, false);
+        document.addEventListener('touchmove', this.handleTouchMove, false);
+      }
     },
     beforeDestroy: function () {
       window.removeEventListener('resize', this.handleResize)
@@ -210,6 +212,14 @@
         $('.question').css('opacity', '0')
         $('.questions-input').css('opacity', '0')
         $('.progress-and-button').css('opacity', '0')
+      },
+      is_touch_device() {  
+        try {  
+          document.createEvent("TouchEvent");  
+          return true;  
+        } catch (e) {  
+          return false;  
+        }  
       }
   },
   watch: {
