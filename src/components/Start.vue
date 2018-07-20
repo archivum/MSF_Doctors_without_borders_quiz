@@ -90,6 +90,12 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
 
 </script>
 
+<style>
+body {
+  overflow: hidden !important;
+}
+</style>
+
 <style scoped>
 
 /*Links*/
