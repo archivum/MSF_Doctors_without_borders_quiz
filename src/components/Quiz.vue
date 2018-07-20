@@ -23,9 +23,12 @@
                 </li>
               </ul>
               <div class="progress-and-button">
-                <div class="button-back" v-on:click="prev">
+                <div class="button-back" v-on:click="prev" v-if="questionIndex > 0">
                   &#60; Back
                 </div>
+                <router-link class="button-back" to="/" v-else>
+                  &#60; Back
+                </router-link>
                 <div class="progress-container">
                   <div class="progress" v-bind:style="{ width: questionIndex * 50 + 'px' }"></div>
                   <div class="progress-bar"></div>
@@ -38,7 +41,7 @@
         <!-- SIGN UP FORM SECTION -->
         <div class='results' v-show="questionIndex === quiz.questions.length">
           <div class="row row-v-align full-bg">
-            <div class='quizLogo'><img :src="quiz.logo2"/></div>
+            <div class='quizLogo'><img :src="quiz.logo2"/></div> <!--UPDATE-->
             <div class="content">
               <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
                 <h3>Your results are <span class="result-head">almost&nbsp;in!</span></h3>
@@ -56,7 +59,7 @@
                 <button>
                   <router-link :to="{ path: 'Profile' }">Continue</router-link>
                 </button>
-                <span class="skip"><router-link :to="{ path: 'profile' }">Skip this step</router-link></span>
+                <span class="skip"><router-link :to="{ path: 'profile/' + profile }">Skip this step</router-link></span>
               </div>
             </div>
           </div>
@@ -72,7 +75,7 @@
 
 <script>
   import QuizLoader from './QuizLoader.vue'
-  import {quiz} from '../lib/utils.js'
+  import {quiz, profiles} from '../lib/utils.js'
   /* eslint-disable */
 
   export default {
@@ -85,7 +88,10 @@
         loaderTimeout: 1000,
         loaderBackground: '',
         property: 'images',
-        bigScreen: true
+        bigScreen: true,
+        profile: 0,
+        tl: '',
+        xDown: null
       }
     },
     components: {
@@ -97,11 +103,37 @@
     mounted() {
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
+      setTimeout(this.animateQuiz, this.loaderTimeout)
+      document.addEventListener('touchstart', this.handleTouchStart, false);
+      document.addEventListener('touchmove', this.handleTouchMove, false);
     },
     beforeDestroy: function () {
       window.removeEventListener('resize', this.handleResize)
     },
     methods: {
+      handleTouchStart: function (evt) {                                         
+        this.xDown = evt.touches[0].clientX;                      
+        // this.xDown = evt.originalEvent.touches[0].clientX;                      
+      },
+      handleTouchMove: function (evt) {
+        if ( ! this.xDown ) {
+          return;
+        }
+
+        var xUp = evt.touches[0].clientX;                                    
+        // var xUp = evt.originalEvent.touches[0].clientX;                                    
+
+        var xDiff = this.xDown - xUp;
+
+        if ( xDiff > 0 ) {
+        //left
+          // this.next();
+        } else {
+        //right
+          this.prev();
+        }  
+        this.xDown = null;
+      },
       // Go to next question
       next: function () {
         this.showLoader = true
@@ -109,7 +141,8 @@
         this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
         let vm = this
         setTimeout(function() {
-          vm.questionIndex ++
+          vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length)
+          vm.questionIndex === vm.quiz.questions.length ? vm.computeScore() : ''
         }, vm.loaderTimeout / 2)
       },
       // Go to previous question
@@ -119,30 +152,59 @@
         this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
         let vm = this
         setTimeout(function() {
-          vm.questionIndex --
+          vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
         }, vm.loaderTimeout / 2)
       },
-      score: function () {
-        //find the highest occurence in responses
-        var modeMap = {};
-        var maxEl = this.userResponses[0],
-          maxCount = 1;
-        for (var i = 0; i < this.userResponses.length; i++) {
-          var el = this.userResponses[i];
-          if (modeMap[el] == null)
-            modeMap[el] = 1;
-          else
-            modeMap[el]++;
-          if (modeMap[el] > maxCount) {
-            maxEl = el;
-            maxCount = modeMap[el];
-          }
+      computeScore() {
+        let vm = this
+        let score = 0
+        let categories = []
+        this.userResponses.map((answer) => {
+          score += answer
+          let index = categories.findIndex((element) => element.value === answer)
+          index !== -1 ? categories[index].count ++ : categories.push({value: answer, count: 1})
+        })
+
+        categories.sort((a, b) => {
+          return b.count - a.count
+        })
+
+        if(categories.length === 1 || categories[0].count > categories[1].count) {
+          let categoryIndex = profiles.categories.findIndex((element) => {
+            return element.value === categories[0].value
+          })
+          this.profile = profiles.categories[categoryIndex].id
         }
-        return maxEl;
+        else {
+          let vm = this
+          profiles.categories.map((item) => {
+            if(score >= item.min && score <= item.max) {
+              vm.profile = item.id
+              return
+            }
+          })
+        }
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
+      },
+      animateQuiz(delay = .2) {
+        this.tl = new TimelineMax()
+          this.tl
+            .staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
+      },
+      resetAnimation() {
+        $('.question').css('opacity', '0')
+        $('.questions-input').css('opacity', '0')
+        $('.progress-and-button').css('opacity', '0')
       }
+  },
+  watch: {
+    showLoader(newValue, oldValue) {
+      if(!newValue) {
+        this.tl.restart(true, false)
+      }
+    }
   }
 }
 
@@ -192,14 +254,6 @@ button a {
   width: 100%;
   height: 100%;
   background: rgba(35, 31, 32,.8);
-}
-
-.fade-enter-active {
-    transition: opacity .5s;
-}
-
-.fade-enter {
-    opacity: 0;
 }
 
 #app {
@@ -289,6 +343,7 @@ input[type="radio"] {
     font-weight: bold;
     font-style: normal;
     font-size: 3.4rem;
+    opacity: 0;
 }
 
 .questions-input {
@@ -317,6 +372,7 @@ input[type="radio"] {
     -o-align-items: stretch;
     -khtml-align-items: stretch;
     align-items: stretch;
+    opacity: 0;
 }
 
 .questions-input li {
@@ -374,6 +430,7 @@ input[type="radio"] {
 .progress-and-button {
     display: inline-block;
     float: left;
+    opacity: 0;
 }
 
 .progress-container {
@@ -503,36 +560,90 @@ label > .label-body {
     color: white;
 }
 
-@media (max-width: 400px) {
-    .results .content{
-        margin-top: 30px;
-    }
-    .results h3{
-        font-size: 2.5rem;
-        line-height: 2.8rem;
-        margin-bottom: 0.5rem;
-    }
-    .result-head{
-        display: block;
-    }
-    .results p{
-        font-size: 1.6rem;
-        line-height: 2rem;
-    }
-    .quizLogo{
-        display: none;
-    }
-    .agree{
-        margin-bottom: 30px;
-    }
-    label > .label-body{
-        font-size: 1.4rem;
-        line-height: 1.5rem;
-        margin-top: 1.8rem;
-    }
-    input[type="checkbox"] {
-        margin-top: 2rem;
-    }
+@media (max-width: 420px) {
+  .quizLogo {
+    margin: auto 1rem 0;
+  }
+  .quiz .question {
+    margin: auto 1rem;
+  }
+  .results .content{
+    margin-top: 120px;
+  }
+  .results h3{
+    font-size: 2.5rem;
+    line-height: 2.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .result-head{
+    display: block;
+  }
+  .results p{
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+  .agree{
+    margin-bottom: 30px;
+  }
+  label > .label-body{
+    font-size: 1.4rem;
+    line-height: 1.5rem;
+    margin-top: 1.8rem;
+  }
+  input[type="checkbox"] {
+    margin-top: 2rem;
+  }
+  .button-back {
+    display: none;
+  }
+  .row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .progress-and-button {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .progress-container {
+    margin: 0;
+    width: 100%;
+  }
+  .progress-bar {
+    width: 100%;
+  }
+  .question {
+    margin: 0;
+  }
+  .questions-input {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+  }
+  .quiz {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+  }
+  .results .row {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .results .quizLogo {
+    display: none;
+  }
+  .results .columns.eight {
+    text-align: center;
+  }
+  .results .columns.eight .agree {
+    text-align: left;
+  }
+  .results .skip {
+    display: block;
+    padding: 0;
+    float: none;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -555,12 +666,8 @@ label > .label-body {
   .quiz {
     padding-top: 2rem;
   }
-  .answer p {
-    color: #fff;
-  }
   .answer {
-    opacity: 1;
-    border: none;
+    box-sizing: border-box;
   }
   .full-bg {
     background: url("/static/img/form_mobile.jpg");
@@ -572,18 +679,6 @@ label > .label-body {
   .questions-input li,
   .questions-input li label {
     margin-bottom: 0;
-  }
-  .questions-input li:nth-child(1) .answer {
-    background-color: #780505;
-  }
-  .questions-input li:nth-child(2) .answer {
-    background-color: #690505;
-  }
-  .questions-input li:nth-child(3) .answer {
-    background-color: #550505;
-  }
-  .questions-input li:nth-child(4) .answer {
-    background-color: #460000;
   }
 }
 

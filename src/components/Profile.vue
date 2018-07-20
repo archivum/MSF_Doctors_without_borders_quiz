@@ -2,23 +2,18 @@
   <div class="full-width-container container">
     <div class="row block-header">
       <div class="block-header-content">
-        <h3><span class="profile-head">Your humanitarian and worker profile is</span></h3>
-        <h3><span class="profile-head-mobile">You are a</span></h3>
-        <h2><span>First responder&nbsp;!</span></h2>
-        <p>You understand the value of quickly assessing a situation and responding appropriately. You have a unique
-          ability
-          to evaluate a situation quickly and take responsible action to reduce suffering.</p>
-        <h4>Tell your friends you're<br><span>a First Responder</span></h4>
+        <div class="block-head">
+            <h3><span>Your humanitarian and worker profile is</span></h3>
+            <h2><span>{{ profile.title }}</span></h2>
+        </div>
+        <p>{{ profile.desc }}</p>
+        <h4>Tell your friends you're a<span class="profile-title">{{ profile.title }}</span></h4>
         <button @click="showModal">Share Now</button>
       </div>
     </div>
     <div class="row block-copy">
       <div class="eight offset-by-two columns">
-        <p>Everyone can be a humanitarian: it’s about compassion and taking action to support people who are suffering,
-          no matter who they are or where they live.
-          <span>Be a humanitarian by contributing to Doctors Without Borders’ life-saving work. Get informed about issues
-          happening in other countries, become an advocate or supporter, give a gift, or even come work with us. Share
-          your profile with your networks, and invite them to ask themselves, “What kind of humanitarian are you?”</span>
+        <p>{{ profile.paragraph }}
         </p>
       </div>
     </div>
@@ -26,14 +21,10 @@
     </div>
     <div class="row block-quote">
       <div class="eight offset-by-two columns">
-        <p>Doctors Without Borders responds quickly and effectively in emergencies. Our teams are often the first on the
-          scene, as for example during the devastating Ebola outbreak in West Africa, or providing medical care to the
-          displaced Rohingya people in Myanmar.</p>
         <div class="quote">
-          “Humanitarianism is not a tool to end war or create peace. It is a citizen's response to political
-          failure.”<span> – Dr. James Orbinski</span>
+          “{{ profile.quote }}”<span> – {{ profile.author }}</span>
         </div>
-        <h4>Tell your friends you're<br><span>a First Responder</span></h4>
+        <h4>Tell your friends you're a<span class="profile-title">{{ profile.title }}</span></h4>
         <button @click="showModal">Share Now</button>
       </div>
     </div>
@@ -41,7 +32,7 @@
         <div class="share-modal">
             <div class="sharing-element" @click="shareFb">Facebook Share&nbsp;&nbsp;&nbsp;<i class="fab fa-facebook-square"></i></div>
             <a class="sharing-element" target="_blank" href="https://twitter.com/home?status=http%3A//msfquiz.candy-staging.com">Twitter Share&nbsp;&nbsp;&nbsp;<i class="fab fa-twitter"></i></a>
-            <a class="sharing-element" href="/static/img/profile_1.png" download>Save Image&nbsp;&nbsp;&nbsp;<i class="fa fa-download"></i></a>
+            <a class="sharing-element" href="/static/img/profile_1.png" download>Save Image&nbsp;&nbsp;&nbsp;<i class="fas fa-link"></i></a>
             <button disabled>SAVE & SHARE&nbsp;&nbsp;&nbsp;<i class="fa fa-triangle"></i></button>
         </div>
     </modal>
@@ -54,6 +45,11 @@ import {profiles} from '../lib/utils.js'
 
   export default {
     name: 'Profile',
+    computed: {
+        profile() {
+            return profiles.profile[this.$route.params.id]
+        }
+    },
     methods: {
         showModal () {
             this.$modal.show('share-modal');
@@ -172,8 +168,8 @@ h3 span {
     font-weight: 600;
     font-style: normal;
 }
-.profile-head-mobile{
-    display: none;
+.profile-title{
+    display: block;
 }
 .block-copy p {
     padding-top: 40px;
@@ -312,33 +308,67 @@ button:hover, button:focus, button:active {
     cursor: pointer;
 }
     
-@media (max-width: 400px) {
-    .profile-head{
-        display: none;
-    }
-    .profile-head-mobile{
-        display: inline;
-    }
+@media (max-width: 767px) {
     h2{
         font-size: 2.6rem;
 /*        line-height: 2.6rem;*/
     }
     h3{
+        order: 1;
+        margin-bottom: 0px;
+    }
+    h3 span{
         font-size: 2.1rem;
         line-height: 2.1rem;
     }
+    h4{
+        padding-top: 0px;
+    }
     .block-header{
-        background-size: contain;
+        background-size: 100% 230px;
         background-position: center top;
         min-height: 100vh;
+        display: block;
+    }
+    .block-head{
+        height: 230px;
+        flex-direction: column-reverse;
+        display: flex;
+        margin-bottom: 15px;
+    }
+    .block-header-content{
+/*        margin-top: 9vh;*/
     }
     .block-header-content h4{
-        padding-top: 20px;
+/*        padding-top: 20px;*/
+        font-size: 1.8rem;
     }
     .block-header p{
         font-size: 1.8rem;
         line-height: 2.1rem;
+        margin-bottom: 3vh;
     }
+    .block-copy p{
+        font-size: 1.5rem;
+        padding: 0;
+    }
+    .quote{
+        font-size: 1.8rem;
+        line-height: 2.2rem;
+    }
+    .quote span{
+        font-size: 1.5rem;
+    }
+    .columns{
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+/*
+    .block-cont{
+        margin-top: 50%;
+        transform: translate(0,-50%);
+    }
+*/
 }
 
 </style>
