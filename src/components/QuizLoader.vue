@@ -41,14 +41,12 @@ export default {
   methods: {
     showLoader() {
         let vm = this
-        $('.quiz-loader').ready(function() {
-            $('.quiz-loader').fadeIn(300)
-            setTimeout(function() {
-                vm.$parent.resetAnimation()
-                $('.quiz-loader').fadeOut(300, function() { vm.$parent.showLoader = false })
-                $('.quiz-container').css('opacity', '1')
-            }, vm.timeout ? vm.timeout : 1000)
-        })
+        $('.quiz-loader').fadeIn(300)
+        setTimeout(function() {
+            vm.$parent.resetAnimation()
+            $('.quiz-loader').fadeOut(300, function() { vm.$parent.showLoader = false })
+            $('.quiz-container').css('opacity', '1')
+        }, vm.timeout ? vm.timeout : 1000)
     }
   }
 }
