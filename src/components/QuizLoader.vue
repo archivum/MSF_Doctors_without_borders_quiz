@@ -41,7 +41,7 @@ export default {
   methods: {
     showLoader() {
         let vm = this
-        $('.img-loader').ready(function() {
+        $('.quiz-loader').ready(function() {
             $('.quiz-loader').fadeIn(300)
             setTimeout(function() {
                 vm.$parent.resetAnimation()
