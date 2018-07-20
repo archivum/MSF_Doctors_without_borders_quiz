@@ -8,7 +8,7 @@
         <div v-for="(question, index) in quiz.questions" :key="index">
           <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)), url(' + question[property] + ')'}" class="row full-bg ">
             <div class="eight columns offset-by-two quiz">
-              <div class='quizLogo'><img :src="quiz.logo"/></div>
+              <div class='quizLogo'><img :src="quiz.logo" alt="" style="width: 160px"/></div>
               <h3 class="question">{{ question.text }}</h3>
               <ul class="questions-input">
                 <li v-for="response in question.responses">

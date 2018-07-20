@@ -1,5 +1,5 @@
 const quiz = {
-    logo: '/static/img/quizLogo.png',
+    logo: '/static/img/logo-white.svg',
     logo2: '/static/img/logo_mobile.png',
 
     questions: [{
