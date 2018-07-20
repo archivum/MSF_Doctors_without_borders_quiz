@@ -30,7 +30,7 @@
         <div class="share-modal">
             <div class="sharing-element" @click="shareFb">Facebook Share&nbsp;&nbsp;&nbsp;<i class="fab fa-facebook-square"></i></div>
             <a class="sharing-element" target="_blank" href="https://twitter.com/home?status=http%3A//msfquiz.candy-staging.com">Twitter Share&nbsp;&nbsp;&nbsp;<i class="fab fa-twitter"></i></a>
-            <a class="sharing-element" href="/static/img/profile_1.png" download>Save Image&nbsp;&nbsp;&nbsp;<i class="fas fa-link"></i></a>
+            <div class="sharing-element" @click="copyClipboard">{{ !copied ? `Copy Link` : `Copied !` }}&nbsp;&nbsp;&nbsp;<i class="fas fa-link"></i></div>
             <button disabled>SAVE & SHARE&nbsp;&nbsp;&nbsp;<i class="fa fa-triangle"></i></button>
         </div>
     </modal>
@@ -43,6 +43,11 @@ import {profiles} from '../lib/utils.js'
 
   export default {
     name: 'Profile',
+    data() {
+        return {
+            copied: false
+        }
+    },
     computed: {
         profile() {
             return profiles.profile[this.$route.params.id]
@@ -57,6 +62,15 @@ import {profiles} from '../lib/utils.js'
               method: 'share',
               href: 'http://msfquiz.candy-staging.com',
             }, function(response){});
+        },
+        copyClipboard () {
+            const el = document.createElement('textarea');
+            el.value = window.location.href;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            this.copied = true
         }
     }
   }
