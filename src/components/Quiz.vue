@@ -104,7 +104,7 @@
     mounted() {
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
-      setTimeout(this.animateQuiz, this.loaderTimeout)
+      setTimeout(this.animateQuiz, this.loaderTimeout / 2)
       if(this.is_touch_device()){
         document.addEventListener('touchstart', this.handleTouchStart, false);
         document.addEventListener('touchmove', this.handleTouchMove, false);
@@ -213,13 +213,13 @@
         $('.questions-input').css('opacity', '0')
         $('.progress-and-button').css('opacity', '0')
       },
-      is_touch_device() {  
-        try {  
-          document.createEvent("TouchEvent");  
-          return true;  
-        } catch (e) {  
-          return false;  
-        }  
+      is_touch_device() {
+        try {
+          document.createEvent("TouchEvent");
+          return true;
+        } catch (e) {
+          return false;
+        }
       }
   },
   watch: {
