@@ -1,6 +1,6 @@
 <template>
     <div class="quiz-loader" :style="backgroundUrl ? { 'background-image': 'url(' + backgroundUrl + ')' } : {'background-color': '#fff'}">
-        <img src="/static/img/logo.svg" width="100">
+        <img src="/static/img/logo.svg" width="100" class="img-loader">
     </div>
 </template>
 
@@ -41,12 +41,12 @@ export default {
   methods: {
     showLoader() {
         let vm = this
-        $('.quiz-loader').fadeIn(300)
-            setTimeout(function() {
-                vm.$parent.resetAnimation()
-                $('.quiz-loader').fadeOut(300, function() { vm.$parent.showLoader = false })
-                $('.quiz-container').css('opacity', '1')
-            }, this.timeout ? this.timeout : 1000)
+        $('.quiz-loader').fadeIn(vm.timeout / 2)
+        setTimeout(function() {
+            vm.$parent.resetAnimation()
+            $('.quiz-loader').fadeOut(vm.timeout / 2, function() { vm.$parent.showLoader = false })
+            $('.quiz-container').css('opacity', '1')
+        }, vm.timeout ? vm.timeout : 1000)
     }
   }
 }

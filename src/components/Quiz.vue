@@ -54,7 +54,7 @@
                 <input class="u-full-width" type="email" placeholder="Email" id="emailInput">
                 <label class="agree">
                   <input type="checkbox">
-                  <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <u>Learn more here.</u></span>
+                    <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
                 </label>
                 <button>
                   <router-link :to="{ path: 'Profile' }">Continue</router-link>
@@ -91,6 +91,7 @@
         bigScreen: true,
         profile: 0,
         tl: '',
+        tl2: '',
         xDown: null
       }
     },
@@ -103,7 +104,7 @@
     mounted() {
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
-      setTimeout(this.animateQuiz, this.loaderTimeout)
+      setTimeout(this.animateQuiz, this.loaderTimeout / 2)
       if(this.is_touch_device()){
         document.addEventListener('touchstart', this.handleTouchStart, false);
         document.addEventListener('touchmove', this.handleTouchMove, false);
@@ -113,17 +114,17 @@
       window.removeEventListener('resize', this.handleResize)
     },
     methods: {
-      handleTouchStart: function (evt) {                                         
-        this.xDown = evt.touches[0].clientX;                      
-        // this.xDown = evt.originalEvent.touches[0].clientX;                      
+      handleTouchStart: function (evt) {
+        this.xDown = evt.touches[0].clientX;
+        // this.xDown = evt.originalEvent.touches[0].clientX;
       },
       handleTouchMove: function (evt) {
         if ( ! this.xDown ) {
           return;
         }
 
-        var xUp = evt.touches[0].clientX;                                    
-        // var xUp = evt.originalEvent.touches[0].clientX;                                    
+        var xUp = evt.touches[0].clientX;
+        // var xUp = evt.originalEvent.touches[0].clientX;
 
         var xDiff = this.xDown - xUp;
 
@@ -133,15 +134,18 @@
         } else {
         //right
           this.prev();
-        }  
+        }
         this.xDown = null;
       },
       // Go to next question
       next: function () {
-        this.showLoader = true
-        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
-        this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
         let vm = this
+        this.tl2.restart(true, false)
+        this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
+        setTimeout(function() {
+          vm.showLoader = true
+        }, vm.loaderTimeout / 2)
+        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
         setTimeout(function() {
           vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length)
           vm.questionIndex === vm.quiz.questions.length ? vm.computeScore() : ''
@@ -149,10 +153,13 @@
       },
       // Go to previous question
       prev: function () {
-        this.showLoader = true
-        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
-        this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
         let vm = this
+        this.tl2.restart(true, false)
+        this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
+        setTimeout(function() {
+          vm.showLoader = true
+        }, vm.loaderTimeout / 2)
+        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
         setTimeout(function() {
           vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
         }, vm.loaderTimeout / 2)
@@ -192,26 +199,31 @@
       },
       animateQuiz(delay = .2) {
         this.tl = new TimelineMax()
+        this.tl2 = new TimelineMax()
+        
         if(this.is_touch_device()){
           this.tl.set($(".progress-and-button"),{x: 0, opacity: 1})
           this.tl.staggerFromTo([$(".question"), $(".questions-input")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
-        }
-        else  
+          this.tl2.staggerFromTo([$(".question"), $(".questions-input")], .8, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
+        } else {
           this.tl.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
+          this.tl2.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
+        }
           
+        this.tl2.addPause(0)
       },
       resetAnimation() {
         $('.question').css('opacity', '0')
         $('.questions-input').css('opacity', '0')
         $('.progress-and-button').css('opacity', '0')
       },
-      is_touch_device() {  
-        try {  
-          document.createEvent("TouchEvent");  
-          return true;  
-        } catch (e) {  
-          return false;  
-        }  
+      is_touch_device() {
+        try {
+          document.createEvent("TouchEvent");
+          return true;
+        } catch (e) {
+          return false;
+        }
       }
   },
   watch: {
