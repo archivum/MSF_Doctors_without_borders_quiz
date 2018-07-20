@@ -41,10 +41,10 @@ export default {
   methods: {
     showLoader() {
         let vm = this
-        $('.quiz-loader').fadeIn(300)
+        $('.quiz-loader').fadeIn(vm.timeout / 2)
         setTimeout(function() {
             vm.$parent.resetAnimation()
-            $('.quiz-loader').fadeOut(300, function() { vm.$parent.showLoader = false })
+            $('.quiz-loader').fadeOut(vm.timeout / 2, function() { vm.$parent.showLoader = false })
             $('.quiz-container').css('opacity', '1')
         }, vm.timeout ? vm.timeout : 1000)
     }
