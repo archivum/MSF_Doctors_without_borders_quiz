@@ -696,7 +696,7 @@ label > .label-body {
   }
   .answer {
     box-sizing: border-box;
-    min-height: 100px;
+    min-height: 90px;
   }
   .full-bg {
     background: url("/static/img/form_mobile.jpg");
@@ -713,6 +713,7 @@ label > .label-body {
   .answer p {
     color: #fff;
     font-size: 2.5rem;
+    line-height: 2.5rem;
   }
   .questions-input li:nth-child(1) .answer {
     background-color: #780505;
