@@ -141,11 +141,11 @@
       next: function () {
         let vm = this
         this.tl2.restart(true, false)
+        this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
         setTimeout(function() {
           vm.showLoader = true
         }, vm.loaderTimeout / 2)
         this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
-        this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
         setTimeout(function() {
           vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length)
           vm.questionIndex === vm.quiz.questions.length ? vm.computeScore() : ''
@@ -155,11 +155,11 @@
       prev: function () {
         let vm = this
         this.tl2.restart(true, false)
+        this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
         setTimeout(function() {
           vm.showLoader = true
         }, vm.loaderTimeout / 2)
         this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
-        this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
         setTimeout(function() {
           vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
         }, vm.loaderTimeout / 2)

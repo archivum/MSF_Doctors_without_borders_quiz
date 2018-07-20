@@ -22,7 +22,12 @@ Vue.config.productionTip = false
 //     $('#loader').hide()
 // }
 
-$(document).ready(function() { window.location.pathname === '/' || window.location.pathname === '/profile' ? $('#loader').fadeOut("slow") : $('#loader').hide() })
+$(document).ready(function() {
+    // console.log(window.location.pathname === '/')
+    window.location.pathname === '/' || window.location.pathname === '/profile' ? setTimeout(function() {
+        $('#loader').fadeOut("slow")
+        }, 500) : $('#loader').hide()
+})
 
 /* eslint-disable no-new */
 new Vue({
