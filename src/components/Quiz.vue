@@ -238,6 +238,12 @@
 
 </script>
 
+<style>
+body {
+  overflow: hidden !important;
+}
+</style>
+
 <style scoped>
 /*Links*/
 a {
