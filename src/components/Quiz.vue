@@ -215,6 +215,7 @@
       resetAnimation() {
         $('.question').css('opacity', '0')
         $('.questions-input').css('opacity', '0')
+        if(!this.is_touch_device)
         $('.progress-and-button').css('opacity', '0')
       },
       is_touch_device() {
