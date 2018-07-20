@@ -2,10 +2,12 @@
   <div class="full-width-container container">
     <div class="row block-header">
       <div class="block-header-content">
-        <h3><span>Your humanitarian and worker profile is</span></h3>
-        <h2><span>{{ profile.title }}</span></h2>
+        <div class="block-head">
+            <h3><span>Your humanitarian and worker profile is</span></h3>
+            <h2><span>{{ profile.title }}</span></h2>
+        </div>
         <p>{{ profile.desc }}</p>
-        <h4>Tell your friends you're<br><span>{{ profile.title }}</span></h4>
+        <h4>Tell your friends you're a<span class="profile-title">{{ profile.title }}</span></h4>
         <button @click="showModal">Share Now</button>
       </div>
     </div>
@@ -22,7 +24,7 @@
         <div class="quote">
           “{{ profile.quote }}”<span> – {{ profile.author }}</span>
         </div>
-        <h4>Tell your friends you're<br><span>{{ profile.title }}</span></h4>
+        <h4>Tell your friends you're a<span class="profile-title">{{ profile.title }}</span></h4>
         <button @click="showModal">Share Now</button>
       </div>
     </div>
@@ -180,7 +182,9 @@ h3 span {
     font-weight: 600;
     font-style: normal;
 }
-
+.profile-title{
+    display: block;
+}
 .block-copy p {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -198,7 +202,7 @@ h3 span {
 }
 
 .block-img {
-    min-height: 650px;
+    min-height: 100vw;
     background-image: url("../../static/img/pro1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -316,6 +320,69 @@ button:hover, button:focus, button:active {
 .sharing-element:hover {
     background-color: #b11515;
     cursor: pointer;
+}
+    
+@media (max-width: 767px) {
+    h2{
+        font-size: 2.6rem;
+/*        line-height: 2.6rem;*/
+    }
+    h3{
+        order: 1;
+        margin-bottom: 0px;
+    }
+    h3 span{
+        font-size: 2.1rem;
+        line-height: 2.1rem;
+    }
+    h4{
+        padding-top: 0px;
+    }
+    .block-header{
+        background-size: 100% 230px;
+        background-position: center top;
+        min-height: 100vh;
+        display: block;
+    }
+    .block-head{
+        height: 230px;
+        flex-direction: column-reverse;
+        display: flex;
+        margin-bottom: 15px;
+    }
+    .block-header-content{
+/*        margin-top: 9vh;*/
+    }
+    .block-header-content h4{
+/*        padding-top: 20px;*/
+        font-size: 1.8rem;
+    }
+    .block-header p{
+        font-size: 1.8rem;
+        line-height: 2.1rem;
+        margin-bottom: 3vh;
+    }
+    .block-copy p{
+        font-size: 1.5rem;
+        padding: 0;
+    }
+    .quote{
+        font-size: 1.8rem;
+        line-height: 2.2rem;
+    }
+    .quote span{
+        font-size: 1.5rem;
+    }
+    .columns{
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+/*
+    .block-cont{
+        margin-top: 50%;
+        transform: translate(0,-50%);
+    }
+*/
 }
 
 </style>
