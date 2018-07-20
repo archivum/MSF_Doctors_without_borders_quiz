@@ -341,7 +341,7 @@ input[type="radio"] {
 }
 
 .quizLogo {
-    position: absolute;
+    /* position: absolute; */
     float: left;
     margin-bottom: 50px;
 }
@@ -577,6 +577,7 @@ label > .label-body {
 
 @media (max-width: 420px) {
   .quizLogo {
+    position: absolute;
     margin: auto 1rem 0;
   }
   .quiz .question {
