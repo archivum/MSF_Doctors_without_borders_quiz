@@ -54,7 +54,7 @@
                 <input class="u-full-width" type="email" placeholder="Email" id="emailInput">
                 <label class="agree">
                   <input type="checkbox">
-                  <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <u>Learn more here.</u></span>
+                    <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
                 </label>
                 <button>
                   <router-link :to="{ path: 'Profile' }">Continue</router-link>

@@ -25,12 +25,12 @@
             <div class="info-black">
               <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>Your answers shed light on prevailing attitudes and preferences
 which in turn inform our fundraising decisions. People like you
-help us tell the story of the people who need us. Thank you!<br><a href="">View our Privacy Policy here.</a></span>
+help us tell the story of the people who need us. Thank you!<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">View our Privacy Policy here.</a></span>
             </div>
             <div class="info-black-mobile">
               <span>Your answers shed light on prevailing attitudes and preferences
 which in turn inform our fundraising decisions. People like you
-help us tell the story of the people who need us. Thank you!<br><a href="">View our <u>Privacy Policy</u> here.</a></span>
+help us tell the story of the people who need us. Thank you!<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">View our <u>Privacy Policy</u> here.</a></span>
             </div>
           </div>
           <div class="darken"></div>
