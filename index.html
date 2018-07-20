@@ -50,6 +50,32 @@
   fbq('track', 'Lead');
   </script>
 
+  <script>
+      var images = new Array()
+        function preload() {
+            for (i = 0; i < preload.arguments.length; i++) {
+                images[i] = new Image()
+                images[i].src = preload.arguments[i]
+            }
+        }
+        preload(
+            "/static/img/img1.jpg",
+            "/static/img/img2.jpg",
+            "/static/img/img3.jpg",
+            "/static/img/img4.jpg",
+            "/static/img/img5.jpg",
+            "/static/img/form.jpg",
+            "/static/img/start.jpg",
+            "/static/img/img1_mobile.jpg",
+            "/static/img/img2_mobile.jpg",
+            "/static/img/img3_mobile.jpg",
+            "/static/img/img4_mobile.jpg",
+            "/static/img/img5_mobile.jpg",
+            "/static/img/form_mobile.jpg",
+            "/static/img/start_mobile.jpg",
+        )
+  </script>
+
   <body>
     <!-- Google Tag Manager (noscript) -->
 
