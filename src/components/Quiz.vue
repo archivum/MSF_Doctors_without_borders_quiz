@@ -57,7 +57,7 @@
                     <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
                 </label>
                 <button>
-                  <router-link :to="{ path: 'Profile' }">Continue</router-link>
+                  <router-link :to="{ path: 'profile/' + profile }">Continue</router-link>
                 </button>
                 <span class="skip"><router-link :to="{ path: 'profile/' + profile }">Skip this step</router-link></span>
               </div>
