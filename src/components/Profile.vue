@@ -2,8 +2,9 @@
   <div class="full-width-container container">
     <div class="row block-header">
       <div class="block-header-content">
-        <h3><span>Your humanitarian and worker profile is</span></h3>
-        <h2><span>First responder</span></h2>
+        <h3><span class="profile-head">Your humanitarian and worker profile is</span></h3>
+        <h3><span class="profile-head-mobile">You are a</span></h3>
+        <h2><span>First responder&nbsp;!</span></h2>
         <p>You understand the value of quickly assessing a situation and responding appropriately. You have a unique
           ability
           to evaluate a situation quickly and take responsible action to reduce suffering.</p>
@@ -171,7 +172,9 @@ h3 span {
     font-weight: 600;
     font-style: normal;
 }
-
+.profile-head-mobile{
+    display: none;
+}
 .block-copy p {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -189,7 +192,7 @@ h3 span {
 }
 
 .block-img {
-    min-height: 650px;
+    min-height: 100vw;
     background-image: url("../../static/img/pro1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -307,6 +310,35 @@ button:hover, button:focus, button:active {
 .sharing-element:hover {
     background-color: #b11515;
     cursor: pointer;
+}
+    
+@media (max-width: 400px) {
+    .profile-head{
+        display: none;
+    }
+    .profile-head-mobile{
+        display: inline;
+    }
+    h2{
+        font-size: 2.6rem;
+/*        line-height: 2.6rem;*/
+    }
+    h3{
+        font-size: 2.1rem;
+        line-height: 2.1rem;
+    }
+    .block-header{
+        background-size: contain;
+        background-position: center top;
+        min-height: 100vh;
+    }
+    .block-header-content h4{
+        padding-top: 20px;
+    }
+    .block-header p{
+        font-size: 1.8rem;
+        line-height: 2.1rem;
+    }
 }
 
 </style>
