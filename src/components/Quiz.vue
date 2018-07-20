@@ -240,7 +240,7 @@
 
 <style>
 body {
-  overflow: hidden !important;
+  overflow: hidden;
 }
 </style>
 

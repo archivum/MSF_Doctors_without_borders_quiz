@@ -80,6 +80,13 @@ import {profiles} from '../lib/utils.js'
 
 </script>
 
+<style>
+body {
+    overflow: auto;
+}
+</style>
+
+
 <style scoped>
 
 body {
