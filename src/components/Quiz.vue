@@ -740,6 +740,23 @@ label > .label-body {
   }
 }
 
+@media (max-width: 320px) {
+  .quizLogo {
+    width: 100px;
+  }
+  .question {
+    font-size: 2.5rem;
+  }
+  .answer {
+    min-height: 70px;
+  }
+  .answer p {
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+  }
+}
+
 .four.columns {
   max-width: 700px;
 }
