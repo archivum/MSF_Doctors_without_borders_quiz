@@ -90,7 +90,8 @@
         property: 'images',
         bigScreen: true,
         profile: 0,
-        tl: ''
+        tl: '',
+        xDown: null
       }
     },
     components: {
@@ -103,11 +104,36 @@
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout)
+      document.addEventListener('touchstart', this.handleTouchStart, false);
+      document.addEventListener('touchmove', this.handleTouchMove, false);
     },
     beforeDestroy: function () {
       window.removeEventListener('resize', this.handleResize)
     },
     methods: {
+      handleTouchStart: function (evt) {                                         
+        this.xDown = evt.touches[0].clientX;                      
+        // this.xDown = evt.originalEvent.touches[0].clientX;                      
+      },
+      handleTouchMove: function (evt) {
+        if ( ! this.xDown ) {
+          return;
+        }
+
+        var xUp = evt.touches[0].clientX;                                    
+        // var xUp = evt.originalEvent.touches[0].clientX;                                    
+
+        var xDiff = this.xDown - xUp;
+
+        if ( xDiff > 0 ) {
+        //left
+          // this.next();
+        } else {
+        //right
+          this.prev();
+        }  
+        this.xDown = null;
+      },
       // Go to next question
       next: function () {
         this.showLoader = true
