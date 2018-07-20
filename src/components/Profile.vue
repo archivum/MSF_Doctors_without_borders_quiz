@@ -6,9 +6,9 @@
             <h3><span>Your humanitarian and worker profile is</span></h3>
             <h2><span>{{ profile.title }}</span></h2>
         </div>
-        <p>{{ profile.desc }}</p>
-        <h4>Tell your friends you're a<span class="profile-title">{{ profile.title }}</span></h4>
-        <button @click="showModal">Share Now</button>
+            <p>{{ profile.desc }}</p>
+            <h4>Tell your friends you're a<span class="profile-title">{{ profile.title }}</span></h4>
+            <button @click="showModal">Share Now</button>
       </div>
     </div>
     <div class="row block-copy">
@@ -341,8 +341,11 @@ button:hover, button:focus, button:active {
     .block-header{
         background-size: 100% 230px;
         background-position: center top;
-        min-height: 100vh;
+        min-height: 100%;
         display: block;
+    }
+    .block-header button{
+        margin-bottom: 2rem;
     }
     .block-head{
         height: 230px;
@@ -350,11 +353,7 @@ button:hover, button:focus, button:active {
         display: flex;
         margin-bottom: 15px;
     }
-    .block-header-content{
-/*        margin-top: 9vh;*/
-    }
     .block-header-content h4{
-/*        padding-top: 20px;*/
         font-size: 1.8rem;
     }
     .block-header p{
@@ -377,12 +376,6 @@ button:hover, button:focus, button:active {
         margin-top: 0px;
         margin-bottom: 15px;
     }
-/*
-    .block-cont{
-        margin-top: 50%;
-        transform: translate(0,-50%);
-    }
-*/
 }
 
 </style>
