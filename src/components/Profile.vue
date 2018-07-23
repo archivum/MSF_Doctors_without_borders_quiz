@@ -50,6 +50,10 @@ import {profiles} from '../lib/utils.js'
             copied: false
         }
     },
+    mounted() {
+      $('body').css('overflow','auto');
+      console.log('mountedProfile')
+    },
     computed: {
         profile() {
             return profiles.profile[this.$route.params.id]
@@ -76,16 +80,7 @@ import {profiles} from '../lib/utils.js'
         }
     }
   }
-
-
 </script>
-
-<style>
-body {
-    overflow: auto;
-}
-</style>
-
 
 <style scoped>
 

@@ -238,13 +238,10 @@
 
 </script>
 
-<style>
+<style scoped>
 body {
   overflow: hidden;
 }
-</style>
-
-<style scoped>
 /*Links*/
 a {
     color: white !important;
@@ -352,7 +349,7 @@ input[type="radio"] {
 }
 
 .quiz {
-    padding-top: 150px;
+    padding-top: 100px;
 }
 
 .quiz-container {

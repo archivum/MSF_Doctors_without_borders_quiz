@@ -74,6 +74,7 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
     mounted() {
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
+      $('body').css('overflow','hidden');
     },
     methods: {
       toggleOverlay() {
@@ -89,12 +90,6 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
   }
 
 </script>
-
-<style>
-body {
-  overflow: hidden;
-}
-</style>
 
 <style scoped>
 
