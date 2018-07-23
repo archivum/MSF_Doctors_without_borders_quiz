@@ -87,11 +87,16 @@
         showLoader: false,
         loaderTimeout: 1000,
         loaderBackground: '',
-        property: 'images',
+        property: window.innerWidth >= 768 ? 'images' : 'imagesMobile',
         bigScreen: true,
         profile: 0,
-        tl: '',
-        tl2: '',
+        swippable: false,
+        tl_pre_left: '',
+        tl_left: '',
+        tl_pre_right: '',
+        tl_right: '',
+        direction: 'left',
+        tl_form: '',
         xDown: null
       }
     },
@@ -116,32 +121,31 @@
     methods: {
       handleTouchStart: function (evt) {
         this.xDown = evt.touches[0].clientX;
-        // this.xDown = evt.originalEvent.touches[0].clientX;
       },
       handleTouchMove: function (evt) {
-        if ( ! this.xDown ) {
-          return;
+        if(this.questionIndex > 0 && this.questionIndex < this.quiz.questions.length){  
+          if ( ! this.xDown ) {
+            return;
+          }
+          var xUp = evt.touches[0].clientX;
+          var xDiff = this.xDown - xUp;
+          console.log(xDiff)
+          if (xDiff > 5) {
+          //left
+          } else if( xDiff < -5){
+          //right
+            this.prev();
+          }
+          this.xDown = null;
         }
-
-        var xUp = evt.touches[0].clientX;
-        // var xUp = evt.originalEvent.touches[0].clientX;
-
-        var xDiff = this.xDown - xUp;
-
-        if ( xDiff > 0 ) {
-        //left
-          // this.next();
-        } else {
-        //right
-          this.prev();
-        }
-        this.xDown = null;
       },
       // Go to next question
       next: function () {
+        this.direction = 'left'
         let vm = this
-        this.tl2.restart(true, false)
+        this.tl_pre_left.restart(true, false)
         this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
+        if(!(this.questionIndex + 1 < this.quiz.questions.length)) this.direction = 'form';
         setTimeout(function() {
           vm.showLoader = true
         }, vm.loaderTimeout / 2)
@@ -153,8 +157,9 @@
       },
       // Go to previous question
       prev: function () {
+        this.direction = 'right'
         let vm = this
-        this.tl2.restart(true, false)
+        this.tl_pre_right.restart(true, false)
         this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
         setTimeout(function() {
           vm.showLoader = true
@@ -194,23 +199,40 @@
           })
         }
       },
+      setScrollable() {
+        $('body').css('overflow','auto');
+      },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
       },
       animateQuiz(delay = .2) {
-        this.tl = new TimelineMax()
-        this.tl2 = new TimelineMax()
+        this.tl_pre_left = new TimelineMax()
+        this.tl_left = new TimelineMax()
+        this.tl_pre_right = new TimelineMax()
+        this.tl_right = new TimelineMax()
+        this.tl_form = new TimelineMax()
+
+        this.tl_form.to($(".results .content"),1,{opacity:1});
         
         if(this.is_touch_device()){
-          this.tl.set($(".progress-and-button"),{x: 0, opacity: 1})
-          this.tl.staggerFromTo([$(".question"), $(".questions-input")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
-          this.tl2.staggerFromTo([$(".question"), $(".questions-input")], .8, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
+          TweenMax.set($(".progress-and-button"),{x: 0, opacity: 1})
+          TweenMax.set($(".results .content"),{opacity: 0})
+
+          this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input")], .4, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
+          this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input")], .4, { x: 0, opacity: 1 }, { x: 50, opacity: 0, ease: Power1.easeOut }, delay)
+          this.tl_left.staggerFromTo([$(".question"), $(".questions-input")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
+          this.tl_right.staggerFromTo([$(".question"), $(".questions-input")], .8, { x: -50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
         } else {
-          this.tl.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
-          this.tl2.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
+          this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .4, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
+          this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .4, { x: 0, opacity: 1 }, { x: 50, opacity: 0, ease: Power1.easeOut }, delay)
+          this.tl_left.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
+          this.tl_right.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: -50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
         }
           
-        this.tl2.addPause(0)
+        this.tl_right.addPause(0)
+        this.tl_pre_right.addPause(0)
+        this.tl_pre_left.addPause(0)
+        this.tl_form.addPause(0);
       },
       resetAnimation() {
         $('.question').css('opacity', '0')
@@ -230,7 +252,14 @@
   watch: {
     showLoader(newValue, oldValue) {
       if(!newValue) {
-        this.tl.restart(true, false)
+        if(this.direction == 'left'){
+          this.tl_left.restart(true, false)
+        } else if(this.direction == 'right'){
+          this.tl_right.restart(true, false)
+        } else {
+          this.tl_form.restart(true,false)
+          this.setScrollable()
+        }
       }
     }
   }
