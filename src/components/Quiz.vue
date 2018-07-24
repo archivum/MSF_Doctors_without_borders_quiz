@@ -114,6 +114,7 @@
         document.addEventListener('touchstart', this.handleTouchStart, false);
         document.addEventListener('touchmove', this.handleTouchMove, false);
       }
+      $('body').css('overflow','hidden');
     },
     beforeDestroy: function () {
       window.removeEventListener('resize', this.handleResize)
