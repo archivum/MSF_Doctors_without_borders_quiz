@@ -365,7 +365,7 @@ button:hover, button:focus, button:active {
     display: none;
   }
   .columns {
-    margin: auto 0 0;
+/*    margin: auto 0 0;*/
   }
   h2 {
     font-size: 3rem;
@@ -385,16 +385,23 @@ button:hover, button:focus, button:active {
   }
   .overlay {
     text-align: center;
-    margin-bottom: 3rem;
+/*    margin-bottom: 3rem;*/
   }
   .overlay-close {
     top: 10px;
     right: 10px;
   }
-  .copy1,
+  .copy1{
+    margin-bottom: 1.5rem;
+    text-align: left;
+    font-size: 1.8rem;
+    line-height: 2.1rem;
+  }
   .copy2 {
     margin-bottom: 1.5rem;
     text-align: left;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
   }
   .overlay li {
     margin-bottom: .5rem;
