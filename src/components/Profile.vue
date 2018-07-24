@@ -52,7 +52,6 @@ import {profiles} from '../lib/utils.js'
     },
     mounted() {
       $('body').css('overflow','auto');
-      console.log('mountedProfile')
     },
     computed: {
         profile() {
