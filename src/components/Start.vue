@@ -68,20 +68,27 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
     data() {
       return {
         showOverlay: false,
-        bigScreen: true
+        bigScreen: true,
       }
     },
     mounted() {
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
       $('body').css('overflow','hidden');
+     
     },
     methods: {
       toggleOverlay() {
         this.showOverlay = !this.showOverlay;
       },
+      isMobile() {
+        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+      },
       handleResize() {
-        this.bigScreen = window.innerWidth >= 1000
+        this.bigScreen = window.innerWidth >= 1000;
+        if(this.isMobile()){
+            $('.full-width-container').css({ height: $(window).height() });
+        } 
       }
     },
     beforeDestroy: function () {
@@ -103,7 +110,7 @@ a {
 
 /*Full width container*/
 .full-width-container {
-    height: 100vmin;
+    height: 100vh;
     width: 100%;
     max-width: 100%;
     padding: 0px 0px;
