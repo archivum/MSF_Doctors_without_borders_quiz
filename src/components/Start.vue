@@ -35,7 +35,7 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
           </div>
           <div class="darken"></div>
         </div>
-        <div class="columns" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
+        <div class="columns home-screen" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
           <img class='logo-mobile' src="../../static/img/logo_mobile.png"/><br>
           <h2 class="opacity-70">Take the doctors</h2><br>
           <h2>Without borders quiz</h2><br>
@@ -103,7 +103,7 @@ a {
 
 /*Full width container*/
 .full-width-container {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     max-width: 100%;
     padding: 0px 0px;
@@ -134,8 +134,8 @@ a {
     top: 40px;
     right: 40px;
     font-size: 40px;
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     cursor: pointer;
 }
 
@@ -364,8 +364,8 @@ button:hover, button:focus, button:active {
   .info-black {
     display: none;
   }
-  .columns {
-/*    margin: auto 0 0;*/
+  .home-screen {
+    margin: auto 0 0;
   }
   h2 {
     font-size: 3rem;
@@ -385,7 +385,7 @@ button:hover, button:focus, button:active {
   }
   .overlay {
     text-align: center;
-/*    margin-bottom: 3rem;*/
+    margin-top: 20px;
   }
   .overlay-close {
     top: 10px;
