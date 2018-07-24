@@ -381,6 +381,7 @@ button:hover, button:focus, button:active {
   .full-bg{
     background: url("../../static/img/start_mobile.jpg") center center;
     background-size: cover;
+    background-attachment: scroll;
   }
   button {
     margin-top: .5rem;
