@@ -1,5 +1,10 @@
 <template>
     <div class="quiz-loader" :style="backgroundUrl ? { 'background-image': 'url(' + backgroundUrl + ')' } : {'background-color': '#fff'}">
+        <div class="progress-container">
+            <div class="progress" v-bind:style="{ width: progress  + '%' }"></div>
+            <div class="progress-bar"></div>
+        </div>
+        <div class='quizLogo'><img :src="quizLogo" alt="" style="width: 160px"/></div>
         <img src="/static/img/logo.svg" width="100" class="img-loader">
     </div>
 </template>
@@ -19,9 +24,17 @@ export default {
         type: String,
         required: false
     },
+    quizLogo: {
+        type: String,
+        required: false
+    },
     visible: {
         type: Boolean,
         default: () => false
+    },
+    progress:  {
+        type: Number,
+        required: false
     },
     timeout: {
         type: Number,
@@ -66,8 +79,47 @@ export default {
     background-attachment: fixed;
     background-position: center center;
 }
+@media (min-width: 768px){
+    .quizLogo,
+    .progress-container {
+        display: none;
+    }
+}
+.quizLogo {
+    /* position: absolute; */
+    float: left;
+    margin: auto 1rem 0;
+    padding-top: 2rem;
+}
+.progress-container {
+    float: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+}
 
-img {
+.progress {
+    z-index: 3;
+    position: absolute;
+    height: 5px;
+    background-color: #ea0029;
+    float: left;
+}
+.progress-bar {
+    height: 5px;
+    width: 250px;
+    background-color: white;
+    float: left;
+    width: 100%;
+}
+.progress,
+.progress-bar {
+    height: 10px;
+}
+
+.img-loader {
     position: absolute;
     top: 50%;
     left: 50%;

@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
   <div id="quiz">
-    <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground"></quiz-loader>
+    <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground" :quizLogo="quiz.logo" :progress="questionIndex / quiz.questions.length * 100"></quiz-loader>
     <div class="quiz-container">
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
@@ -213,6 +213,7 @@
         this.tl_right = new TimelineMax()
         this.tl_form = new TimelineMax()
 
+        this.tl_form.to([$(".quiz-loader .progress-container"),$(".quiz-loader .quizLogo")],0.01,{opacity:0});
         this.tl_form.to($(".results .content"),1,{opacity:1});
         
         if(this.is_touch_device()){
