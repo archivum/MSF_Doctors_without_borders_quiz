@@ -6,7 +6,7 @@
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
-          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)), url(' + question[property] + ')'}" class="row full-bg ">
+          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.8)), url(' + question[property] + ')'}" class="row full-bg ">
             <div class="eight columns offset-by-two quiz">
               <div class='quizLogo'><img :src="quiz.logo" alt="" style="width: 160px"/></div>
               <h3 class="question">{{ question.text }}</h3>
@@ -104,7 +104,7 @@
       QuizLoader
     },
     created() {
-      this.loaderBackground = this.quiz.questions[0].images
+      this.loaderBackground = window.innerWidth >= 768 ? this.quiz.questions[0].images : this.quiz.questions[0].imagesMobile
     },
     mounted() {
       this.handleResize()
@@ -229,7 +229,6 @@
           this.tl_left.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
           this.tl_right.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, { x: -50, opacity: 0 }, { x: 0, opacity: 1, ease: Power1.easeOut }, delay)
         }
-          
         this.tl_right.addPause(0)
         this.tl_pre_right.addPause(0)
         this.tl_pre_left.addPause(0)
