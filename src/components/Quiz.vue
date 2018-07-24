@@ -324,7 +324,7 @@ button a {
 }
 
 #app {
-    min-height: 100vh;
+/*    min-height: 100vh;*/
     background-color: rgba(0, 0, 0, 0.6);
 }
 
