@@ -103,7 +103,7 @@ a {
 
 /*Full width container*/
 .full-width-container {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     max-width: 100%;
     padding: 0px 0px;
@@ -381,7 +381,8 @@ button:hover, button:focus, button:active {
   .full-bg{
     background: url("../../static/img/start_mobile.jpg") center center;
     background-size: cover;
-    background-attachment: scroll;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
   }
   button {
     margin-top: .5rem;
