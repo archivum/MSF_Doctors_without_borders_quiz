@@ -35,8 +35,8 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
           </div>
           <div class="darken"></div>
         </div>
-        <div class="columns home-screen" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
-          <img class='logo-mobile' src="../../static/img/logo_mobile.png"/><br>
+        <div class="columns intro-page" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
+          <img class='logo-mobile' src="../../static/img/logo-black.svg"/><br>
           <h2 class="opacity-70">Take the doctors</h2><br>
           <h2>Without borders quiz</h2><br>
           <h3 class="opacity-58">What kind of humanitarian</h3><br>
@@ -340,7 +340,9 @@ button:hover, button:focus, button:active {
   text-align: center;
   text-decoration: underline;
 }
-
+.logo-mobile{
+    width: 199px;
+}
 /* Larger than mobile */
 @media (min-width: 420px) {
     h2{
@@ -364,7 +366,7 @@ button:hover, button:focus, button:active {
   .info-black {
     display: none;
   }
-  .home-screen {
+  .intro-page {
     margin: auto 0 0;
   }
   h2 {
