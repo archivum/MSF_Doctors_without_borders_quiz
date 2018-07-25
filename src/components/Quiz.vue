@@ -209,7 +209,7 @@
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000;
         if(this.isMobile()){
-            $('.full-bg, .quiz-loader, .full-width-container').css({ height: $(window).height() });
+            $('.full-bg, .quiz-loader, .full-width-container, .quiz').css({ height: $(window).height() });
         } 
       },
       animateQuiz(delay = .2) {
