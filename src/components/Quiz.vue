@@ -633,7 +633,7 @@ label > .label-body {
     margin: auto 1rem 0;
   }
   .quiz .question {
-    margin: auto 2rem 2rem;
+/*    margin: auto 2rem 2rem;*/
   }
   .results .content{
     margin-top: 20px;
