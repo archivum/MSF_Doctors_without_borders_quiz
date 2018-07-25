@@ -379,7 +379,7 @@ input[type="radio"] {
 }
 
 .quiz {
-    display: none !important;
+/*    display: none !important;*/
     padding-top: 100px;
 }
 
