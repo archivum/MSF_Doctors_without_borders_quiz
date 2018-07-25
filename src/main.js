@@ -6,6 +6,7 @@ import router from './router'
 import './css/fonts.css'
 import './css/normalize.css'
 import './css/skeleton.css'
+require('es6-object-assign').polyfill();
 
 // Plugins
 import VModal from 'vue-js-modal'
