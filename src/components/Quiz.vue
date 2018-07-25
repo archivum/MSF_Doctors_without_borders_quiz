@@ -123,9 +123,6 @@
       handleTouchStart: function (evt) {
         this.xDown = evt.touches[0].clientX;
       },
-      isMobile() {
-        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-      },
       handleTouchMove: function (evt) {
         if(this.questionIndex > 0 && this.questionIndex < this.quiz.questions.length){  
           if ( ! this.xDown ) {
@@ -207,10 +204,7 @@
         $('body').css('overflow','auto');
       },
       handleResize() {
-        this.bigScreen = window.innerWidth >= 1000;
-        if(this.isMobile()){
-            $('.full-bg, .quiz-loader, .full-width-container, .quiz').css({ height: $(window).height() });
-        } 
+        this.bigScreen = window.innerWidth >= 1000
       },
       animateQuiz(delay = .2) {
         this.tl_pre_left = new TimelineMax()
@@ -324,7 +318,7 @@ button a {
 }
 
 #app {
-/*    min-height: 100vh;*/
+    min-height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -741,7 +735,6 @@ label > .label-body {
     background: url("/static/img/form_mobile.jpg");
     background-position: center top;
     overflow: hidden;
-    height: 100%;
   }
   .question {
     font-size: 3rem;
