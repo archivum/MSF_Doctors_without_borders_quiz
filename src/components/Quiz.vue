@@ -465,7 +465,10 @@ input[type="radio"] {
     -webkit-transition-property: color, background-color;
     transition-property: color, background-color;
 }
-
+.answer:after{
+    content:'';
+    min-height:inherit;
+}
 .answer p {
     margin-bottom: 0;
     color: rgb(99, 8, 8);

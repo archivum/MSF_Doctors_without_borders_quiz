@@ -136,6 +136,10 @@ p {
     align-items: center;
     justify-content: center;
 }
+.block-header:after{
+    content:'';
+    min-height:inherit;
+}
 
 .block-header p {
     color: #ea0029;

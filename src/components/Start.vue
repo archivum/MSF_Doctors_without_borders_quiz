@@ -86,14 +86,14 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
       toggleOverlay() {
         this.showOverlay = !this.showOverlay;
       },
-      isMobile() {
-        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-      },
+//      isMobile() {
+//        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+//      },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000;
-        if(this.isMobile()){
-            $('.full-width-container').css({ height: $(window).height() });
-        } 
+        //if(this.isMobile()){
+        //    $('.full-width-container').css({ height: $(window).height() });
+        //} 
       },
       myLoginTestCallback(data) {
         console.log(data);
