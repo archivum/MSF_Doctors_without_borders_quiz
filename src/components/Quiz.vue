@@ -209,7 +209,7 @@
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000;
         if(this.isMobile()){
-            $('.full-bg, .quiz-loader, .quiz, .full-width-container').css({ height: $(window).height() });
+            $('.full-bg, .quiz-loader').css({ height: $(window).height() });
         } 
       },
       animateQuiz(delay = .2) {
@@ -324,7 +324,7 @@ button a {
 }
 
 #app {
-    min-height: 100vh;
+/*    min-height: 100vh;*/
     background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -741,6 +741,7 @@ label > .label-body {
     background: url("/static/img/form_mobile.jpg");
     background-position: center top;
     overflow: hidden;
+    height: 100%;
   }
   .question {
     font-size: 3rem;
