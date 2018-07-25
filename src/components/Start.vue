@@ -75,7 +75,12 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
       $('body').css('overflow','hidden');
-     
+      
+      luminateExtend.api({
+        api: 'cons', 
+        callback: this.myLoginTestCallback, 
+        data: 'method=loginTest'
+      });
     },
     methods: {
       toggleOverlay() {
@@ -89,6 +94,9 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
         if(this.isMobile()){
             $('.full-width-container').css({ height: $(window).height() });
         } 
+      },
+      myLoginTestCallback(data) {
+        console.log(data);
       }
     },
     beforeDestroy: function () {
