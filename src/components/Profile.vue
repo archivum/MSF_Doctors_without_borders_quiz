@@ -63,9 +63,11 @@ import {profiles} from '../lib/utils.js'
             this.$modal.show('share-modal');
         },
         shareFb () {
+            console.log(document.location.origin);
             FB.ui({
               method: 'share',
-              href: 'http://msfquiz.candy-staging.com',
+              href: document.location.origin,
+              picture: document.location.origin + '/static/img/fb-share.png'
             }, function(response){});
         },
         copyClipboard () {
