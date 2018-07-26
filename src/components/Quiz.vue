@@ -746,7 +746,7 @@ label > .label-body {
     overflow: hidden;
   }
   .question {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .questions-input li,
   .questions-input li label {
@@ -754,8 +754,8 @@ label > .label-body {
   }
   .answer p {
     color: #fff;
-    font-size: 2.5rem;
-    line-height: 2.5rem;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
   }
   .questions-input li:nth-child(1) .answer {
     background-color: #780505;
