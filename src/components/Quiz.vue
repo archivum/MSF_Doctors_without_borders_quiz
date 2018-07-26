@@ -8,7 +8,7 @@
         <div v-for="(question, index) in quiz.questions" :key="index">
           <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.8)), url(' + question[property] + ')'}" class="row full-bg ">
             <div class="eight columns offset-by-two quiz">
-              <div class='quizLogo'><img :src="quiz.logo" alt="" style="width: 160px"/></div>
+              <div class='quizLogo'><img :src="quiz.logo" alt=""/></div>
               <h3 class="question">{{ question.text }}</h3>
               <ul class="questions-input">
                 <li v-for="response in question.responses">
@@ -387,9 +387,12 @@ input[type="radio"] {
 }
 
 .quizLogo {
-    /* position: absolute; */
     float: left;
     margin-bottom: 50px;
+}
+
+.quizLogo img {
+  width: 160px;
 }
 
 .question {
@@ -629,6 +632,9 @@ label > .label-body {
     position: absolute;
     margin: auto 1rem 0;
   }
+  .quizLogo img {
+    width: 40vw;
+  }
   .quiz .question {
     margin: auto 2rem 2rem;
   }
@@ -777,19 +783,16 @@ label > .label-body {
 }
 
 @media (max-width: 320px) {
-  .quizLogo {
-    width: 100px;
-  }
   .question {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
   .answer {
-    min-height: 70px;
+    min-height: 50px;
   }
   .answer p {
     color: #fff;
-    font-size: 1.8rem;
-    line-height: 1.8rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
   }
 }
 
