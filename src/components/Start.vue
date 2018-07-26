@@ -84,7 +84,7 @@ export default {
     luminateExtend.api([{
       async: false,
       api: 'survey',
-      data: 'method=listSurveys',
+      data: 'method=listSurveys&published_only=false',
       requiresAuth: true,
       callback: {
         success: this.myLoginTestCallback
