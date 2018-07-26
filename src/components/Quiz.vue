@@ -288,7 +288,7 @@ button a {
 
 /*Full width container*/
 .full-width-container {
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
     max-width: 100%;
     padding: 0px 0px;
@@ -524,7 +524,7 @@ input[type="radio"] {
 
   .full-bg {
     background: url("/static/img/form.jpg");
-    height: 100vh;
+    min-height: 100vh;
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
@@ -691,7 +691,7 @@ label > .label-body {
     margin-bottom: 0;
   }
   .quiz {
-    height: 100%;
+    min-height: 100vh;
     float: none;
   }
   .results .row {
