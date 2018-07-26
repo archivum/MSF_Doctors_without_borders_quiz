@@ -4,7 +4,7 @@
             <div class="progress" v-bind:style="{ width: progress  + '%' }"></div>
             <div class="progress-bar"></div>
         </div>
-        <div class='quizLogo'><img :src="quizLogo" alt="" style="width: 160px"/></div>
+        <div class='quizLogo'><img :src="quizLogo" alt=""/></div>
         <img src="/static/img/logo.svg" width="100" class="img-loader">
     </div>
 </template>
@@ -86,10 +86,12 @@ export default {
     }
 }
 .quizLogo {
-    /* position: absolute; */
     float: left;
     margin: auto 1rem 0;
     padding-top: 2rem;
+}
+.quizLogo img {
+    width: 160px;
 }
 .progress-container {
     float: left;
@@ -134,5 +136,9 @@ export default {
     .quiz-loader {
         background-position: center top;
     }
+    .quizLogo img {
+        width: 40vw;
+    }
 }
+
 </style>
