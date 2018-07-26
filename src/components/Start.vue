@@ -60,169 +60,182 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
 </template>
 
 <script>
+/* eslint-disable */
 
-  /* eslint-disable */
+export default {
+  name: "Start",
+  data() {
+    return {
+      showOverlay: false,
+      bigScreen: true
+    };
+  },
+  mounted() {
+    this.handleResize();
+    window.addEventListener("resize", this.handleResize);
+    $("body").css("overflow", "hidden");
 
-  export default {
-    name: 'Start',
-    data() {
-      return {
-        showOverlay: false,
-        bigScreen: true,
+    // luminateExtend.api({
+    //   api: "cons",
+    //   callback: this.myLoginTestCallback,
+    //   data: "method=loginTest"
+    // });
+
+    luminateExtend.api([{
+      api: 'cons',
+      data: 'method=listUserFields&include_choices=true',
+      callback: {
+        success: this.myLoginTestCallback
       }
-    },
-    mounted() {
-      this.handleResize()
-      window.addEventListener('resize', this.handleResize)
-      $('body').css('overflow','hidden');
-      
-      luminateExtend.api({
-        api: 'cons', 
-        callback: this.myLoginTestCallback, 
-        data: 'method=loginTest'
-      });
-    },
-    methods: {
-      toggleOverlay() {
-        this.showOverlay = !this.showOverlay;
-      },
-//      isMobile() {
-//        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-//      },
-      handleResize() {
-        this.bigScreen = window.innerWidth >= 1000;
-        //if(this.isMobile()){
-        //    $('.full-width-container').css({ height: $(window).height() });
-        //} 
-      },
-      myLoginTestCallback(data) {
-        console.log(data);
+    }, {
+      async: false,
+      api: 'cons',
+      data: 'method=getUser',
+      requiresAuth: true,
+      callback: {
+        success: this.myLoginTestCallback
       }
+    }]);
+  },
+  methods: {
+    toggleOverlay() {
+      this.showOverlay = !this.showOverlay;
     },
-    beforeDestroy: function () {
-      window.removeEventListener('resize', this.handleResize)
+    //      isMobile() {
+    //        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
+    //      },
+    handleResize() {
+      this.bigScreen = window.innerWidth >= 1000;
+      //if(this.isMobile()){
+      //    $('.full-width-container').css({ height: $(window).height() });
+      //}
+    },
+    myLoginTestCallback(data) {
+      console.log(data);
     }
+  },
+  beforeDestroy: function() {
+    window.removeEventListener("resize", this.handleResize);
   }
-
+};
 </script>
 
 <style scoped>
-
 /*Links*/
 a {
-    color: white !important;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
+  color: white !important;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /*Full width container*/
 .full-width-container {
-    height: 100vh;
-    width: 100%;
-    max-width: 100%;
-    padding: 0px 0px;
-    clear: both;
-    margin: 0 auto;
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  padding: 0px 0px;
+  clear: both;
+  margin: 0 auto;
 }
 
 .row {
-    padding-left: 20px;
-    padding-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .row-v-align {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .overlay {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .overlay-close {
-    position: absolute;
-    z-index: 1;
-    top: 40px;
-    right: 40px;
-    font-size: 40px;
-    height: 25px;
-    width: 25px;
-    cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  top: 40px;
+  right: 40px;
+  font-size: 40px;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
 }
 
 .logo {
-    position: absolute;
-    z-index: 2;
-    left: 40px;
-    top: 25px;
+  position: absolute;
+  z-index: 2;
+  left: 40px;
+  top: 25px;
 }
 
 .full-bg {
-    background: url("../../static/img/start.jpg") top center;
-    height: 100vh;
-    background-size: cover;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
+  background: url("../../static/img/start.jpg") top center;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .darken {
-    position: absolute;
-    background-color: black;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    opacity: 0.7;
-    z-index: 0;
+  position: absolute;
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  z-index: 0;
 }
 
 .container {
-    text-align: left;
-    color: white;
+  text-align: left;
+  color: white;
 }
 
 p {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently */
-    cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently */
+  cursor: pointer;
 }
 
 ul {
-    margin-bottom: 0;
-    font-size: 1.8rem;
-    list-style-type: none;
-    font-family: 'FreightSans Pro';
-    font-weight: 500;
-    font-style: normal;
+  margin-bottom: 0;
+  font-size: 1.8rem;
+  list-style-type: none;
+  font-family: "FreightSans Pro";
+  font-weight: 500;
+  font-style: normal;
 }
 
 ul span {
-    margin-left: 7px;
-    font-weight: bold;
+  margin-left: 7px;
+  font-weight: bold;
 }
 
 h2 {
-    display: inline;
-    box-shadow: 10px 0 0 rgba(238, 0, 0, 1), -10px 0 0 rgba(238, 0, 0, 1);
-    color: white;
-    /*    font-size: 38px;*/
-    /*    line-height: 58px;*/
-    font-size: 3.8rem;
-    line-height: 5.8rem;
-    text-align: left;
-    background-color: rgba(238, 0, 0, 1);
-    text-transform: uppercase;
-    font-family: 'FreightSans Pro';
-    font-weight: bold;
-    font-style: normal;
+  display: inline;
+  box-shadow: 10px 0 0 rgba(238, 0, 0, 1), -10px 0 0 rgba(238, 0, 0, 1);
+  color: white;
+  /*    font-size: 38px;*/
+  /*    line-height: 58px;*/
+  font-size: 3.8rem;
+  line-height: 5.8rem;
+  text-align: left;
+  background-color: rgba(238, 0, 0, 1);
+  text-transform: uppercase;
+  font-family: "FreightSans Pro";
+  font-weight: bold;
+  font-style: normal;
 }
 
 h2.opacity-70 {
@@ -232,150 +245,152 @@ h2.opacity-70 {
 
 h3 {
   display: inline;
-  box-shadow: 10px 0 0 rgba(35, 31, 32,1), -10px 0 0 rgba(35, 31, 32,1);
+  box-shadow: 10px 0 0 rgba(35, 31, 32, 1), -10px 0 0 rgba(35, 31, 32, 1);
   color: white;
   font-size: 3.7rem;
   line-height: 5.5rem;
   text-align: left;
-  background-color: rgba(35, 31, 32,1);
+  background-color: rgba(35, 31, 32, 1);
   /*text-transform: uppercase;*/
   /*font-weight: bold;*/
-  font-family: 'FreightSans Pro';
+  font-family: "FreightSans Pro";
   font-weight: 500;
   font-style: normal;
 }
 
 h3.opacity-58 {
-    box-shadow: 10px 0 0 rgba(35, 31, 32,0.58), -10px 0 0 rgba(35, 31, 32, 0.58);
-    background: rgba(35, 31, 32, 0.58);
-  }
+  box-shadow: 10px 0 0 rgba(35, 31, 32, 0.58), -10px 0 0 rgba(35, 31, 32, 0.58);
+  background: rgba(35, 31, 32, 0.58);
+}
 
 /*Button styles*/
 button {
-    height: 55px;
-    background-color: #ea0029;
-    border-radius: 50px;
-    border: none;
-    width: 275px;
-    font-size: 2.6rem;
-    color: white;
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    overflow: hidden;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: color, background-color;
-    transition-property: color, background-color;
-    font-family: 'FreightSans Pro';
-    font-weight: bold;
-    font-style: normal;
-    margin-top: 20px;
-    margin-left: -10px;
+  height: 55px;
+  background-color: #ea0029;
+  border-radius: 50px;
+  border: none;
+  width: 275px;
+  font-size: 2.6rem;
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+  font-family: "FreightSans Pro";
+  font-weight: bold;
+  font-style: normal;
+  margin-top: 20px;
+  margin-left: -10px;
 }
 
-button:hover, button:focus, button:active {
-    background-color: #b11515;
-    color: white;
+button:hover,
+button:focus,
+button:active {
+  background-color: #b11515;
+  color: white;
 }
 
-.overlay button{
-    margin-top: 5px;
-    margin-left: 0px;
+.overlay button {
+  margin-top: 5px;
+  margin-left: 0px;
 }
 
 .info-black {
-    margin-left: 0px;
-    margin-top: 5px;
-    cursor: pointer;
-    font-family: 'FreightSans Pro';
-    font-weight: 600;
-    font-style: normal;
-    line-height: 2rem;
-    font-size: 1.5rem;
-  }
+  margin-left: 0px;
+  margin-top: 5px;
+  cursor: pointer;
+  font-family: "FreightSans Pro";
+  font-weight: 600;
+  font-style: normal;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
 
-  .info-black a{
-    font-family: 'FreightSans Pro';
-    font-weight: 600 !important;
-    font-style: normal;
-    text-decoration: underline !important;
-  }
+.info-black a {
+  font-family: "FreightSans Pro";
+  font-weight: 600 !important;
+  font-style: normal;
+  text-decoration: underline !important;
+}
 
 .copy1 {
-    font-size: 1.9rem;
-    font-family: 'FreightSans Pro Book';
-    font-weight: 300;
-    font-style: normal;
-    line-height: 2.3rem;
+  font-size: 1.9rem;
+  font-family: "FreightSans Pro Book";
+  font-weight: 300;
+  font-style: normal;
+  line-height: 2.3rem;
 }
 
 .copy2 {
-    font-size: 2.2rem;
-    font-family: 'FreightSans Pro';
-    font-weight: 600;
-    font-style: normal;
-    line-height: 2.8rem;
+  font-size: 2.2rem;
+  font-family: "FreightSans Pro";
+  font-weight: 600;
+  font-style: normal;
+  line-height: 2.8rem;
 }
 .info {
-    color: #231f20;
-    margin-left: -10px;
-    margin-top: 5px;
-    text-decoration: underline;
-    cursor: pointer;
-    font-family: 'FreightSans Pro';
-    font-weight: 500;
-    font-style: normal;
+  color: #231f20;
+  margin-left: -10px;
+  margin-top: 5px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: "FreightSans Pro";
+  font-weight: 500;
+  font-style: normal;
 }
 
 .info span {
-    margin-left: 7px;
-    font-size: 1.6rem;
+  margin-left: 7px;
+  font-size: 1.6rem;
 }
 
 .info-icon {
-    float: left;
-    display: inline-block;
-    height: 23px;
-    width: 23px;
+  float: left;
+  display: inline-block;
+  height: 23px;
+  width: 23px;
 }
 
 .info-icon-black {
-    float: left;
-    display: inline-block;
-    height: 23px;
-    width: 23px;
-    padding-bottom: 7rem;
-    padding-right: 10px;
+  float: left;
+  display: inline-block;
+  height: 23px;
+  width: 23px;
+  padding-bottom: 7rem;
+  padding-right: 10px;
 }
 
 .info-mobile {
   text-align: center;
   text-decoration: underline;
 }
-.logo-mobile{
-    width: 199px;
+.logo-mobile {
+  width: 199px;
 }
 /* Larger than mobile */
 @media (min-width: 420px) {
-    h2{
-        font-size: 3.8rem;
-        line-height: 5.8rem;
-    }
-    h3{
-        font-size: 3.7rem;
-        line-height: 5.5rem;
-    }
-    .logo-mobile,
-    .info-mobile,
-    .info-black-mobile {
-      display: none;
-    }
+  h2 {
+    font-size: 3.8rem;
+    line-height: 5.8rem;
+  }
+  h3 {
+    font-size: 3.7rem;
+    line-height: 5.5rem;
+  }
+  .logo-mobile,
+  .info-mobile,
+  .info-black-mobile {
+    display: none;
+  }
 }
 
-@media (max-width:420px){
+@media (max-width: 420px) {
   .logo,
   .info,
   .info-black {
@@ -393,12 +408,12 @@ button:hover, button:focus, button:active {
     line-height: 4rem;
     font-weight: 600;
   }
-  .full-bg{
+  .full-bg {
     background: url("../../static/img/start_mobile.jpg") center center;
     background-size: cover;
   }
   button {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
   .overlay {
     text-align: center;
@@ -408,7 +423,7 @@ button:hover, button:focus, button:active {
     top: 10px;
     right: 10px;
   }
-  .copy1{
+  .copy1 {
     margin-bottom: 1.5rem;
     text-align: left;
     font-size: 1.8rem;
@@ -421,7 +436,7 @@ button:hover, button:focus, button:active {
     line-height: 2.3rem;
   }
   .overlay li {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     line-height: 1.8rem;
     text-align: left;
   }
@@ -436,15 +451,18 @@ button:hover, button:focus, button:active {
 }
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {}
+@media (min-width: 550px) {
+}
 
 /* Larger than tablet */
-@media (min-width: 750px) {}
+@media (min-width: 750px) {
+}
 
 /* Larger than desktop */
-@media (min-width: 1000px) {}
+@media (min-width: 1000px) {
+}
 
 /* Larger than Desktop HD */
-@media (min-width: 1200px) {}
-
+@media (min-width: 1200px) {
+}
 </style>
