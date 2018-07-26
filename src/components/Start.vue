@@ -82,15 +82,9 @@ export default {
     // });
 
     luminateExtend.api([{
-      api: 'cons',
-      data: 'method=listUserFields&include_choices=true',
-      callback: {
-        success: this.myLoginTestCallback
-      }
-    }, {
       async: false,
-      api: 'cons',
-      data: 'method=getUser',
+      api: 'survey',
+      data: 'method=listSurveys',
       requiresAuth: true,
       callback: {
         success: this.myLoginTestCallback
