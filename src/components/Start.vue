@@ -80,11 +80,12 @@ export default {
     //   callback: this.myLoginTestCallback,
     //   data: "method=loginTest"
     // });
+    // 1565 - survey ID
 
     luminateExtend.api([{
       async: false,
       api: 'survey',
-      data: 'method=listSurveys&published_only=false',
+      data: 'method=getSurvey&survey_id=1565',
       requiresAuth: true,
       callback: {
         success: this.myLoginTestCallback
