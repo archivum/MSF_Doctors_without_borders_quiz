@@ -454,9 +454,9 @@ input[type="radio"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    line-height: 20px;
-    background: rgba(255, 255, 255, 0.65);
+    font-size: 2.2rem;
+    line-height: 2.2rem;
+    background: rgba(255, 255, 255, 0.45);
     min-height: 70px;
     border-style: solid;
     border-color: rgb(155, 7, 7);
@@ -480,7 +480,7 @@ input[type="radio"] {
     color: rgb(99, 8, 8);
     padding-right: 10px;
     padding-left: 10px;
-    font-size: 1.75rem;
+    font-size: 2rem;
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
@@ -613,7 +613,7 @@ label > .label-body {
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
-    font-size: 1.7rem;
+    font-size: 2rem;
     line-height: 1.7rem;
     margin-top: .7rem;
 }
