@@ -262,6 +262,7 @@
         } else {
           this.tl_form.restart(true,false)
           if(window.innerWidth <= 320) this.setScrollable()
+          console.log('>>',this.userResponses)
         }
       }
     }
@@ -456,7 +457,7 @@ input[type="radio"] {
     justify-content: center;
     font-size: 2.2rem;
     line-height: 2.2rem;
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.85);
     min-height: 70px;
     border-style: solid;
     border-color: rgb(155, 7, 7);
@@ -613,7 +614,7 @@ label > .label-body {
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
-    font-size: 2rem;
+    font-size: 1.7rem;
     line-height: 1.7rem;
     margin-top: .7rem;
 }
@@ -624,6 +625,7 @@ label > .label-body {
 }
 
 .agree input {
+    zoom: 1.2;
     margin-bottom: 0;
 }
 
