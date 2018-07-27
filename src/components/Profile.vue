@@ -3,7 +3,7 @@
     <div class="row block-header">
       <div class="block-header-content">
         <div class="block-head">
-            <h3><span>Your humanitarian and worker profile is</span></h3>
+            <h3><span>Your humanitarian aid worker profile is</span></h3>
             <h2><span>{{ profile.title }}</span></h2>
         </div>
             <p>{{ profile.desc }}</p>
@@ -51,7 +51,8 @@ import {profiles} from '../lib/utils.js'
         }
     },
     mounted() {
-      $('body').css('overflow','auto');
+        $('body').css('overflow','auto');
+        $('body').css('background','transparent');
     },
     computed: {
         profile() {
@@ -127,7 +128,7 @@ p {
 }
 
 .block-header {
-    min-height: 650px;
+    min-height: 60vh;
     background-image: url("../../static/img/world.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -209,7 +210,7 @@ h3 span {
 }
 
 .block-img {
-    min-height: 100vw;
+    min-height: 60vh;
     background-image: url("../../static/img/pro1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -369,7 +370,8 @@ button:hover, button:focus, button:active {
         margin-bottom: 3vh;
     }
     .block-copy p{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        line-height: 2rem;
         padding: 0;
     }
     .quote{

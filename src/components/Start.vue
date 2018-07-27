@@ -88,7 +88,8 @@ export default {
       data: 'method=getSurvey&survey_id=1565',
       requiresAuth: true,
       callback: {
-        success: this.myLoginTestCallback
+        success: this.myLoginTestCallback,
+        error: this.myLoginTestCallback
       }
     }]);
   },
@@ -106,7 +107,7 @@ export default {
       //}
     },
     myLoginTestCallback(data) {
-      console.log(data);
+      console.log('>>',data);
     }
   },
   beforeDestroy: function() {
@@ -118,7 +119,7 @@ export default {
 <style scoped>
 /*Links*/
 a {
-  color: white !important;
+  color: white;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
@@ -345,6 +346,11 @@ button:active {
   font-size: 1.6rem;
 }
 
+.info-black a:hover,
+.info:hover {
+  color: #ea0029;
+}
+
 .info-icon {
   float: left;
   display: inline-block;
@@ -392,7 +398,7 @@ button:active {
     display: none;
   }
   .intro-page {
-    margin: auto 0 0;
+    margin: auto 0 1rem;
   }
   h2 {
     font-size: 3rem;
@@ -409,6 +415,7 @@ button:active {
   }
   button {
     margin-top: 0.5rem;
+    margin-bottom: 2rem;
   }
   .overlay {
     text-align: center;

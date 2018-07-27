@@ -1,12 +1,12 @@
 <template>
   <transition name="fade">
   <div id="quiz">
-    <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground" :quizLogo="quiz.logo" :progress="questionIndex / quiz.questions.length * 100"></quiz-loader>
+    <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground" :quizLogo="quiz.logo" :progress="(questionIndex + 1) / quiz.questions.length * 100"></quiz-loader>
     <div class="quiz-container">
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
-          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.8)), url(' + question[property] + ')'}" class="row full-bg ">
+          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url(' + question[property] + ')'}" class="row full-bg ">
             <div class="eight columns offset-by-two quiz">
               <div class='quizLogo'><img :src="quiz.logo" alt=""/></div>
               <h3 class="question">{{ question.text }}</h3>
@@ -30,7 +30,7 @@
                   &#60; Back
                 </router-link>
                 <div class="progress-container">
-                  <div class="progress" v-bind:style="{ width: questionIndex / quiz.questions.length * 100 + '%' }"></div>
+                  <div class="progress" v-bind:style="{ width: (questionIndex + 1) / quiz.questions.length * 100 + '%' }"></div>
                   <div class="progress-bar"></div>
                 </div>
 
@@ -45,7 +45,7 @@
             <div class="content">
               <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
                 <h3>Your results are <span class="result-head">almost&nbsp;in!</span></h3>
-                <p>Will you stand with us? We need people like you who will speak out when the world needs you to act.
+                <p>Will you stand with us? We need people like you to help us respond to crises around the world.
                   Sign up now.</p>
               </div>
               <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
@@ -202,6 +202,7 @@
       },
       setScrollable() {
         $('body').css('overflow','auto');
+        $('body').css('background','#0f0f0f');
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
@@ -215,10 +216,14 @@
 
         this.tl_form.to([$(".quiz-loader .progress-container"),$(".quiz-loader .quizLogo")],0.01,{opacity:0});
         this.tl_form.to($(".results .content"),1,{opacity:1});
+<<<<<<< HEAD
+=======
+
+        TweenMax.set($(".results .content"),{opacity: 0})
+>>>>>>> c750caac13957c527ccd4c9372799d34524d3620
 
         if(this.is_touch_device()){
           TweenMax.set($(".progress-and-button"),{x: 0, opacity: 1})
-          TweenMax.set($(".results .content"),{opacity: 0})
 
           this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input")], .4, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
           this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input")], .4, { x: 0, opacity: 1 }, { x: 50, opacity: 0, ease: Power1.easeOut }, delay)
@@ -259,7 +264,8 @@
           this.tl_right.restart(true, false)
         } else {
           this.tl_form.restart(true,false)
-          this.setScrollable()
+          if(window.innerWidth <= 320) this.setScrollable()
+          console.log('>>',this.userResponses)
         }
       }
     }
@@ -274,7 +280,7 @@ body {
 }
 /*Links*/
 a {
-    color: white !important;
+    color: white;
     text-decoration: none;
     font-family: 'FreightSans Pro';
     font-weight: 500;
@@ -407,6 +413,7 @@ input[type="radio"] {
     font-weight: bold;
     font-style: normal;
     font-size: 3.4rem;
+    line-height: 3.6rem;
     opacity: 0;
 }
 
@@ -451,9 +458,9 @@ input[type="radio"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 20px;
-    background: white;
-    opacity: 0.8;
+    font-size: 2.2rem;
+    line-height: 2.2rem;
+    background: rgba(255, 255, 255, 0.85);
     min-height: 70px;
     border-style: solid;
     border-color: rgb(155, 7, 7);
@@ -477,7 +484,7 @@ input[type="radio"] {
     color: rgb(99, 8, 8);
     padding-right: 10px;
     padding-left: 10px;
-    font-size: 1.75rem;
+    font-size: 2rem;
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
@@ -568,6 +575,7 @@ input[type="radio"] {
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
+    line-height: 2.2rem;
 }
 
 .results .u-full-width {
@@ -609,7 +617,9 @@ label > .label-body {
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
-    margin-top: .5rem;
+    font-size: 1.7rem;
+    line-height: 1.7rem;
+    margin-top: .7rem;
 }
 
 .agree {
@@ -618,7 +628,13 @@ label > .label-body {
 }
 
 .agree input {
+    zoom: 1.2;
     margin-bottom: 0;
+}
+
+.agree a:hover,
+.skip a:hover {
+  color: #ea0029;
 }
 
 .response-selected {
@@ -657,8 +673,8 @@ label > .label-body {
     margin-bottom: 30px;
   }
   label > .label-body{
-    font-size: 1.4rem;
-    line-height: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
     margin-top: 1.8rem;
   }
   input[type="checkbox"] {
@@ -747,6 +763,7 @@ label > .label-body {
   }
   .question {
     font-size: 2.5rem;
+    line-height: 2.6rem;
   }
   .questions-input li,
   .questions-input li label {
@@ -785,6 +802,7 @@ label > .label-body {
 @media (max-width: 320px) {
   .question {
     font-size: 1.8rem;
+    line-height: 1.8rem;
   }
   .answer {
     min-height: 50px;
