@@ -88,7 +88,8 @@ export default {
       data: 'method=getSurvey&survey_id=1565',
       requiresAuth: true,
       callback: {
-        success: this.myLoginTestCallback
+        success: this.myLoginTestCallback,
+        error: this.myLoginTestCallback
       }
     }]);
   },
@@ -106,7 +107,7 @@ export default {
       //}
     },
     myLoginTestCallback(data) {
-      console.log(data);
+      console.log('>>',data);
     }
   },
   beforeDestroy: function() {
