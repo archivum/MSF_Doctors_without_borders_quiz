@@ -49,14 +49,14 @@
                   Sign up now.</p>
               </div>
               <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
-                <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput">
-                <input class="u-full-width" type="email" placeholder="Last Name" id="lastnameInput">
-                <input class="u-full-width" type="email" placeholder="Email" id="emailInput">
+                <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput" v-model="cons_first_name">
+                <input class="u-full-width" type="email" placeholder="Last Name" id="lastnameInput" v-model="cons_last_name">
+                <input class="u-full-width" type="email" placeholder="Email" id="emailInput" v-model="cons_email">
                 <label class="agree">
                   <input type="checkbox" checked>
                     <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
                 </label>
-                <button>
+                <button v-on:click="proceed">
                   <router-link :to="{ path: 'profile/' + profile }">Continue</router-link>
                 </button>
                 <span class="skip"><router-link :to="{ path: 'profile/' + profile }">Skip this step</router-link></span>
@@ -84,6 +84,7 @@
         quiz: quiz,
         questionIndex: 0,
         userResponses: Array(),
+        userChoice: Array(),
         showLoader: false,
         loaderTimeout: 1000,
         loaderBackground: '',
@@ -97,7 +98,10 @@
         tl_right: '',
         direction: 'left',
         tl_form: '',
-        xDown: null
+        xDown: null,
+        cons_first_name: '',
+        cons_last_name: '',
+        cons_email: ''
       }
     },
     components: {
@@ -169,6 +173,22 @@
         setTimeout(function() {
           vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
         }, vm.loaderTimeout / 2)
+      },
+      proceed: function() {
+        let vars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
+        luminateExtend.api([{
+          async: false,
+          api: 'survey',
+          data: 'method=submitSurvey&survey_id=1565' + vars,
+          requiresAuth: true,
+          callback: {
+            success: this.callbackTest,
+            error: this.callbackTest
+          }
+        }]);
+      },
+      callbackTest: function(data) {
+        console.log(data)
       },
       computeScore() {
         let vm = this
@@ -261,7 +281,16 @@
         } else {
           this.tl_form.restart(true,false)
           if(window.innerWidth <= 320) this.setScrollable()
-          console.log('>>',this.userResponses)
+          let quiz = this.quiz;
+          let userChoice = this.userChoice;
+
+          $(this.userResponses).each(function(i){
+            let x = i;
+            let choice = this;
+            $(quiz.questions[x].responses).each(function(){
+              if(this.value == choice) userChoice[x] = this.val_2;
+            })
+          })
         }
       }
     }
