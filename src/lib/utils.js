@@ -9,23 +9,23 @@ const quiz = {
       responses: [{
         text: 'Get excited about expanding your world-view',
         value: 6,
-        val_2: 'a'
+        val_2: 'Get excited about expanding your world-view'
       },
         {
           text: 'Gear up for a vocal debate —\n' +
           'you love a good discussion',
           value: 8,
-          val_2: 'b'
+          val_2: 'Gear up for a vocal debate -- you love a good discussion'
         },
         {
           text: 'Listen carefully, trying to understand all perspectives',
           value: 2,
-          val_2: 'c'
+          val_2: 'Listen carefully, trying to understand all perspectives'
         },
         {
           text: 'Listen well, weigh-in often, invite everyone to have their say',
           value: 4,
-          val_2: 'd'
+          val_2: 'Listen well, weigh-in often, invite everyone to have their say'
         }
       ]
     },
@@ -36,22 +36,22 @@ const quiz = {
         responses: [{
           text: 'Scour the web for articles from a variety of sources',
           value: 6,
-          val_2: 'a'
+          val_2: 'Scour the web for articles from a variety of sources'
         },
           {
             text: 'Read (and comment on) anything you can get your hands on',
             value: 4,
-            val_2: 'b'
+            val_2: 'Read (and comment on) anything you can get your hands on'
           },
           {
             text: 'Stick to your favourite, reputable news outlets',
             value: 8,
-            val_2: 'c'
+            val_2: 'Stick to your favourite, reputable news outlets'
           },
           {
             text: 'Read and share a lot on social media to spread awareness on big issues',
             value: 2,
-            val_2: 'd'
+            val_2: 'Read and share a lot on social media to spread awareness on big issues'
           }
         ]
       },
@@ -62,22 +62,22 @@ const quiz = {
         responses: [{
           text: 'Volunteer',
           value: 6,
-          val_2: 'a'
+          val_2: 'Volunteer'
         },
           {
             text: 'Start a peer-to-peer fundraising campaign',
             value: 4,
-            val_2: 'b'
+            val_2: 'Start a peer-to-peer fundraising campaign'
           },
           {
             text: 'Review the organization’s “About Us” section of their website',
             value: 2,
-            val_2: 'c'
+            val_2: 'Review the organization’s “About Us” section of their website'
           },
           {
             text: 'Go door-to-door with a petition, raising awareness',
             value: 8,
-            val_2: 'd'
+            val_2: 'Go door-to-door with a petition, raising awareness'
           }
         ]
       },
@@ -88,22 +88,22 @@ const quiz = {
         responses: [{
           text: 'Immediately sign without reading',
           value: 6,
-          val_2: 'a'
+          val_2: 'Immediately sign without reading'
         },
           {
             text: 'Sign and offer to share with your friends on social media',
             value: 4,
-            val_2: 'b'
+            val_2: 'Sign and offer to share with your friends on social media'
           },
           {
             text: 'Offer to read the petition and think about the implications of signing',
             value: 2,
-            val_2: 'c'
+            val_2: 'Offer to read the petition and think about the implications of signing'
           },
           {
             text: 'Sign, then knock on doors to recruit your neighbours to the cause',
             value: 8,
-            val_2: 'd'
+            val_2: 'Sign, then knock on doors to recruit your neighbours to the cause'
           }
         ]
       },
@@ -114,22 +114,22 @@ const quiz = {
         responses: [{
           text: 'A portable movie projector',
           value: 6,
-          val_2: 'a'
+          val_2: 'A portable movie projector'
         },
           {
             text: 'Speakers for your music player',
             value: 8,
-            val_2: 'b'
+            val_2: 'Speakers for your music player'
           },
           {
             text: 'Your favourite novels',
             value: 2,
-            val_2: 'c'
+            val_2: 'Your favourite novels'
           },
           {
             text: 'A deck of cards',
             value: 4,
-            val_2: 'd'
+            val_2: 'A deck of cards'
           }
         ]
       },
