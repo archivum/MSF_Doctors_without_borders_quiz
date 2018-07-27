@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
   <div id="quiz">
-    <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground" :quizLogo="quiz.logo" :progress="questionIndex / quiz.questions.length * 100"></quiz-loader>
+    <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground" :quizLogo="quiz.logo" :progress="(questionIndex + 1) / quiz.questions.length * 100"></quiz-loader>
     <div class="quiz-container">
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
@@ -30,7 +30,7 @@
                   &#60; Back
                 </router-link>
                 <div class="progress-container">
-                  <div class="progress" v-bind:style="{ width: questionIndex / quiz.questions.length * 100 + '%' }"></div>
+                  <div class="progress" v-bind:style="{ width: (questionIndex + 1) / quiz.questions.length * 100 + '%' }"></div>
                   <div class="progress-bar"></div>
                 </div>
 
@@ -202,6 +202,7 @@
       },
       setScrollable() {
         $('body').css('overflow','auto');
+        $('body').css('background','#0f0f0f');
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
@@ -260,7 +261,7 @@
           this.tl_right.restart(true, false)
         } else {
           this.tl_form.restart(true,false)
-          if(this.is_touch_device()) this.setScrollable()
+          if(window.innerWidth <= 320) this.setScrollable()
         }
       }
     }
@@ -667,8 +668,8 @@ label > .label-body {
     margin-bottom: 30px;
   }
   label > .label-body{
-    font-size: 1.4rem;
-    line-height: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
     margin-top: 1.8rem;
   }
   input[type="checkbox"] {
@@ -757,6 +758,7 @@ label > .label-body {
   }
   .question {
     font-size: 2.5rem;
+    line-height: 2.6rem;
   }
   .questions-input li,
   .questions-input li label {
@@ -795,6 +797,7 @@ label > .label-body {
 @media (max-width: 320px) {
   .question {
     font-size: 1.8rem;
+    line-height: 1.8rem;
   }
   .answer {
     min-height: 50px;

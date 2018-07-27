@@ -51,7 +51,8 @@ import {profiles} from '../lib/utils.js'
         }
     },
     mounted() {
-      $('body').css('overflow','auto');
+        $('body').css('overflow','auto');
+        $('body').css('background','transparent');
     },
     computed: {
         profile() {
@@ -369,7 +370,8 @@ button:hover, button:focus, button:active {
         margin-bottom: 3vh;
     }
     .block-copy p{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        line-height: 2rem;
         padding: 0;
     }
     .quote{
