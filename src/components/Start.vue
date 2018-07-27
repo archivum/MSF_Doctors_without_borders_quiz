@@ -118,7 +118,7 @@ export default {
 <style scoped>
 /*Links*/
 a {
-  color: white !important;
+  color: white;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
@@ -343,6 +343,11 @@ button:active {
 .info span {
   margin-left: 7px;
   font-size: 1.6rem;
+}
+
+.info-black a:hover,
+.info:hover {
+  color: #ea0029;
 }
 
 .info-icon {
