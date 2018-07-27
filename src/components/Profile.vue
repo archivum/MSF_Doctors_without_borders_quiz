@@ -3,7 +3,7 @@
     <div class="row block-header">
       <div class="block-header-content">
         <div class="block-head">
-            <h3><span>Your humanitarian and worker profile is</span></h3>
+            <h3><span>Your humanitarian aid worker profile is</span></h3>
             <h2><span>{{ profile.title }}</span></h2>
         </div>
             <p>{{ profile.desc }}</p>
@@ -127,7 +127,7 @@ p {
 }
 
 .block-header {
-    min-height: 650px;
+    min-height: 100vh;
     background-image: url("../../static/img/world.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -209,7 +209,7 @@ h3 span {
 }
 
 .block-img {
-    min-height: 100vw;
+    min-height: 100vh;
     background-image: url("../../static/img/pro1.jpg");
     background-size: cover;
     background-repeat: no-repeat;

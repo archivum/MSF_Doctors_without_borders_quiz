@@ -6,7 +6,7 @@
       <div class="full-width-container container">
         <!-- QUIZ SECTION -->
         <div v-for="(question, index) in quiz.questions" :key="index">
-          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.8)), url(' + question[property] + ')'}" class="row full-bg ">
+          <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url(' + question[property] + ')'}" class="row full-bg ">
             <div class="eight columns offset-by-two quiz">
               <div class='quizLogo'><img :src="quiz.logo" alt=""/></div>
               <h3 class="question">{{ question.text }}</h3>
@@ -45,7 +45,7 @@
             <div class="content">
               <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
                 <h3>Your results are <span class="result-head">almost&nbsp;in!</span></h3>
-                <p>Will you stand with us? We need people like you who will speak out when the world needs you to act.
+                <p>Will you stand with us? We need people like you to help us respond to crises around the world.
                   Sign up now.</p>
               </div>
               <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
@@ -54,7 +54,7 @@
                 <input class="u-full-width" type="email" placeholder="Email" id="emailInput">
                 <label class="agree">
                   <input type="checkbox">
-                    <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
+                    <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn&nbsp;more&nbsp;here.</u></a></span>
                 </label>
                 <button>
                   <router-link :to="{ path: 'profile/' + profile }">Continue</router-link>
@@ -216,9 +216,10 @@
         this.tl_form.to([$(".quiz-loader .progress-container"),$(".quiz-loader .quizLogo")],0.01,{opacity:0});
         this.tl_form.to($(".results .content"),1,{opacity:1});
         
+        TweenMax.set($(".results .content"),{opacity: 0})
+
         if(this.is_touch_device()){
           TweenMax.set($(".progress-and-button"),{x: 0, opacity: 1})
-          TweenMax.set($(".results .content"),{opacity: 0})
 
           this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input")], .4, { x: 0, opacity: 1 }, { x: -50, opacity: 0, ease: Power1.easeOut }, delay)
           this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input")], .4, { x: 0, opacity: 1 }, { x: 50, opacity: 0, ease: Power1.easeOut }, delay)
@@ -259,7 +260,7 @@
           this.tl_right.restart(true, false)
         } else {
           this.tl_form.restart(true,false)
-          this.setScrollable()
+          if(this.is_touch_device()) this.setScrollable()
         }
       }
     }
@@ -274,7 +275,7 @@ body {
 }
 /*Links*/
 a {
-    color: white !important;
+    color: white;
     text-decoration: none;
     font-family: 'FreightSans Pro';
     font-weight: 500;
@@ -407,6 +408,7 @@ input[type="radio"] {
     font-weight: bold;
     font-style: normal;
     font-size: 3.4rem;
+    line-height: 3.6rem;
     opacity: 0;
 }
 
@@ -451,9 +453,9 @@ input[type="radio"] {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 2rem;
     line-height: 20px;
-    background: white;
-    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.65);
     min-height: 70px;
     border-style: solid;
     border-color: rgb(155, 7, 7);
@@ -568,6 +570,7 @@ input[type="radio"] {
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
+    line-height: 2.2rem;
 }
 
 .results .u-full-width {
@@ -609,7 +612,9 @@ label > .label-body {
     font-family: 'FreightSans Pro';
     font-weight: 500;
     font-style: normal;
-    margin-top: .5rem;
+    font-size: 1.7rem;
+    line-height: 1.7rem;
+    margin-top: .7rem;
 }
 
 .agree {
@@ -619,6 +624,11 @@ label > .label-body {
 
 .agree input {
     margin-bottom: 0;
+}
+
+.agree a:hover,
+.skip a:hover {
+  color: #ea0029;
 }
 
 .response-selected {

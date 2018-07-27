@@ -42,7 +42,7 @@ const quiz = {
             value: 8
           },
           {
-            text: 'Read and share a lot on social media to spread awareness on big issue',
+            text: 'Read and share a lot on social media to spread awareness on big issues',
             value: 2
           }
         ]
@@ -122,7 +122,7 @@ const quiz = {
       title: "A First Responder",
       desc: 'You understand the value of quickly assessing a situation and responding appropriately. You have a unique ability to evaluate a situation quickly and take responsible action to reduce suffering.',
       paragraph: 'Doctors Without Borders responds quickly and effectively in emergencies. Our teams are often the first on the scene, as for example during the devastating Ebola outbreak in West Africa, or providing medical care to the displaced Rohingya people in Myanmar.',
-      quote: "Humanitarianism is not a tool to end war or create peace. It is a citizen's response to political failure",
+      quote: "Humanitarianism is not a tool to end war or create peace. It is a citizen's response to political failure.",
       author: 'Dr. James Orbinski'
     },
     {
