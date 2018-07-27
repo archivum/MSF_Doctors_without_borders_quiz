@@ -216,11 +216,7 @@
 
         this.tl_form.to([$(".quiz-loader .progress-container"),$(".quiz-loader .quizLogo")],0.01,{opacity:0});
         this.tl_form.to($(".results .content"),1,{opacity:1});
-<<<<<<< HEAD
-=======
-
         TweenMax.set($(".results .content"),{opacity: 0})
->>>>>>> c750caac13957c527ccd4c9372799d34524d3620
 
         if(this.is_touch_device()){
           TweenMax.set($(".progress-and-button"),{x: 0, opacity: 1})
