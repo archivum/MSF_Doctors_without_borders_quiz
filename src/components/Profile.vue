@@ -128,7 +128,7 @@ p {
 }
 
 .block-header {
-    min-height: 100vh;
+    min-height: 60vh;
     background-image: url("../../static/img/world.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -210,7 +210,7 @@ h3 span {
 }
 
 .block-img {
-    min-height: 100vh;
+    min-height: 60vh;
     background-image: url("../../static/img/pro1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
