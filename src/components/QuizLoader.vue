@@ -4,7 +4,6 @@
             <div class="progress" v-bind:style="{ width: progress  + '%' }"></div>
             <div class="progress-bar"></div>
         </div>
-        <div class='quizLogo'><img :src="quizLogo" alt=""/></div>
         <img src="/static/img/logo.svg" width="100" class="img-loader">
     </div>
 </template>

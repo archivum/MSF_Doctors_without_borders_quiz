@@ -397,7 +397,7 @@ button:active {
     display: none;
   }
   .intro-page {
-    margin: auto 0 0;
+    margin: auto 0 1rem;
   }
   h2 {
     font-size: 3rem;
@@ -414,6 +414,7 @@ button:active {
   }
   button {
     margin-top: 0.5rem;
+    margin-bottom: 2rem;
   }
   .overlay {
     text-align: center;
