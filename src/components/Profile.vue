@@ -53,6 +53,7 @@ import {profiles} from '../lib/utils.js'
     mounted() {
         $('body').css('overflow','auto');
         $('body').css('background','transparent');
+        $(window).on('scroll',this.scrollFunction);
     },
     computed: {
         profile() {
@@ -79,6 +80,11 @@ import {profiles} from '../lib/utils.js'
             document.execCommand('copy');
             document.body.removeChild(el);
             this.copied = true
+        },
+        scrollFunction (e) {
+            $('.block-header').css('background-position','center '+$(window).scrollTop()+'px');
+            // if($(window).scrollTop() > $('.block-img')[0].offsetTop)
+                $('.block-img').css('background-position','center '+($(window).scrollTop() - $('.block-img')[0].offsetTop)+'px');
         }
     }
   }
@@ -128,7 +134,8 @@ p {
 }
 
 .block-header {
-    min-height: 60vh;
+    /* min-height: 60vh; */
+    min-height: 100vh;
     background-image: url("../../static/img/world.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -210,7 +217,8 @@ h3 span {
 }
 
 .block-img {
-    min-height: 60vh;
+    /* min-height: 60vh; */
+    min-height: 100vh;
     background-image: url("../../static/img/pro1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
