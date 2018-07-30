@@ -223,7 +223,7 @@
       },
       setScrollable() {
         $('body').css('overflow','auto');
-        $('body').css('background','#0f0f0f');
+        // $('body').css('background','#0f0f0f');
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
@@ -714,7 +714,7 @@ label > .label-body {
     padding-right: 0 !important;
   }
   .progress-and-button {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -757,6 +757,9 @@ label > .label-body {
 }
 
 @media only screen and (max-width: 768px) {
+  .results {
+    position: absolute;
+  }
   .questions-input li {
       width: 100%;
   }
