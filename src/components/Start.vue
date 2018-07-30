@@ -74,24 +74,6 @@ export default {
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
     $("body").css("overflow", "hidden");
-
-    // luminateExtend.api({
-    //   api: "cons",
-    //   callback: this.myLoginTestCallback,
-    //   data: "method=loginTest"
-    // });
-    // 1565 - survey ID
-
-    luminateExtend.api([{
-      async: false,
-      api: 'survey',
-      data: 'method=getSurvey&survey_id=1565',
-      requiresAuth: true,
-      callback: {
-        success: this.myLoginTestCallback,
-        error: this.myLoginTestCallback
-      }
-    }]);
   },
   methods: {
     toggleOverlay() {
@@ -105,9 +87,6 @@ export default {
       //if(this.isMobile()){
       //    $('.full-width-container').css({ height: $(window).height() });
       //}
-    },
-    myLoginTestCallback(data) {
-      console.log('>>',data);
     }
   },
   beforeDestroy: function() {

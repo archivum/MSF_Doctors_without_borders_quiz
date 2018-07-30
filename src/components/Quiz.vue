@@ -646,6 +646,7 @@ label > .label-body {
     font-size: 1.7rem;
     line-height: 1.7rem;
     margin-top: .7rem;
+    margin-left: 1rem;
 }
 
 .agree {
@@ -656,6 +657,7 @@ label > .label-body {
 .agree input {
     zoom: 1.2;
     margin-bottom: 0;
+
 }
 
 .agree a:hover,
