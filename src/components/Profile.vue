@@ -101,7 +101,7 @@ import {profiles} from '../lib/utils.js'
                         'og:url': document.location.origin,
                         'og:title': `I am ` + newTitle + `.`,
                         'og:description': 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.',
-                        'og:image': document.location.origin + '/static/img/share-picture.png',
+                        'og:image': '/static/img/share-picture.png',
                     }
                 })
             },
