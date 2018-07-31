@@ -314,7 +314,7 @@
 
 <style scoped>
 body {
-  /*overflow: hidden;*/
+  overflow: visible;
 }
 /*Links*/
 a {

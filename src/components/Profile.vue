@@ -145,14 +145,14 @@ a {
 }
 
 /*Full width container*/
-/*.full-width-container {
+.full-width-container {
     height: 100%;
     width: 100%;
     max-width: 100%;
     padding: 0px 0px;
     clear: both;
     margin: 0 auto;
-}*/
+}
 
 .row {
     padding-left: 20px;
