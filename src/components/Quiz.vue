@@ -83,6 +83,7 @@
       return {
         quiz: quiz,
         questionIndex: 0,
+        newQuestion: true,
         userResponses: Array(),
         userChoice: Array(),
         showLoader: false,
@@ -146,33 +147,39 @@
       },
       // Go to next question
       next: function () {
-        this.direction = 'left'
-        let vm = this
-        this.tl_pre_left.restart(true, false)
-        this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
-        if(!(this.questionIndex + 1 < this.quiz.questions.length)) this.direction = 'form';
-        setTimeout(function() {
-          vm.showLoader = true
-        }, vm.loaderTimeout / 2)
-        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
-        setTimeout(function() {
-          vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length)
-          vm.questionIndex === vm.quiz.questions.length ? vm.computeScore() : ''
-        }, vm.loaderTimeout / 2)
+        if(this.newQuestion) {
+          this.direction = 'left'
+          let vm = this
+          this.tl_pre_left.restart(true, false)
+          this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
+          if(!(this.questionIndex + 1 < this.quiz.questions.length)) this.direction = 'form';
+          setTimeout(function() {
+            vm.showLoader = true
+          }, vm.loaderTimeout / 2)
+          this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
+          setTimeout(function() {
+            vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length)
+            vm.questionIndex === vm.quiz.questions.length ? vm.computeScore() : ''
+          }, vm.loaderTimeout / 2)
+        }
+        this.newQuestion = false
       },
       // Go to previous question
       prev: function () {
-        this.direction = 'right'
-        let vm = this
-        this.tl_pre_right.restart(true, false)
-        this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
-        setTimeout(function() {
-          vm.showLoader = true
-        }, vm.loaderTimeout / 2)
-        this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
-        setTimeout(function() {
-          vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
-        }, vm.loaderTimeout / 2)
+        if(this.newQuestion) {
+          this.direction = 'right'
+          let vm = this
+          this.tl_pre_right.restart(true, false)
+          this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
+          setTimeout(function() {
+            vm.showLoader = true
+          }, vm.loaderTimeout / 2)
+          this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
+          setTimeout(function() {
+            vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
+          }, vm.loaderTimeout / 2)
+        }
+        this.newQuestion = false
       },
       proceed: function() {
         let vars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
