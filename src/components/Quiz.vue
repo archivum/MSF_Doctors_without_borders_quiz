@@ -51,12 +51,13 @@
               <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
                 <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput" v-model="cons_first_name">
                 <input class="u-full-width" type="email" placeholder="Last Name" id="lastnameInput" v-model="cons_last_name">
-                <input class="u-full-width" type="email" placeholder="Email" id="emailInput" v-model="cons_email">
+                <input class="u-full-width" type="email" placeholder="Email" id="emailInput" v-model="$v.cons_email.$model">
+                <span v-show="error"  style="color: #ea0029">{{error}}</span>
                 <label class="agree">
                   <input type="checkbox" checked>
                     <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
                 </label>
-                <button v-on:click="proceed">
+                <button v-on:click="proceed" :disable="$v.cons_email.$invalid" :style="$v.cons_email.$invalid ? 'background-color: grey' : ''">
                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
                   Continue
                 </button>
@@ -77,9 +78,12 @@
 <script>
   import QuizLoader from './QuizLoader.vue'
   import {quiz, profiles} from '../lib/utils.js'
+  import { validationMixin } from 'vuelidate'
+  import { required, email } from 'vuelidate/lib/validators'
   /* eslint-disable */
 
   export default {
+    mixins: [validationMixin],
     data() {
       return {
         quiz: quiz,
@@ -103,7 +107,8 @@
         xDown: null,
         cons_first_name: '',
         cons_last_name: '',
-        cons_email: ''
+        cons_email: '',
+        error: ''
       }
     },
     components: {
@@ -124,6 +129,12 @@
     },
     beforeDestroy: function () {
       window.removeEventListener('resize', this.handleResize)
+    },
+    validations: {
+      cons_email : {
+        required,
+        email
+      }
     },
     methods: {
       handleTouchStart: function (evt) {
@@ -167,7 +178,7 @@
       },
       // Go to previous question
       prev: function () {
-        if(this.newQuestion) {
+        if (this.newQuestion) {
           this.direction = 'right'
           let vm = this
           this.tl_pre_right.restart(true, false)
@@ -183,6 +194,7 @@
         this.newQuestion = false
       },
       proceed: function() {
+        let vm = this
         let vars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
 
         luminateExtend.api([{
@@ -201,10 +213,14 @@
         this.$router.push({ path: 'profile/'+this.profile })
       },
       callbackError: function(data) {
-        console.log('Error',data)
+        let errorId = data.errorResponse.code
+        if (errorId === '1725') {
+          this.error = 'This email has already been registered with our survey. Please use another email.'
+        } else {
+          this.error = 'there seems to be an issue submitting your email. Please try using another email and try again'
+        }
       },
       computeScore() {
-        let vm = this
         let score = 0
         let categories = []
         this.userResponses.map((answer) => {
