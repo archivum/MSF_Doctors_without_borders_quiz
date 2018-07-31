@@ -68,7 +68,7 @@ import {profiles} from '../lib/utils.js'
         // Action after response
         });
         // $("meta[property='og\\:title']").attr("content", `I am ` + this.profileName + `.`);
-        if(window.innerWidth <= 420) $(window).on('scroll',this.scrollFunction);
+        if(window.innerWidth > 420) $(window).on('scroll',this.scrollFunction);
     },
     computed: {
         profile() {
