@@ -93,11 +93,13 @@ import {profiles} from '../lib/utils.js'
             var headPos = Math.abs((blockHeader.top/(winHeight-blockHeader.height))*100)+50;
 
             if(headPos >= 0 && headPos <= 100){
-                TweenMax.to($('.block-header'),0.5,{backgroundPosition: 'center '+headPos+'%'});
+                // TweenMax.to($('.block-header'),0.5,{backgroundPosition: 'center '+headPos+'%'});
+                $('.block-header').css('background-position','center '+headPos+'%');
             }
             
             if(imgPos >= 0 && imgPos <=100){
-                TweenMax.to($('.block-img'),0.5,{backgroundPosition: 'center '+imgPos+'%'});
+                // TweenMax.to($('.block-img'),0.5,{backgroundPosition: 'center '+imgPos+'%'});
+                $('.block-img').css('background-position','center '+imgPos+'%');
             }
             
         }
