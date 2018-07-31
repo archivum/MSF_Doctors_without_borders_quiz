@@ -31,7 +31,7 @@
     <modal name="share-modal" :adaptive="true" width="50%" :maxWidth="600" :minWidth="300">
         <div class="share-modal">
             <div class="sharing-element" @click="shareFb">Facebook Share&nbsp;&nbsp;&nbsp;<i class="fab fa-facebook-square"></i></div>
-            <a class="sharing-element" target="_blank" href="https://twitter.com/home?status=http%3A//msfquiz.candy-staging.com">Twitter Share&nbsp;&nbsp;&nbsp;<i class="fab fa-twitter"></i></a>
+            <a class="sharing-element" target="_blank" :href="twitterMessage">Twitter Share&nbsp;&nbsp;&nbsp;<i class="fab fa-twitter"></i></a>
             <div class="sharing-element" @click="copyClipboard">{{ !copied ? `Copy Link` : `Copied !` }}&nbsp;&nbsp;&nbsp;<i class="fas fa-link"></i></div>
             <button disabled>SAVE & SHARE&nbsp;&nbsp;&nbsp;<i class="fa fa-triangle"></i></button>
         </div>
@@ -58,6 +58,10 @@ import {profiles} from '../lib/utils.js'
     computed: {
         profile() {
             return profiles.profile[this.$route.params.id]
+        },
+        twitterMessage() {
+            let result = this.profile.title.split(' ')
+            return `https://twitter.com/home?status=I%20am%20` + result[0].toLowerCase() + `%20` + result[1] + `.%20Take%20the%20Doctors%20Without%20Borders%20Quiz%20and%20find%20out%20what%20kind%20of%20aid%20worker%20you%20are.http%3A//msfquiz.candy-staging.com`
         }
     },
     methods: {
@@ -96,12 +100,12 @@ import {profiles} from '../lib/utils.js'
                 // TweenMax.to($('.block-header'),0.5,{backgroundPosition: 'center '+headPos+'%'});
                 $('.block-header').css('background-position','center '+headPos+'%');
             }
-            
+
             if(imgPos >= 0 && imgPos <=100){
                 // TweenMax.to($('.block-img'),0.5,{backgroundPosition: 'center '+imgPos+'%'});
                 $('.block-img').css('background-position','center '+imgPos+'%');
             }
-            
+
         }
     }
   }
@@ -354,7 +358,7 @@ button:hover, button:focus, button:active {
     background-color: #b11515;
     cursor: pointer;
 }
-    
+
 @media (max-width: 767px) {
     h2{
         font-size: 2.6rem;
