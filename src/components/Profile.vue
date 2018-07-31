@@ -83,8 +83,23 @@ import {profiles} from '../lib/utils.js'
         },
         scrollFunction (e) {
             var yPos = $(window).scrollTop();
-            TweenMax.to($('.block-header'),0.5,{backgroundPosition: 'center '+(yPos/5)+'px'});
-            TweenMax.to($('.block-img'),0.5,{backgroundPosition: 'center '+((yPos - $('.block-img')[0].offsetTop)/5)+'px'});
+            var winHeight = window.innerHeight;
+
+            var blockHeader = $('.block-header')[0].getBoundingClientRect();
+
+            var blockImg = $('.block-img')[0].getBoundingClientRect();
+            var imgPos = ((blockImg.top/(winHeight-blockImg.height))*100)-100;
+            imgPos = imgPos - (imgPos * 2);
+            var headPos = Math.abs((blockHeader.top/(winHeight-blockHeader.height))*100)+50;
+
+            if(headPos >= 0 && headPos <= 100){
+                TweenMax.to($('.block-header'),0.5,{backgroundPosition: 'center '+headPos+'%'});
+            }
+            
+            if(imgPos >= 0 && imgPos <=100){
+                TweenMax.to($('.block-img'),0.5,{backgroundPosition: 'center '+imgPos+'%'});
+            }
+            
         }
     }
   }
@@ -134,8 +149,8 @@ p {
 }
 
 .block-header {
-    /* min-height: 60vh; */
-    min-height: 100vh;
+    min-height: 75vh;
+    /* min-height: 100vh; */
     background-image: url("../../static/img/world.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -217,8 +232,8 @@ h3 span {
 }
 
 .block-img {
-    /* min-height: 60vh; */
-    min-height: 100vh;
+    min-height: 75vh;
+    /* min-height: 100vh; */
     background-image: url("../../static/img/pro1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
