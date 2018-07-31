@@ -53,8 +53,22 @@ import {profiles} from '../lib/utils.js'
     mounted() {
         $('body').css('overflow','auto');
         $('body').css('background','transparent');
-        $(window).on('scroll',this.scrollFunction);
-        if(window.innerWidth >= 420) $(window).on('scroll',this.scrollFunction);
+
+        let newTitle = this.profileName
+        FB.ui({
+            method: 'share_open_graph',
+            action_type: 'og.shares',
+            action_properties: JSON.stringify({
+                object: {
+                    'og:title': newTitle,
+                }
+            })
+        },
+        function (response) {
+        // Action after response
+        });
+        // $("meta[property='og\\:title']").attr("content", `I am ` + this.profileName + `.`);
+        if(window.innerWidth <= 420) $(window).on('scroll',this.scrollFunction);
     },
     computed: {
         profile() {
