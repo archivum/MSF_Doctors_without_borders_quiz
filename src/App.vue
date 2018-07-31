@@ -22,8 +22,8 @@
 
 /*Full width container*/
 .full-width-container {
-    min-height: 100vh;
-    max-height: 100vh;
+    /*min-height: 100vh;
+    max-height: 100vh;*/
     overflow: visible;
     width: 100%;
     max-width: 100%;
