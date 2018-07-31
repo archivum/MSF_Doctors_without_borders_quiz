@@ -183,7 +183,7 @@
       },
       proceed: function() {
         let vars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
-        
+
         luminateExtend.api([{
           async: false,
           api: 'survey',
@@ -333,6 +333,7 @@ button a {
 /*Full width container*/
 .full-width-container {
     min-height: 100vh;
+    overflow: hidden;
     width: 100%;
     max-width: 100%;
     padding: 0px 0px;
