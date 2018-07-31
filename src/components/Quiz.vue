@@ -663,6 +663,7 @@ label > .label-body {
 
 .agree input {
     zoom: 1.2;
+    -webkit-transform: scale(1.2);
     margin-bottom: 0;
 
 }
