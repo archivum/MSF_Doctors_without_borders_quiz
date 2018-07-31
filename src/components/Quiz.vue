@@ -209,7 +209,7 @@
         }]);
       },
       callbackSucess: function(data) {
-        console.log(data)
+        console.log('Success',data)
         this.$router.push({ path: 'profile/'+this.profile })
       },
       callbackError: function(data) {
@@ -330,7 +330,7 @@
 
 <style scoped>
 body {
-  overflow: hidden;
+  overflow: visible;
 }
 /*Links*/
 a {
@@ -344,18 +344,6 @@ a {
 
 button a {
   font-weight: bold;
-}
-
-/*Full width container*/
-.full-width-container {
-    min-height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-    width: 100%;
-    max-width: 100%;
-    padding: 0px 0px;
-    clear: both;
-    margin: 0 auto;
 }
 
 .row {
