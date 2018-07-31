@@ -54,20 +54,6 @@ import {profiles} from '../lib/utils.js'
         $('body').css('overflow','auto');
         $('body').css('background','transparent');
         $(window).on('scroll',this.scrollFunction);
-        let newTitle = this.profileName
-        FB.ui({
-            method: 'share_open_graph',
-            action_type: 'og.shares',
-            action_properties: JSON.stringify({
-                object: {
-                    'og:title': newTitle,
-                }
-            })
-        },
-        function (response) {
-        // Action after response
-        });
-        // $("meta[property='og\\:title']").attr("content", `I am ` + this.profileName + `.`);
         if(window.innerWidth >= 420) $(window).on('scroll',this.scrollFunction);
     },
     computed: {
@@ -92,12 +78,22 @@ import {profiles} from '../lib/utils.js'
             this.$modal.show('share-modal');
         },
         shareFb () {
-            console.log(document.location.origin);
+            let newTitle = this.profileName
             FB.ui({
-              method: 'share',
-              href: document.location.origin,
-              picture: document.location.origin + '/static/img/fb-share.png'
-            }, function(response){});
+                method: 'share_open_graph',
+                action_type: 'og.shares',
+                action_properties: JSON.stringify({
+                    object: {
+                        'og:url': document.location.origin,
+                        'og:title': `I am ` + newTitle + `.`,
+                        'og:description': 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.',
+                        'og:image': document.location.origin + '/static/img/share-picture.png',
+                    }
+                })
+            },
+            function (response) {
+            // Action after response
+            });
         },
         copyClipboard () {
             const el = document.createElement('textarea');
