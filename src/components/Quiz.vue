@@ -334,7 +334,7 @@ button a {
 .full-width-container {
     min-height: 100vh;
     max-height: 100vh;
-    overflow: hidden;
+    overflow: visible;
     width: 100%;
     max-width: 100%;
     padding: 0px 0px;
