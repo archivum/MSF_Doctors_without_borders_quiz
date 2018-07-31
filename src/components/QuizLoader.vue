@@ -58,6 +58,7 @@ export default {
             vm.$parent.resetAnimation()
             $('.quiz-loader').fadeOut(vm.timeout / 2, function() { vm.$parent.showLoader = false })
             $('.quiz-container').css('opacity', '1')
+            vm.$parent.newQuestion = true
         }, vm.timeout ? vm.timeout : 1000)
     }
   }
