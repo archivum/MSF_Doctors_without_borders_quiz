@@ -55,6 +55,7 @@ import {profiles} from '../lib/utils.js'
         $('body').css('background','transparent');
         $(window).on('scroll',this.scrollFunction);
         $("meta[property='og\\:title']").attr("content", `I am ` + this.profileName);
+        if(window.innerWidth >= 420) $(window).on('scroll',this.scrollFunction);
     },
     computed: {
         profile() {
@@ -98,6 +99,7 @@ import {profiles} from '../lib/utils.js'
             var blockImg = $('.block-img')[0].getBoundingClientRect();
             var imgPos = ((blockImg.top/(winHeight-blockImg.height))*100)-100;
             imgPos = imgPos - (imgPos * 2);
+
             var headPos = Math.abs((blockHeader.top/(winHeight-blockHeader.height))*100)+50;
 
             if(headPos >= 0 && headPos <= 100){
