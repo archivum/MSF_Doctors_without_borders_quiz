@@ -197,11 +197,11 @@
         }]);
       },
       callbackSucess: function(data) {
-        console.log(data)
+        console.log('Success',data)
         this.$router.push({ path: 'profile/'+this.profile })
       },
       callbackError: function(data) {
-        console.log(data)
+        console.log('Error',data)
       },
       computeScore() {
         let vm = this
