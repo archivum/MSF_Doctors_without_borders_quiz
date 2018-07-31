@@ -82,11 +82,9 @@ import {profiles} from '../lib/utils.js'
             this.copied = true
         },
         scrollFunction (e) {
-            // $('.block-header').css('background-position','center '+$(window).scrollTop()+'px');
-            TweenMax.to($('.block-header'),0.5,{backgroundPosition: 'center '+$(window).scrollTop()+'px'});
-            // if($(window).scrollTop() > $('.block-img')[0].offsetTop)
-                // $('.block-img').css('background-position','center '+($(window).scrollTop() - $('.block-img')[0].offsetTop)+'px');
-                TweenMax.to($('.block-img'),0.5,{backgroundPosition: 'center '+($(window).scrollTop() - $('.block-img')[0].offsetTop)+'px'});
+            var yPos = $(window).scrollTop();
+            TweenMax.to($('.block-header'),0.5,{backgroundPosition: 'center '+(yPos/5)+'px'});
+            TweenMax.to($('.block-img'),0.5,{backgroundPosition: 'center '+((yPos - $('.block-img')[0].offsetTop)/5)+'px'});
         }
     }
   }
