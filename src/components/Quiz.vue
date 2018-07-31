@@ -314,7 +314,7 @@
 
 <style scoped>
 body {
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 /*Links*/
 a {
@@ -328,18 +328,6 @@ a {
 
 button a {
   font-weight: bold;
-}
-
-/*Full width container*/
-.full-width-container {
-    min-height: 100vh;
-    max-height: 100vh;
-    overflow: visible;
-    width: 100%;
-    max-width: 100%;
-    padding: 0px 0px;
-    clear: both;
-    margin: 0 auto;
 }
 
 .row {
