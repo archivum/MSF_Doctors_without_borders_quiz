@@ -58,7 +58,7 @@
                   <input type="checkbox" checked>
                     <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
                 </label>
-                <button @click="proceed" :disabled="$v.validationGroup.$invalid || FormBusy" :style="$v.validationGroup.$invalid || formBusy ? 'background-color: grey' : ''">
+                <button @click="proceed()" :disabled="$v.validationGroup.$invalid || FormBusy" :style="$v.validationGroup.$invalid || formBusy ? 'background-color: grey' : ''">
                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
                   Continue
                 </button>
@@ -210,8 +210,8 @@
           data: 'method=submitSurvey&survey_id=1565' + vars,
           requiresAuth: true,
           callback: {
-            success: this.callbackSucess,
-            error: this.callbackError
+            success: vm.callbackSucess,
+            error: vm.callbackError
           }
         }]);
       },
