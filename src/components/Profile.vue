@@ -81,6 +81,7 @@ import {profiles} from '../lib/utils.js'
             FB.ui({
                 method: 'share_open_graph',
                 action_type: 'og.shares',
+                quote: 'test',
                 action_properties: JSON.stringify({
                     object: {
                         'og:url': document.location.origin,
