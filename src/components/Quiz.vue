@@ -216,9 +216,9 @@
                 secure: 'https://secure3.convio.net/msfcan/site/'
             }
         });
-        
+
         luminateExtend.api([{
-        async: true,
+        async: false,
         useCache: false,
         api: 'survey',
         data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
@@ -228,6 +228,8 @@
           error: vm.callbackError
         }
       }]);
+
+      luminateExtend.init({});
       },
       callbackSucess: function(data) {
         this.formBusy = false
