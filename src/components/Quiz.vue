@@ -207,6 +207,7 @@
 
         luminateExtend.api([{
           async: true,
+          useCache: false,
           api: 'survey',
           data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
           requiresAuth: true,
