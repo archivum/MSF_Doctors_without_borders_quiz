@@ -58,7 +58,7 @@
                   <input type="checkbox" checked>
                     <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
                 </label>
-                <button @click="proceed" :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''">
+                <button @click="proceed" :disabled="$v.validationGroup.$invalid || FormBusy" :style="$v.validationGroup.$invalid || formBusy ? 'background-color: grey' : ''">
                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
                   Continue
                 </button>
@@ -109,7 +109,8 @@
         cons_first_name: '',
         cons_last_name: '',
         cons_email: '',
-        error: ''
+        error: '',
+        formBusy: false
       }
     },
     components: {
@@ -200,6 +201,7 @@
       },
       proceed: function() {
         let vm = this
+        this.formBusy = true
         let vars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
 
         luminateExtend.api([{
@@ -214,6 +216,7 @@
         }]);
       },
       callbackSucess: function(data) {
+        this.formBusy = false
         if (data.submitSurveyResponse.success === 'false') {
           this.callbackError()
         } else {
@@ -221,6 +224,7 @@
         }
       },
       callbackError: function(data) {
+        this.formBusy = false
         let errorId = data.errorResponse.code
         if (errorId === '1725') {
           this.error = 'This email has already been registered. Please use another email.'
