@@ -217,14 +217,11 @@
             }
         });
 
-        luminateExtend.global.update('cons_email', this.cons_email)
-         luminateExtend.global.update('cons_first_name', this.cons_email)
-
-
         luminateExtend.api([{
         async: false,
         useCache: false,
         api: 'survey',
+
         data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
         requiresAuth: true,
         callback: {
@@ -232,6 +229,8 @@
           error: vm.callbackError
         }
       }]);
+        luminateExtend.global.update('routingId', '')
+         luminateExtend.global.update('sessionCookie', '')
       },
       callbackSucess: function(data) {
         this.formBusy = false
