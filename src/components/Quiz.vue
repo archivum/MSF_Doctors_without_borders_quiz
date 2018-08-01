@@ -781,7 +781,8 @@ label > .label-body {
 }
 
 @media only screen and (max-width: 768px) {
-  .results {
+  .results,
+  .full-width-container.container > div {
     position: absolute;
   }
   .questions-input li {
