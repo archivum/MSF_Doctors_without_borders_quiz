@@ -110,7 +110,8 @@
         cons_last_name: '',
         cons_email: '',
         error: '',
-        formBusy: false
+        formBusy: false,
+        formVars: ''
       }
     },
     components: {
@@ -202,12 +203,12 @@
       proceed: function() {
         let vm = this
         this.formBusy = true
-        let vars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
+        this.formVars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
 
         luminateExtend.api([{
           async: true,
           api: 'survey',
-          data: 'method=submitSurvey&survey_id=1565' + vars,
+          data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
           requiresAuth: true,
           callback: {
             success: vm.callbackSucess,
