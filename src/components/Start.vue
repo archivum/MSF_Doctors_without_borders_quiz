@@ -370,7 +370,7 @@ button:active {
   }
 }
 @media (max-width: 768px) {
-  .full-width-container.container > div {
+  .full-width-container.container {
     position: absolute;
   }
 }
