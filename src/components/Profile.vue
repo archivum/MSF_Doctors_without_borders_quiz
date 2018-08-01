@@ -79,9 +79,8 @@ import {profiles} from '../lib/utils.js'
         shareFb () {
             let newTitle = this.profileName
             FB.ui({
-                method: 'share',
+                method: 'share_open_graph',
                 action_type: 'og.shares',
-                quote: 'test',
                 action_properties: JSON.stringify({
                     object: {
                         'og:url': document.location.origin,
