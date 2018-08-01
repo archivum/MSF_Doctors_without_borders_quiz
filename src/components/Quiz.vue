@@ -229,7 +229,7 @@
         }
       }]);
 
-      luminateExtend.init({});
+      luminateExtend.sessionVars.set('locale', '')
       },
       callbackSucess: function(data) {
         this.formBusy = false
