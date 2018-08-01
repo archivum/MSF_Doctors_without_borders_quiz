@@ -228,7 +228,8 @@
           error: vm.callbackError
         }
       }]);
-
+      luminateExtend.global.routingId = ''
+       luminateExtend.global.sessionCookie = ''
       luminateExtend.sessionVars.set('locale', '')
       },
       callbackSucess: function(data) {
