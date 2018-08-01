@@ -205,7 +205,7 @@
         let vars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
 
         luminateExtend.api([{
-          async: false,
+          async: true,
           api: 'survey',
           data: 'method=submitSurvey&survey_id=1565' + vars,
           requiresAuth: true,
@@ -217,6 +217,7 @@
       },
       callbackSucess: function(data) {
         this.formBusy = false
+        console.log(data)
         if (data.submitSurveyResponse.success === 'false') {
           this.callbackError()
         } else {
@@ -224,6 +225,7 @@
         }
       },
       callbackError: function(data) {
+        console.log(data)
         this.formBusy = false
         let errorId = data.errorResponse.code
         if (errorId === '1725') {
