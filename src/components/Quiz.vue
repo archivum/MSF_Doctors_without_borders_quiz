@@ -203,6 +203,7 @@
       },
       proceed: function() {
         let vm = this
+        let randomString = Math.random().toString()
         this.formBusy = true
         this.formVars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
 
@@ -216,11 +217,10 @@
                 secure: 'https://secure3.convio.net/msfcan/site/'
             }
         });
-
         luminateExtend.api([{
         async: false,
         useCache: false,
-        api: 'survey',
+        api: randomString,
 
         data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
         requiresAuth: true,
