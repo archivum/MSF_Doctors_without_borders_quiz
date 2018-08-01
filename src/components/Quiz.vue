@@ -205,7 +205,10 @@
         let vm = this
         let randomString = Math.random().toString()
         this.formBusy = true
-        this.formVars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
+        luminateExtend.global.update('cons_first_name', this.cons_first_name)
+        luminateExtend.global.update('cons_last_name', this.cons_last_name)
+        luminateExtend.global.update('cons_email', this.cons_email)
+        this.formVars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+luminateExtend.global.cons_first_name+"&cons_last_name="+luminateExtend.global.cons_last_name+"&cons_email="+luminate.global.cons_email
 
 
         luminateExtend.init({
@@ -217,20 +220,21 @@
                 secure: 'https://secure3.convio.net/msfcan/site/'
             }
         });
+
+
+
         luminateExtend.api([{
         async: false,
         useCache: false,
-        api: randomString,
+        api: 'survey',
 
-        data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
+        data: 'method=submitSurvey&survey_id=1565',
         requiresAuth: true,
         callback: {
           success: vm.callbackSucess,
           error: vm.callbackError
         }
       }]);
-        luminateExtend.global.update('routingId', '')
-         luminateExtend.global.update('sessionCookie', '')
       },
       callbackSucess: function(data) {
         this.formBusy = false
