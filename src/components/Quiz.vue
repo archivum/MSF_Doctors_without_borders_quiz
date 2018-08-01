@@ -217,6 +217,10 @@
             }
         });
 
+        luminateExtend.global.update('cons_email', this.cons_email)
+         luminateExtend.global.update('cons_first_name', this.cons_email)
+
+
         luminateExtend.api([{
         async: false,
         useCache: false,
@@ -228,9 +232,6 @@
           error: vm.callbackError
         }
       }]);
-      luminateExtend.global.routingId = ''
-       luminateExtend.global.sessionCookie = ''
-      luminateExtend.sessionVars.set('locale', '')
       },
       callbackSucess: function(data) {
         this.formBusy = false
