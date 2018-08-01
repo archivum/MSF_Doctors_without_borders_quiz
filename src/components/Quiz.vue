@@ -81,6 +81,7 @@
   import {quiz, profiles} from '../lib/utils.js'
   import { validationMixin } from 'vuelidate'
   import { required, email } from 'vuelidate/lib/validators'
+  import axios from 'axios'
   /* eslint-disable */
 
   export default {
@@ -203,19 +204,26 @@
       proceed: function() {
         let vm = this
         this.formBusy = true
-        this.formVars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+this.cons_first_name+"&cons_last_name="+this.cons_last_name+"&cons_email="+this.cons_email
+        this.formVars = `luminateExtend=1.7.1&method=submitSurvey&question_1480="${this.userChoice[0]}&question_1481=${this.userChoice[1]}&question_1482=${this.userChoice[2]}&question_1483=${this.userChoice[3]}&question_1484=${this.userChoice[4]}&cons_first_name=${this.cons_first_name}&cons_last_name=${this.cons_last_name}&cons_email=${this.cons_email}&survey_id=1565&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&auth=3PLvVSAQ-l_pQOq1zErw9gLsN2jWUx-wHa_XlXHWUJSYlLlXg7S02AvVPla6I3wjFHazsfsJXTU&JSESSIONID=042B56DFBCC90AB417A3064CA048D17A.app30123b&ts=1533144652023`
 
-        luminateExtend.api([{
-          async: true,
-          useCache: false,
-          api: 'survey',
-          data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
-          requiresAuth: true,
-          callback: {
-            success: vm.callbackSucess,
-            error: vm.callbackError
-          }
-        }]);
+        axios.post(this.formVars)
+        .then((data) => {
+          this.callbackSuccess(data)
+        })
+        .catch((error) => {
+          this.callbackError(error)
+        })
+        // luminateExtend.api([{
+        //   async: true,
+        //   useCache: false,
+        //   api: 'survey',
+        //   data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
+        //   requiresAuth: true,
+        //   callback: {
+        //     success: vm.callbackSucess,
+        //     error: vm.callbackError
+        //   }
+        // }]);
       },
       callbackSucess: function(data) {
         this.formBusy = false
