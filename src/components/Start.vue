@@ -369,7 +369,11 @@ button:active {
     display: none;
   }
 }
-
+@media (max-width: 768px) {
+  .full-width-container.container > div {
+    position: absolute;
+  }
+}
 @media (max-width: 420px) {
   .logo,
   .info,
