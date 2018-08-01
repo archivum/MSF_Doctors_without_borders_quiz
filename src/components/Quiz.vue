@@ -49,15 +49,16 @@
                   Sign up now.</p>
               </div>
               <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
-                <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput" v-model="cons_first_name">
+                <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput" v-model="$v.cons_first_name.$model">
                 <input class="u-full-width" type="email" placeholder="Last Name" id="lastnameInput" v-model="cons_last_name">
                 <input class="u-full-width" type="email" placeholder="Email" id="emailInput" v-model="$v.cons_email.$model">
+                <span v-show="$v.cons_first_name.$error || $v.cons_email.$error"  style="color: #ea0029">Name and Email fields are required</span>
                 <span v-show="error"  style="color: #ea0029">{{error}}</span>
                 <label class="agree">
                   <input type="checkbox" checked>
                     <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
                 </label>
-                <button @click.prevent="proceed" :disabled="$v.cons_email.$invalid" :style="$v.cons_email.$invalid ? 'background-color: grey' : ''">
+                <button @click.prevent="proceed" :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''">
                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
                   Continue
                 </button>
@@ -134,7 +135,11 @@
       cons_email : {
         required,
         email
-      }
+      },
+      cons_first_name: {
+        required
+      },
+      validationGroup: ['cons_email', 'cons_first_name']
     },
     methods: {
       handleTouchStart: function (evt) {
@@ -209,10 +214,10 @@
         }]);
       },
       callbackSucess: function(data) {
-        if (data.submitSurveyResponse.success !== 'true') {
-          this.$router.push({ path: 'profile/'+this.profile })
-        } else {
+        if (data.submitSurveyResponse.success === 'false') {
           this.callbackError()
+        } else {
+          this.$router.push({ path: 'profile/'+this.profile })
         }
       },
       callbackError: function(data) {
