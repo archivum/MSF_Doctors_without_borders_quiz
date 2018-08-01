@@ -57,7 +57,7 @@
                   <input type="checkbox" checked>
                     <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
                 </label>
-                <button @click="proceed" :disable="$v.cons_email.$invalid" :style="$v.cons_email.$invalid ? 'background-color: grey' : ''">
+                <button @click.prevent="proceed" :disable="$v.cons_email.$invalid" :style="$v.cons_email.$invalid ? 'background-color: grey' : ''">
                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
                   Continue
                 </button>
@@ -209,15 +209,18 @@
         }]);
       },
       callbackSucess: function(data) {
-        console.log('Success',data)
-        this.$router.push({ path: 'profile/'+this.profile })
+        if (data.submitSurveyResponse.success !== 'true') {
+          this.$router.push({ path: 'profile/'+this.profile })
+        } else {
+          this.callbackError()
+        }
       },
       callbackError: function(data) {
         let errorId = data.errorResponse.code
         if (errorId === '1725') {
           this.error = 'This email has already been registered. Please use another email.'
         } else {
-          this.error = 'there seems to be an issue submitting your email. Please try using another email and try again.'
+          this.error = 'Please enter a valid email address to proceed'
         }
       },
       computeScore() {
