@@ -103,28 +103,18 @@ import {profiles} from '../lib/utils.js'
             document.body.removeChild(el);
             this.copied = true
         },
-        scrollFunction (e) {
-            var yPos = $(window).scrollTop();
+        scrollFunction () {
+            this.scrollImage('.block-header');
+            this.scrollImage('.block-img');
+        },
+        scrollImage (elem) {
+            var e = $(elem)[0].getBoundingClientRect();
+
+            var winTop = $(window).scrollTop();
             var winHeight = window.innerHeight;
-
-            var blockHeader = $('.block-header')[0].getBoundingClientRect();
-
-            var blockImg = $('.block-img')[0].getBoundingClientRect();
-            var imgPos = ((blockImg.top/(winHeight-blockImg.height))*100)-100;
-            imgPos = imgPos - (imgPos * 2);
-
-            var headPos = Math.abs((blockHeader.top/(winHeight-blockHeader.height))*100)+50;
-
-            if(headPos >= 0 && headPos <= 100){
-                // TweenMax.to($('.block-header'),0.5,{backgroundPosition: 'center '+headPos+'%'});
-                $('.block-header').css('background-position','center '+headPos+'%');
-            }
-
-            if(imgPos >= 0 && imgPos <=100){
-                // TweenMax.to($('.block-img'),0.5,{backgroundPosition: 'center '+imgPos+'%'});
-                $('.block-img').css('background-position','center '+imgPos+'%');
-            }
-
+            var setPos = (Math.abs(e.top-winHeight)/(winHeight+e.height))*100;
+            if(setPos >= 0 && setPos <= 100) $(elem).css('background-position','center '+setPos+'%');
+            console.log((Math.abs(e.top-winHeight)/winHeight)*100)
         }
     }
   }
