@@ -95,14 +95,8 @@ import {profiles} from '../lib/utils.js'
             // });
             FB.ui({
                 method: 'feed',
-                action_properties: JSON.stringify({
-                    object: {
-                        'og:url': document.location.origin,
-                        'og:title': `I am ` + newTitle + `.`,
-                        'og:description': 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.',
-                        'og:image': document.location.origin + '/static/img/share-picture.jpg',
-                    }
-                })
+                link: document.location.origin,
+                caption: `I am ` + newTitle + `.` + ' What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.'
             },
             function (response) {
             // Action after response
