@@ -113,6 +113,7 @@ import {profiles} from '../lib/utils.js'
             var winTop = $(window).scrollTop();
             var winHeight = window.innerHeight;
             var setPos = (Math.abs(e.top-winHeight)/(winHeight+e.height))*100;
+            setPos = 100 - setPos;
             if(setPos >= 0 && setPos <= 100) $(elem).css('background-position','center '+setPos+'%');
         }
     }
