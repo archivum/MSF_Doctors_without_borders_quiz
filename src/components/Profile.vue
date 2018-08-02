@@ -95,8 +95,7 @@ import {profiles} from '../lib/utils.js'
             // });
             FB.ui({
                 method: 'feed',
-                link: document.location.origin,
-                caption: `I am ` + newTitle + `.` + ' What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.'
+                link: document.location.origin
             },
             function (response) {
             // Action after response
