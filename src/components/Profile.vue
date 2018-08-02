@@ -114,7 +114,6 @@ import {profiles} from '../lib/utils.js'
             var winHeight = window.innerHeight;
             var setPos = (Math.abs(e.top-winHeight)/(winHeight+e.height))*100;
             if(setPos >= 0 && setPos <= 100) $(elem).css('background-position','center '+setPos+'%');
-            console.log((Math.abs(e.top-winHeight)/winHeight)*100)
         }
     }
   }
