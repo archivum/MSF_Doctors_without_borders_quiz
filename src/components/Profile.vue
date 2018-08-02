@@ -78,28 +78,30 @@ import {profiles} from '../lib/utils.js'
         },
         shareFb () {
             let newTitle = this.profileName
-            // FB.ui({
-            //     method: 'share_open_graph',
-            //     action_type: 'og.shares',
-            //     action_properties: JSON.stringify({
-            //         object: {
-            //             'og:url': document.location.origin,
-            //             'og:title': `I am ` + newTitle + `.`,
-            //             'og:description': 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.',
-            //             'og:image': document.location.origin + '/static/img/share-picture.jpg',
-            //         }
-            //     })
-            // },
-            // function (response) {
-            // // Action after response
-            // });
+            // Facebook share option 1
             FB.ui({
-                method: 'feed',
-                link: document.location.origin
+                method: 'share_open_graph',
+                action_type: 'og.shares',
+                action_properties: JSON.stringify({
+                    object: {
+                        'og:url': document.location.origin,
+                        'og:title': `I am ` + newTitle + `.`,
+                        'og:description': 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.',
+                        'og:image': document.location.origin + '/static/img/share-picture.jpg',
+                    }
+                })
             },
             function (response) {
             // Action after response
             });
+            // Facebook share option 2
+            // FB.ui({
+            //     method: 'feed',
+            //     link: document.location.origin
+            // },
+            // function (response) {
+            // // Action after response
+            // });
         },
         copyClipboard () {
             const el = document.createElement('textarea');
