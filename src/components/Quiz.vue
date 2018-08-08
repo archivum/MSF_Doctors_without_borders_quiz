@@ -537,8 +537,11 @@ input[type="radio"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
-    line-height: 2.2rem;
+    font-size: 2.05rem;
+    line-height: 2rem;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
     background: rgba(255, 255, 255, 0.85);
     min-height: 70px;
     border-style: solid;
@@ -563,10 +566,6 @@ input[type="radio"] {
     color: rgb(99, 8, 8);
     padding-right: 10px;
     padding-left: 10px;
-    font-size: 2rem;
-    font-family: 'FreightSans Pro';
-    font-weight: 500;
-    font-style: normal;
 }
 
 .answer:hover {
