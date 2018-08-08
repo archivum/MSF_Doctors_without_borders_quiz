@@ -1,7 +1,7 @@
 // 8-8-2018 update
 const quiz = {
-    logo: '/static/img/logo-white.svg',
-    logo2: '/static/img/logo_mobile.png',
+    logo: '/static/img/logo.svg',
+    logo2: '/static/img/logo.svg',
 
     questions: [{
       text: "Discussing world issues with friends, you:",
@@ -140,28 +140,32 @@ const quiz = {
   const profiles = {
 
     profile: [{
-      title: "A First Responder",
+      prefix: "A",
+      title: "First Responder",
       desc: 'You understand the value of quickly assessing a situation and responding appropriately. You have a unique ability to evaluate a situation quickly and take responsible action to reduce suffering.',
       paragraph: 'Doctors Without Borders responds quickly and effectively in emergencies. Our teams are often the first on the scene, as for example during the devastating Ebola outbreak in West Africa, or providing medical care to the displaced Rohingya people in Myanmar.',
       quote: "Humanitarianism is not a tool to end war or create peace. It is a citizen's response to political failure.",
       author: 'Dr. James Orbinski'
     },
     {
-      title: "A Negotiator",
+      prefix: "A",
+      title: "Negotiator",
       desc: 'You know that building trust is key to resolving conflict. You aim to see all sides of any discussion. You value every opportunity to grow your understanding and aren’t afraid to engage in difficult conversations.',
       paragraph: 'For Doctors Without Borders, trust, respect, and neutrality are key to gaining the acceptance necessary to provide medical care to people living in conflict. It’s why we’re able to work in difficult environments such as Iraq, Yemen or Democratic Republic of Congo.',
       quote: "For MSF, this is the humanitarian act: to seek to relieve suffering, to seek to restore autonomy, to witness the truth of injustice, and to insist on political responsibility...",
       author: 'Dr. James Orbinski'
     },
     {
-      title: "An Advocate",
+      prefix: "An",
+      title: "Advocate",
       desc: 'It’s in you to speak out in support of the causes you believe in. When you see an injustice, you instinctively need to do something about it. You believe in using your voice to change the world.',
       paragraph: 'For Doctors Without Borders, our willingness to bear witness and speak out about the abuses and intolerable situations we witness is an essential part of the work we do. In doing so, we set out to alleviate human suffering and to protect life and health.',
       quote: "We are not sure that words can always save lives, but we know that silence can certainly kill.",
       author: 'Dr. James Orbinski'
     },
     {
-      title: "A Networker",
+      prefix: "A",
+      title: "Networker",
       desc: 'As a Networker, you appreciate the value of human connections — they’re at the heart of everything you do. You’re a collaborator, working together with people to share our common humanity.',
       paragraph: 'Human connections are central to Doctors Without Borders’ work; our medics reach millions of patients every year thanks to a vast network of staff and supporters. Those networks are critical for bringing attention to the world’s most difficult, dangerous and neglected health issues.',
       quote: "Humanitarian responsibility has no frontiers.",

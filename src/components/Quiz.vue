@@ -477,7 +477,7 @@ input[type="radio"] {
 }
 
 .quizLogo img {
-  width: 160px;
+  width: 10rem;
 }
 
 .question {

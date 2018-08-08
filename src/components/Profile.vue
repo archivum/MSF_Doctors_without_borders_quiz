@@ -7,7 +7,7 @@
             <h2><span>{{ profile.title }}</span></h2>
         </div>
             <p>{{ profile.desc }}</p>
-            <h4>Tell your friends you're<span class="profile-title">{{ profile.title }}</span></h4>
+            <h4>Tell your friends you're<span class="profile-title">{{ profile.prefix }} {{ profile.title }}</span></h4>
             <button @click="showModal">Share Now</button>
       </div>
     </div>
@@ -24,7 +24,7 @@
         <div class="quote">
           “{{ profile.quote }}”<span> – {{ profile.author }}</span>
         </div>
-        <h4>Tell your friends you're<span class="profile-title">{{ profile.title }}</span></h4>
+        <h4>Tell your friends you're<span class="profile-title">{{ profile.prefix }} {{ profile.title }}</span></h4>
         <button @click="showModal">Share Now</button>
       </div>
     </div>
@@ -105,7 +105,7 @@ import {profiles} from '../lib/utils.js'
         },
         copyClipboard () {
             const el = document.createElement('textarea');
-            el.value = window.location.href;
+            el.value = window.location.origin;
             document.body.appendChild(el);
             el.select();
             document.execCommand('copy');
