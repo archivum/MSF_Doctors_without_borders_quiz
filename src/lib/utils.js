@@ -1,3 +1,4 @@
+// 8-8-2018 update
 const quiz = {
     logo: '/static/img/logo-white.svg',
     logo2: '/static/img/logo_mobile.png',
@@ -12,18 +13,18 @@ const quiz = {
         val_2: 'Get excited about expanding your world-view'
       },
         {
-          text: 'Gear up for a vocal debate —\n' +
+          text: 'Gear up for a vocal debate -\n' +
           'you love a good discussion',
           value: 8,
           val_2: 'Gear up for a vocal debate -- you love a good discussion'
         },
         {
-          text: 'Listen carefully, trying to understand all perspectives',
+          text: 'Listen carefully, trying to understand all perspectives',
           value: 2,
           val_2: 'Listen carefully, trying to understand all perspectives'
         },
         {
-          text: 'Listen well, weigh-in often, invite everyone to have their say',
+          text: 'Listen well, weigh-in often, invite everyone to have their say',
           value: 4,
           val_2: 'Listen well, weigh-in often, invite everyone to have their say'
         }
@@ -34,24 +35,24 @@ const quiz = {
         images: '/static/img/img2.jpg',
         imagesMobile: '/static/img/img2_mobile.jpg',
         responses: [{
-          text: 'Scour the web for articles from a variety of sources',
+          text: 'Scour the web for articles from a variety of sources',
           value: 6,
           val_2: 'Scour the web for articles from a variety of sources'
         },
           {
-            text: 'Read (and comment on) anything you can get your hands on',
+            text: 'Read (and comment on) anything you can get your hands on',
             value: 4,
             val_2: 'Read (and comment on) anything you can get your hands on'
           },
           {
-            text: 'Stick to your favourite, reputable news outlets',
+            text: 'Stick to your favourite, reputable news outlets',
             value: 8,
-            val_2: 'Stick to your favourite, reputable news outlets'
+            val_2: 'Stick to your favourite, reputable news outlets'
           },
           {
-            text: 'Read and share a lot on social media to spread awareness on big issues',
+            text: 'Read and share a lot on social media to spread awareness on big issues',
             value: 2,
-            val_2: 'Read and share a lot on social media to spread awareness on big issues'
+            val_2: 'Read and share a lot on social media to spread awareness on big issues'
           }
         ]
       },
@@ -70,14 +71,14 @@ const quiz = {
             val_2: 'Start a peer-to-peer fundraising campaign'
           },
           {
-            text: 'Review the organization’s “About Us” section of their website',
+            text: 'Review the organization’s “About Us” section of their website',
             value: 2,
-            val_2: 'Review the organization’s “About Us” section of their website'
+            val_2: 'Review the organization’s “About Us” section of their website'
           },
           {
-            text: 'Go door-to-door with a petition, raising awareness',
+            text: 'Go door-to-door with a petition, raising awareness',
             value: 8,
-            val_2: 'Go door-to-door with a petition, raising awareness'
+            val_2: 'Go door-to-door with a petition, raising awareness'
           }
         ]
       },
@@ -91,24 +92,24 @@ const quiz = {
           val_2: 'Immediately sign without reading'
         },
           {
-            text: 'Sign and offer to share with your friends on social media',
+            text: 'Sign and offer to share with your friends on social media',
             value: 4,
-            val_2: 'Sign and offer to share with your friends on social media'
+            val_2: 'Sign and offer to share with your friends on social media'
           },
           {
-            text: 'Offer to read the petition and think about the implications of signing',
+            text: 'Offer to read the petition and think about the implications of signing',
             value: 2,
-            val_2: 'Offer to read the petition and think about the implications of signing'
+            val_2: 'Offer to read the petition and think about the implications of signing'
           },
           {
-            text: 'Sign, then knock on doors to recruit your neighbours to the cause',
+            text: 'Sign, then knock on doors to recruit your neighbours to the cause',
             value: 8,
-            val_2: 'Sign, then knock on doors to recruit your neighbours to the cause'
+            val_2: 'Sign, then knock on doors to recruit your neighbours to the cause'
           }
         ]
       },
       {
-        text: "Imagine you’re off on your first MSF mission, to an area with limited access to the rest of the world. What do you pack first? ",
+        text: "Imagine you’re off on your first MSF mission, to an area with limited access to the rest of the world. What do you pack first?",
         images: '/static/img/img5.jpg',
         imagesMobile: '/static/img/img5_mobile.jpg',
         responses: [{
