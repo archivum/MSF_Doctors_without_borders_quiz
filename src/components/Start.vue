@@ -1,6 +1,6 @@
 <template>
   <div class="start">
-    <img class='logo' src="../../static/img/logo-lg.png"/>
+    <img class='logo' src="../../static/img/logo.svg"/>
     <div class="full-width-container container">
       <div class="row row-v-align full-bg">
         <div class="columns " :class="bigScreen ? `five offset-by-five` : `eight offset-by-2`" v-if="showOverlay">
@@ -36,7 +36,7 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
           <div class="darken"></div>
         </div>
         <div class="columns intro-page" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
-          <img class='logo-mobile' src="../../static/img/logo-black.svg"/><br>
+          <img class='logo-mobile' src="../../static/img/logo.svg"/><br>
           <h2 class="opacity-70">Take the doctors</h2><br>
           <h2>Without borders quiz</h2><br>
           <h3 class="opacity-58">What kind of humanitarian</h3><br>
@@ -147,6 +147,7 @@ a {
   z-index: 2;
   left: 40px;
   top: 25px;
+  width: 10rem;
 }
 
 .full-bg {
@@ -351,7 +352,7 @@ button:active {
   text-decoration: underline;
 }
 .logo-mobile {
-  width: 199px;
+  width: 8rem;
 }
 /* Larger than mobile */
 @media (min-width: 420px) {
