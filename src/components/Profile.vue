@@ -53,6 +53,7 @@ import {profiles} from '../lib/utils.js'
     mounted() {
         $('body').css('overflow','auto');
         $('body').css('background','transparent');
+        $(window).scrollTop(0);
         if(window.innerWidth > 420) $(window).on('scroll',this.scrollFunction);
     },
     computed: {
