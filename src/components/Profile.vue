@@ -105,7 +105,7 @@ import {profiles} from '../lib/utils.js'
         },
         copyClipboard () {
             const el = document.createElement('textarea');
-            el.value = window.location.href;
+            el.value = window.location.origin;
             document.body.appendChild(el);
             el.select();
             document.execCommand('copy');
