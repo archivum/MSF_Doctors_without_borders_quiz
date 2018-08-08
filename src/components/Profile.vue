@@ -53,6 +53,7 @@ import {profiles} from '../lib/utils.js'
     mounted() {
         $('body').css('overflow','auto');
         $('body').css('background','transparent');
+        $(window).scrollTop(0);
         if(window.innerWidth > 420) $(window).on('scroll',this.scrollFunction);
     },
     computed: {
@@ -61,12 +62,13 @@ import {profiles} from '../lib/utils.js'
         },
         profileName() {
             let result = this.profile.title.split(' ')
+            let pre = this.profile.prefix.toLowerCase()
             let string = result[0].toLowerCase()
 
             for (let i = 1; i < result.length; i++) {
                 string += ' ' + result[i]
             }
-            return string
+            return pre + ' ' + string
         },
         twitterMessage() {
             return `https://twitter.com/home?status=I%20am%20` + this.profileName + `.%20Take%20the%20Doctors%20Without%20Borders%20Quiz%20and%20find%20out%20what%20kind%20of%20aid%20worker%20you%20are.http%3A//msfquiz.candy-staging.com`
