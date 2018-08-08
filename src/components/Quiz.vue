@@ -731,7 +731,7 @@ label > .label-body {
     margin: auto 1rem 0;
   }
   .quizLogo img {
-    width: 40vw;
+    width: 8rem;
   }
   .quiz .question {
     margin: auto 2rem 2rem;
