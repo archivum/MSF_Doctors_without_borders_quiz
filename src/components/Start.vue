@@ -8,30 +8,23 @@
           <img class="overlay-close" @click="toggleOverlay" src="../../static/img/x.svg">
           <div class="overlay">
             <p class="copy1">
-              All Doctors Without Borders/Médecins Sans Frontières (MSF) humanitarian aid workers are compassionate,
-              adventurous, and able to think on their feet. But each of them has unique skills which make them
-              well-suited for their particular jobs.
+              {{ $t('start.info_part1') }}
             </p>
             <p class="copy2">
-              What kind of humanitarian aid worker are you? Take our quick quiz to find out. It’s fun, it’s short,
-              you’ll learn more about MSF, and you’ll find your fit in the work we do.
+              {{ $t('start.info_part2') }}
             </p>
             <ul>
-              <li>Questions: <span>5</span></li>
-              <li>Estimated Time: <span>2</span> min</li>
+              <li>{{ $t('start.info_num_of_q.part1') }} <span>{{ $t('start.info_num_of_q.val') }}</span></li>
+              <li>{{ $t('start.info_est_time.part1') }} <span>{{ $t('start.info_est_time.val') }}</span> {{ $t('start.info_est_time.unit') }}</li>
             </ul>
             <button>
-              <router-link to="/quiz">Start Quiz</router-link>
+              <router-link to="/quiz">{{ $t('start.cta') }}</router-link>
             </button>
             <div class="info-black">
-              <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>Your answers shed light on prevailing attitudes and preferences
-which in turn inform our fundraising decisions. People like you
-help us tell the story of the people who need us. Thank you!<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">View our Privacy Policy here.</a></span>
+              <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>{{ $t('start.disclaimer') }}<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">{{ $t('start.disclaimer_cta') }}</a></span>
             </div>
             <div class="info-black-mobile">
-              <span>Your answers shed light on prevailing attitudes and preferences
-which in turn inform our fundraising decisions. People like you
-help us tell the story of the people who need us. Thank you!<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">View our <u>Privacy Policy</u> here.</a></span>
+              <span>{{ $t('start.disclaimer') }}<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>{{ $t('start.disclaimer_cta') }}</u></a></span>
             </div>
           </div>
           <div class="darken"></div>
@@ -45,11 +38,11 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
           <br>
           <router-link to="/quiz">
             <button>
-              Start Quiz
+              {{ $t('start.cta') }}
             </button>
           </router-link>
           <div class="info">
-            <img class="info-icon" src="../../static/img/info-b.svg" alt=""><span @click="toggleOverlay">Click for more information</span>
+            <img class="info-icon" src="../../static/img/info-b.svg" alt=""><span @click="toggleOverlay">{{ $t('start.cta_info') }}</span>
           </div>
           <div class="info-mobile">
             <span @click="toggleOverlay">Tap here for more information</span>
@@ -264,7 +257,7 @@ button {
   background-color: #ea0029;
   border-radius: 50px;
   border: none;
-  width: 275px;
+  min-width: 275px;
   font-size: 2.6rem;
   color: white;
   display: inline-block;
@@ -362,7 +355,7 @@ button:active {
   display: inline-block;
   height: 23px;
   width: 23px;
-  padding-bottom: 7rem;
+  padding-bottom: 16rem;
   padding-right: 10px;
 }
 
