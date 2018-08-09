@@ -7,6 +7,7 @@ import router from './router'
 import './css/fonts.css'
 import './css/normalize.css'
 import './css/skeleton.css'
+import {copies} from './lib/copies.js'
 require('es6-object-assign').polyfill();
 
 // Plugins
@@ -33,27 +34,8 @@ setTimeout(function() {
 $('#loader').hide()
 
 const i18n = new VueI18n({
-  locale: 'fr',
-  messages: {
-    en: {
-      start:
-        {
-          line1: "Take the doctors",
-          line2: "without borders quiz",
-          line3: "What kind of humanitarian",
-          line4: "aid worker are you?"
-        }
-    },
-    fr: {
-      start:
-        {
-          line1: "Take the doctors fr",
-          line2: "without borders quiz fr",
-          line3: "What kind of humanitarian fr",
-          line4: "aid worker are you? fr"
-        }
-    }
-  }
+  locale: 'en',
+  messages: copies
 })
 
 /* eslint-disable no-new */
