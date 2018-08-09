@@ -71,7 +71,7 @@ import {profiles} from '../lib/utils.js'
             return pre + ' ' + string
         },
         twitterMessage() {
-            return `https://twitter.com/intent/tweet?text=I%20am%20` + this.profileName + `.%20Take%20the%20Doctors%20Without%20Borders%20Quiz%20and%20find%20out%20what%20kind%20of%20aid%20worker%20you%20are.http%3A//msfquiz.candy-staging.com`
+            return `https://twitter.com/intent/tweet?text=I%20am%20` + this.profileName + `.%20Take%20the%20Doctors%20Without%20Borders%20Quiz%20and%20find%20out%20what%20kind%20of%20humanitarian%20aid%20worker%20you%20are.http%3A//msfquiz.candy-staging.com`
         }
     },
     methods: {
