@@ -26,11 +26,6 @@ export default new Router({
       component: Profile
     },
     {
-      path: '/start',
-      name: 'Start',
-      component: Start
-    },
-    {
       path: '/privacy',
       name: 'Privacy',
       component: Start

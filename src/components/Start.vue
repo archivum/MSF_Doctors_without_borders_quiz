@@ -1,54 +1,48 @@
 <template>
   <div class="start">
     <img class='logo' src="../../static/img/logo.svg"/>
+    <div class="language-choice" @click="changeLanguage">{{ $i18n.locale === 'en' ? languages['fr'] : languages['en'] }}</div>
     <div class="full-width-container container">
       <div class="row row-v-align full-bg">
         <div class="columns " :class="bigScreen ? `five offset-by-five` : `eight offset-by-2`" v-if="showOverlay">
           <img class="overlay-close" @click="toggleOverlay" src="../../static/img/x.svg">
           <div class="overlay">
             <p class="copy1">
-              All Doctors Without Borders/Médecins Sans Frontières (MSF) humanitarian aid workers are compassionate,
-              adventurous, and able to think on their feet. But each of them has unique skills which make them
-              well-suited for their particular jobs.
+              {{ $t('start.info_part1') }}
             </p>
             <p class="copy2">
-              What kind of humanitarian aid worker are you? Take our quick quiz to find out. It’s fun, it’s short,
-              you’ll learn more about MSF, and you’ll find your fit in the work we do.
+              {{ $t('start.info_part2') }}
             </p>
             <ul>
-              <li>Questions: <span>5</span></li>
-              <li>Estimated Time: <span>2</span> min</li>
+              <li>{{ $t('start.info_num_of_q.part1') }} <span>{{ $t('start.info_num_of_q.val') }}</span></li>
+              <li>{{ $t('start.info_est_time.part1') }} <span>{{ $t('start.info_est_time.val') }}</span> {{ $t('start.info_est_time.unit') }}</li>
             </ul>
             <button>
-              <router-link to="/quiz">Start Quiz</router-link>
+              <router-link to="/quiz">{{ $t('start.cta') }}</router-link>
             </button>
             <div class="info-black">
-              <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>Your answers shed light on prevailing attitudes and preferences
-which in turn inform our fundraising decisions. People like you
-help us tell the story of the people who need us. Thank you!<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">View our Privacy Policy here.</a></span>
+              <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>{{ $t('start.disclaimer') }}<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">{{ $t('start.disclaimer_cta') }}</a></span>
             </div>
             <div class="info-black-mobile">
-              <span>Your answers shed light on prevailing attitudes and preferences
-which in turn inform our fundraising decisions. People like you
-help us tell the story of the people who need us. Thank you!<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">View our <u>Privacy Policy</u> here.</a></span>
+              <span>{{ $t('start.disclaimer') }}<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>{{ $t('start.disclaimer_cta') }}</u></a></span>
             </div>
           </div>
           <div class="darken"></div>
         </div>
         <div class="columns intro-page" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
           <img class='logo-mobile' src="../../static/img/logo.svg"/><br>
-          <h2 class="opacity-70">Take the doctors</h2><br>
-          <h2>Without borders quiz</h2><br>
-          <h3 class="opacity-58">What kind of humanitarian</h3><br>
-          <h3>aid worker are you?</h3>
+          <h2 class="opacity-70">{{ $t('start.line1') }}</h2><br>
+          <h2>{{ $t('start.line2') }}</h2><br>
+          <h3 class="opacity-58">{{ $t('start.line3') }}</h3><br>
+          <h3>{{ $t('start.line4') }}</h3>
           <br>
           <router-link to="/quiz">
             <button>
-              Start Quiz
+              {{ $t('start.cta') }}
             </button>
           </router-link>
           <div class="info">
-            <img class="info-icon" src="../../static/img/info-b.svg" alt=""><span @click="toggleOverlay">Click for more information</span>
+            <img class="info-icon" src="../../static/img/info-b.svg" alt=""><span @click="toggleOverlay">{{ $t('start.cta_info') }}</span>
           </div>
           <div class="info-mobile">
             <span @click="toggleOverlay">Tap here for more information</span>
@@ -59,6 +53,7 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
   </div>
 </template>
 
+
 <script>
 /* eslint-disable */
 
@@ -67,7 +62,11 @@ export default {
   data() {
     return {
       showOverlay: false,
-      bigScreen: true
+      bigScreen: true,
+      languages: {
+        en: 'English',
+        fr: 'Français'
+      }
     };
   },
   mounted() {
@@ -79,14 +78,11 @@ export default {
     toggleOverlay() {
       this.showOverlay = !this.showOverlay;
     },
-    //      isMobile() {
-    //        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-    //      },
     handleResize() {
       this.bigScreen = window.innerWidth >= 1000;
-      //if(this.isMobile()){
-      //    $('.full-width-container').css({ height: $(window).height() });
-      //}
+    },
+    changeLanguage() {
+      this.$i18n.locale === 'en' ? this.$i18n.locale = 'fr' : this.$i18n.locale = 'en'
     }
   },
   beforeDestroy: function() {
@@ -148,6 +144,22 @@ a {
   left: 40px;
   top: 25px;
   width: 10rem;
+}
+
+.language-choice {
+  position: absolute;
+  z-index: 2;
+  right: 30px;
+  top: 15px;
+  padding: 2px 7px;
+  color: #fff;
+  background-color: #000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.language-choice:hover {
+  cursor: pointer;
 }
 
 .full-bg {
@@ -245,7 +257,7 @@ button {
   background-color: #ea0029;
   border-radius: 50px;
   border: none;
-  width: 275px;
+  min-width: 275px;
   font-size: 2.6rem;
   color: white;
   display: inline-block;
@@ -343,7 +355,7 @@ button:active {
   display: inline-block;
   height: 23px;
   width: 23px;
-  padding-bottom: 7rem;
+  padding-bottom: 16rem;
   padding-right: 10px;
 }
 
