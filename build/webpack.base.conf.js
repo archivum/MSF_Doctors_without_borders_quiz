@@ -18,7 +18,7 @@ const createLintingRule = () => ({
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
 })
-
+console.log(vueLoaderConfig)
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -40,7 +40,7 @@ module.exports = {
   },
   module: {
     rules: [
-      ...(config.dev.useEslint ? [createLintingRule()] : []),
+      // ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -74,10 +74,6 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      },
-      {
-        resourceQuery: /blockType=i18n/,
-        loader: '@kazupon/vue-i18n-loader'
       }
     ]
   },

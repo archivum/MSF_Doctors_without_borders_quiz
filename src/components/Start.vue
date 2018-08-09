@@ -1,24 +1,3 @@
-<i18n>
-{
-  "en": {
-    "copies":{
-      "line1": "Take the doctors",
-      "line2": "without borders quiz",
-      "line3": "What kind of humanitarian",
-      "line4": "aid worker are you?"
-    }
-  },
-  "fr": {
-    "copies":{
-      "line1": "Take the doctors",
-      "line2": "without borders quiz",
-      "line3": "What kind of humanitarian",
-      "line4": "aid worker are you?"
-    }
-  }
-}
-</i18n>
-
 <template>
   <div class="start">
     <img class='logo' src="../../static/img/logo.svg"/>
@@ -58,10 +37,10 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
         </div>
         <div class="columns intro-page" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
           <img class='logo-mobile' src="../../static/img/logo.svg"/><br>
-          <h2 class="opacity-70">{{ $t('copies.line1') }}</h2><br>
-          <h2>Without borders quiz</h2><br>
-          <h3 class="opacity-58">What kind of humanitarian</h3><br>
-          <h3>aid worker are you?</h3>
+          <h2 class="opacity-70">{{ $t('start.line1') }}</h2><br>
+          <h2>{{ $t('start.line2') }}</h2><br>
+          <h3 class="opacity-58">{{ $t('start.line3') }}</h3><br>
+          <h3>{{ $t('start.line4') }}</h3>
           <br>
           <router-link to="/quiz">
             <button>
@@ -88,7 +67,6 @@ export default {
   name: "Start",
   data() {
     return {
-      locale: 'en',
       showOverlay: false,
       bigScreen: true
     };
@@ -104,11 +82,6 @@ export default {
     },
     handleResize() {
       this.bigScreen = window.innerWidth >= 1000;
-    }
-  },
-  watch: {
-    locale (val) {
-      this.$i18n.locale = val
     }
   },
   beforeDestroy: function() {
