@@ -1,6 +1,7 @@
 <template>
   <div class="start">
     <img class='logo' src="../../static/img/logo.svg"/>
+    <div class="language-choice" @click="changeLanguage">{{ $i18n.locale === 'en' ? languages['fr'] : languages['en'] }}</div>
     <div class="full-width-container container">
       <div class="row row-v-align full-bg">
         <div class="columns " :class="bigScreen ? `five offset-by-five` : `eight offset-by-2`" v-if="showOverlay">
@@ -68,7 +69,11 @@ export default {
   data() {
     return {
       showOverlay: false,
-      bigScreen: true
+      bigScreen: true,
+      languages: {
+        en: 'English',
+        fr: 'Français'
+      }
     };
   },
   mounted() {
@@ -82,6 +87,9 @@ export default {
     },
     handleResize() {
       this.bigScreen = window.innerWidth >= 1000;
+    },
+    changeLanguage() {
+      this.$i18n.locale === 'en' ? this.$i18n.locale = 'fr' : this.$i18n.locale = 'en'
     }
   },
   beforeDestroy: function() {
@@ -143,6 +151,22 @@ a {
   left: 40px;
   top: 25px;
   width: 10rem;
+}
+
+.language-choice {
+  position: absolute;
+  z-index: 2;
+  right: 30px;
+  top: 15px;
+  padding: 2px 7px;
+  color: #fff;
+  background-color: #000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.language-choice:hover {
+  cursor: pointer;
 }
 
 .full-bg {
