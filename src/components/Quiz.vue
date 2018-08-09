@@ -737,6 +737,7 @@ label > .label-body {
   }
   .results .content{
     margin-top: 120px;
+    padding-bottom: 100px;
   }
   .results h3{
     font-size: 2.5rem;
