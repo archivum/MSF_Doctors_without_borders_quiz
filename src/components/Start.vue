@@ -1,3 +1,24 @@
+<i18n>
+{
+  "en": {
+    "copies":{
+      "line1": "Take the doctors",
+      "line2": "without borders quiz",
+      "line3": "What kind of humanitarian",
+      "line4": "aid worker are you?"
+    }
+  },
+  "fr": {
+    "copies":{
+      "line1": "Take the doctors",
+      "line2": "without borders quiz",
+      "line3": "What kind of humanitarian",
+      "line4": "aid worker are you?"
+    }
+  }
+}
+</i18n>
+
 <template>
   <div class="start">
     <img class='logo' src="../../static/img/logo.svg"/>
@@ -37,7 +58,7 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
         </div>
         <div class="columns intro-page" :class="bigScreen ? `six offset-by-six` : `eight offset-by-2`" v-else="showOverlay">
           <img class='logo-mobile' src="../../static/img/logo.svg"/><br>
-          <h2 class="opacity-70">Take the doctors</h2><br>
+          <h2 class="opacity-70">{{ $t('copies.line1') }}</h2><br>
           <h2>Without borders quiz</h2><br>
           <h3 class="opacity-58">What kind of humanitarian</h3><br>
           <h3>aid worker are you?</h3>
@@ -59,6 +80,7 @@ help us tell the story of the people who need us. Thank you!<br><a href="http://
   </div>
 </template>
 
+
 <script>
 /* eslint-disable */
 
@@ -66,6 +88,7 @@ export default {
   name: "Start",
   data() {
     return {
+      locale: 'en',
       showOverlay: false,
       bigScreen: true
     };
@@ -79,14 +102,13 @@ export default {
     toggleOverlay() {
       this.showOverlay = !this.showOverlay;
     },
-    //      isMobile() {
-    //        return (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent);
-    //      },
     handleResize() {
       this.bigScreen = window.innerWidth >= 1000;
-      //if(this.isMobile()){
-      //    $('.full-width-container').css({ height: $(window).height() });
-      //}
+    }
+  },
+  watch: {
+    locale (val) {
+      this.$i18n.locale = val
     }
   },
   beforeDestroy: function() {

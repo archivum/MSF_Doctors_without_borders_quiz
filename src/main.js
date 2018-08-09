@@ -11,8 +11,10 @@ require('es6-object-assign').polyfill();
 
 // Plugins
 import VModal from 'vue-js-modal'
+import VueI18n from 'vue-i18n'
 
 Vue.use(VModal)
+Vue.use(VueI18n)
 
 Vue.config.productionTip = false
 
@@ -30,8 +32,19 @@ setTimeout(function() {
 }, 3000) :
 $('#loader').hide()
 
+const i18n = new VueI18n({
+  locale: 'en',
+  messages: {
+    en: {
+    },
+    fr: {
+    }
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
+  i18n,
   el: '#app',
   router,
   components: { App },
