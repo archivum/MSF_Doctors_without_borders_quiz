@@ -43,8 +43,8 @@ const copies = {
             val: "2",
             unit: "min"
           },
-          disclaimer: "Vos réponses nous aideront également à connaître les attitudes et préférences dominantes qui, à leur tour, éclaireront nos décisions de collecte de fonds. Vous nous aiderez à raconter plus efficacement l'histoire des personnes qui ont le plus besoin de nous. Merci! Ce jeu-questionnaire est destiné uniquement à des fins de divertissement et ne doit pas être considéré comme une quelconque forme de recrutement ou de recommandation médicale. Nous ne partagerons ni ne vendrons vos informations personnelles.",
-          disclaimer_cta: "Pour en savoir plus, consultez notre politique de confidentialité ici."
+          disclaimer: "Vos réponses nous aideront également à connaître les attitudes et préférences dominantes qui, à leur tour, éclaireront nos décisions de collecte de fonds. Vous nous aiderez à raconter plus efficacement l'histoire des personnes qui ont le plus besoin de nous. Merci!",
+          disclaimer_cta: "Consultez notre politique de confidentialité ici."
         }
     }
 }
