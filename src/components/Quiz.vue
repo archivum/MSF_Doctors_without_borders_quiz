@@ -24,10 +24,10 @@
               </ul>
               <div class="progress-and-button">
                 <div class="button-back" v-on:click="prev" v-if="questionIndex > 0">
-                  &#60; Back
+                  &#60; {{ $t('quiz_form.back') }}
                 </div>
                 <router-link class="button-back" to="/" v-else>
-                  &#60; Back
+                  &#60; {{ $t('quiz_form.back') }}
                 </router-link>
                 <div class="progress-container">
                   <div class="progress" v-bind:style="{ width: (questionIndex + 1) / quiz.questions.length * 100 + '%' }"></div>
