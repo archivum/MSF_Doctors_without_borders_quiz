@@ -33,7 +33,8 @@ const copies = {
           skip: 'Skip this step',
           f_name: 'First Name',
           l_name: 'Last Name',
-          email: 'Email'
+          email: 'Email',
+          back: 'Back'
         },
       profile:
         {
@@ -81,7 +82,8 @@ const copies = {
           skip: 'Passer cette étape',
           f_name: 'Prénom',
           l_name: 'Nom de famille',
-          email: 'Email'
+          email: 'Email',
+          back: 'Arrière'
         },
       profile:
         {
