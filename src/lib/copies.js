@@ -22,6 +22,29 @@ const copies = {
           },
           disclaimer: "Your answers shed light on prevailing attitudes and preferences which in turn inform our fundraising decisions. People like you help us tell the story of the people who need us. Thank you!",
           disclaimer_cta: "View our Privacy Policy here."
+        },
+      quiz_form:
+        {
+          line1: 'Your results are almost in!',
+          line2: 'Will you stand with us? We need people like you to help us respond to crises around the world. Sign up now.',
+          check: 'Join our supporters so you\'ll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us.',
+          check_link: 'Learn more here.',
+          continue: 'continue',
+          skip: 'Skip this step',
+          f_name: 'First Name',
+          l_name: 'Last Name',
+          email: 'Email'
+        },
+      profile:
+        {
+          header: 'Your humanitarian aid worker profile is',
+          tell: 'Tell your friends you\'re',
+          share: 'Share Now',
+          saveShare: 'SAVE & SHARE',
+          copyLink: 'Copy Link',
+          copied: 'Copied !',
+          tweetShare: 'Twitter Share',
+          fbShare: 'Facebook Share'
         }
     },
     fr: {
@@ -47,6 +70,29 @@ const copies = {
           },
           disclaimer: "Vos réponses nous aideront également à connaître les attitudes et préférences dominantes qui, à leur tour, éclaireront nos décisions de collecte de fonds. Vous nous aiderez à raconter plus efficacement l'histoire des personnes qui ont le plus besoin de nous. Merci!",
           disclaimer_cta: "Consultez notre politique de confidentialité ici."
+        },
+      quiz_form:
+        {
+          line1: 'Vos résultats sont presque arrivés!',
+          line2: 'Voulez-vous rester avec nous? Nous avons besoin de personnes comme vous pour nous aider à réagir aux crises dans le monde entier. S\'inscrire maintenant.',
+          check: 'Rejoignez nos supporters pour être le premier à savoir quand une crise se produit. Vous pouvez vous désinscrire à tout moment. Votre vie privée est importante pour nous.',
+          check_link: 'En savoir plus ici.',
+          continue: 'continuer',
+          skip: 'Passer cette étape',
+          f_name: 'Prénom',
+          l_name: 'Nom de famille',
+          email: 'Email'
+        },
+      profile:
+        {
+          header: 'Votre profil de travailleur humanitaire est',
+          tell: 'Dis à tes amis que tu es',
+          share: 'PARTAGEZ MAINTENANT',
+          saveShare: 'SAUVER PARTAGER',
+          copyLink: 'Copier le lien',
+          copied: 'Copié !',
+          tweetShare: 'Partager sur Twitter',
+          fbShare: 'Partager sur Facebook'
         }
     }
 }
