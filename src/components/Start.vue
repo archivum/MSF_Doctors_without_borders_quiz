@@ -45,7 +45,7 @@
             <img class="info-icon" src="../../static/img/info-b.svg" alt=""><span @click="toggleOverlay">{{ $t('start.cta_info') }}</span>
           </div>
           <div class="info-mobile">
-            <span @click="toggleOverlay">Tap here for more information</span>
+            <span @click="toggleOverlay">{{ $t('start.cta_info_mobile') }}</span>
           </div>
         </div>
       </div>
@@ -255,7 +255,9 @@ h3.opacity-58 {
 
 /*Button styles*/
 button {
-  height: 55px;
+  line-height: 2.3rem;
+  white-space: inherit;
+  min-height: 55px;
   background-color: #ea0029;
   border-radius: 50px;
   border: none;
@@ -420,8 +422,8 @@ button:active {
     margin-top: 20px;
   }
   .overlay-close {
-    top: 10px;
-    right: 10px;
+    top: 50px;
+    right: 20px;
   }
   .copy1 {
     margin-bottom: 1.5rem;
