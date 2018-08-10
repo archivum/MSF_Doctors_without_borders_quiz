@@ -3,12 +3,12 @@
     <div class="row block-header">
       <div class="block-header-content">
         <div class="block-head">
-            <h3><span>Your humanitarian aid worker profile is</span></h3>
+            <h3><span>{{ $t('profile.header') }}</span></h3>
             <h2><span>{{ profile.title }}</span></h2>
         </div>
             <p>{{ profile.desc }}</p>
-            <h4>Tell your friends you're<span class="profile-title">{{ profile.prefix }} {{ profile.title }}</span></h4>
-            <button @click="showModal">Share Now</button>
+            <h4>{{ $t('profile.tell') }}<span class="profile-title">{{ profile.prefix }} {{ profile.title }}</span></h4>
+            <button @click="showModal">{{ $t('profile.share') }}</button>
       </div>
     </div>
     <div class="row block-copy">
@@ -24,23 +24,23 @@
         <div class="quote">
           “{{ profile.quote }}”<span> – {{ profile.author }}</span>
         </div>
-        <h4>Tell your friends you're<span class="profile-title">{{ profile.prefix }} {{ profile.title }}</span></h4>
-        <button @click="showModal">Share Now</button>
+        <h4>{{ $t('profile.tell') }}<span class="profile-title">{{ profile.prefix }} {{ profile.title }}</span></h4>
+        <button @click="showModal">{{ $t('profile.share') }}</button>
       </div>
     </div>
     <modal name="share-modal" :adaptive="true" width="50%" :maxWidth="600" :minWidth="300">
         <div class="share-modal">
-            <div class="sharing-element" @click="shareFb">Facebook Share&nbsp;&nbsp;&nbsp;<i class="fab fa-facebook-square"></i></div>
-            <a class="sharing-element" target="_blank" :href="twitterMessage">Twitter Share&nbsp;&nbsp;&nbsp;<i class="fab fa-twitter"></i></a>
-            <div class="sharing-element" @click="copyClipboard">{{ !copied ? `Copy Link` : `Copied !` }}&nbsp;&nbsp;&nbsp;<i class="fas fa-link"></i></div>
-            <button disabled>SAVE & SHARE&nbsp;&nbsp;&nbsp;<i class="fa fa-triangle"></i></button>
+            <div class="sharing-element" @click="shareFb">{{ $t('profile.fbShare') }}&nbsp;&nbsp;&nbsp;<i class="fab fa-facebook-square"></i></div>
+            <a class="sharing-element" target="_blank" :href="twitterMessage">{{ $t('profile.tweetShare') }}&nbsp;&nbsp;&nbsp;<i class="fab fa-twitter"></i></a>
+            <div class="sharing-element" @click="copyClipboard">{{ !copied ? $t('profile.copyLink') : $t('profile.copied') }}&nbsp;&nbsp;&nbsp;<i class="fas fa-link"></i></div>
+            <button disabled>{{ $t('profile.saveShare') }}&nbsp;&nbsp;&nbsp;<i class="fa fa-triangle"></i></button>
         </div>
     </modal>
   </div>
 </template>
 
 <script>
-import {profiles} from '../lib/utils.js'
+import {profiles, profiles_fr} from '../lib/utils.js'
   /* eslint-disable */
 
   export default {
@@ -58,7 +58,7 @@ import {profiles} from '../lib/utils.js'
     },
     computed: {
         profile() {
-            return profiles.profile[this.$route.params.id]
+            return this.$i18n.locale === 'en' ? profiles.profile[this.$route.params.id] : profiles_fr.profile[this.$route.params.id]
         },
         profileName() {
             let result = this.profile.title.split(' ')
@@ -309,7 +309,7 @@ button {
     background-color: #ea0029;
     border-radius: 50px;
     border: none;
-    width: 275px;
+    min-width: 275px;
     font-size: 2.6rem;
     color: white;
     display: inline-block;

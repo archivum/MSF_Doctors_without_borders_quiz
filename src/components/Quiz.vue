@@ -18,7 +18,7 @@
                            v-bind:name="index"
                            v-model="userResponses[index]" v-on:click="next">
                     <div class="answer" :class="userResponses[index] === response.value ? `response-selected` : ``"><p>
-                      {{response.text}}</p></div>
+                      {{ response.text }}</p></div>
                   </label>
                 </li>
               </ul>
@@ -44,9 +44,8 @@
             <div class='quizLogo'><img :src="quiz.logo2"/></div> <!--UPDATE-->
             <div class="content">
               <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
-                <h3>Your results are <span class="result-head">almost&nbsp;in!</span></h3>
-                <p>Will you stand with us? We need people like you to help us respond to crises around the world.
-                  Sign up now.</p>
+                <h3>{{ $t('quiz_form.line1') }}</h3>
+                <p>{{ $t('quiz_form.line2') }}</p>
               </div>
               <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
                 <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput" v-model="$v.cons_first_name.$model">
@@ -56,13 +55,13 @@
                 <span v-show="error"  style="color: #ea0029">{{error}}</span>
                 <label class="agree">
                   <input type="checkbox" checked>
-                    <span class="label-body">Join our supporters so you'll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us. <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>Learn more here.</u></a></span>
+                    <span class="label-body">{{ $t('quiz_form.check') }} <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
                 </label>
                 <button @click="proceed()" :disabled="$v.validationGroup.$invalid || FormBusy" :style="$v.validationGroup.$invalid || formBusy ? 'background-color: grey' : ''">
                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
-                  Continue
+                  {{ $t('quiz_form.continue') }}
                 </button>
-                <span class="skip"><router-link :to="{ path: 'profile/' + profile }">Skip this step</router-link></span>
+                <span class="skip"><router-link :to="{ path: 'profile/' + profile }">{{ $t('quiz_form.skip') }}</router-link></span>
               </div>
             </div>
           </div>
@@ -78,7 +77,8 @@
 
 <script>
   import QuizLoader from './QuizLoader.vue'
-  import {quiz, profiles} from '../lib/utils.js'
+  import {quiz, profiles, quiz_fr, profiles_fr} from '../lib/utils.js'
+  import { copies } from '../lib/copies.js'
   import { validationMixin } from 'vuelidate'
   import { required, email } from 'vuelidate/lib/validators'
   import axios from 'axios'
@@ -88,7 +88,8 @@
     mixins: [validationMixin],
     data() {
       return {
-        quiz: quiz,
+        copies: copies,
+        quiz: this.$i18n.locale === 'en' ? quiz : quiz_fr,
         questionIndex: 0,
         newQuestion: true,
         userResponses: Array(),
@@ -122,6 +123,7 @@
       this.loaderBackground = window.innerWidth >= 768 ? this.quiz.questions[0].images : this.quiz.questions[0].imagesMobile
     },
     mounted() {
+      console.log(this.$i18n.locale)
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout / 2)
