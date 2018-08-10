@@ -130,7 +130,7 @@ a {
 .overlay-close {
   position: absolute;
   z-index: 1;
-  top: 40px;
+  top: 50px;
   right: 40px;
   font-size: 40px;
   height: 25px;
@@ -149,8 +149,8 @@ a {
 .language-choice {
   position: absolute;
   z-index: 2;
-  right: 30px;
-  top: 15px;
+  right: 15px;
+  top: 10px;
   padding: 2px 7px;
   color: #fff;
   background-color: #000;
@@ -160,6 +160,8 @@ a {
 
 .language-choice:hover {
   cursor: pointer;
+  text-decoration: none;
+  background-color: #3d3d3d;
 }
 
 .full-bg {
