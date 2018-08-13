@@ -21,7 +21,8 @@ const copies = {
             unit: "min"
           },
           disclaimer: "Your answers shed light on prevailing attitudes and preferences which in turn inform our fundraising decisions. People like you help us tell the story of the people who need us. Thank you!",
-          disclaimer_cta: "View our Privacy Policy here."
+          disclaimer_cta: "View our Privacy Policy here.",
+          privacy_policy: 'http://www.doctorswithoutborders.ca/privacy-notice'
         },
       quiz_form:
         {
@@ -34,7 +35,8 @@ const copies = {
           f_name: 'First Name',
           l_name: 'Last Name',
           email: 'Email',
-          back: 'Back'
+          back: 'Back',
+          privacy_policy: 'http://www.doctorswithoutborders.ca/privacy-notice'
         },
       profile:
         {
@@ -70,25 +72,27 @@ const copies = {
             unit: "min"
           },
           disclaimer: "Vos réponses nous aideront également à connaître les attitudes et préférences dominantes qui, à leur tour, éclaireront nos décisions de collecte de fonds. Vous nous aiderez à raconter plus efficacement l'histoire des personnes qui ont le plus besoin de nous. Merci!",
-          disclaimer_cta: "Consultez notre politique de confidentialité ici."
+          disclaimer_cta: "Consultez notre politique de confidentialité ici.",
+          privacy_policy: 'http://www.medecinssansfrontieres.ca/avis-de-confidentialit%C3%A9'
         },
       quiz_form:
         {
-          line1: 'Vos résultats sont presque arrivés!',
-          line2: 'Voulez-vous rester avec nous? Nous avons besoin de personnes comme vous pour nous aider à réagir aux crises dans le monde entier. S\'inscrire maintenant.',
-          check: 'Rejoignez nos supporters pour être le premier à savoir quand une crise se produit. Vous pouvez vous désinscrire à tout moment. Votre vie privée est importante pour nous.',
+          line1: 'Vos résultats sont en cours de comptabilisation!',
+          line2: 'Vous tiendrez-vous à nos côtés? Nous avons besoin de gens comme vous qui prendront la parole lorsque le monde a besoin d\'actions concrètes. Inscrivez-vous dès maintenant.',
+          check: 'Choisissez de rejoindre notre communauté d\'humanitaires. Vous pouvez vous désinscrire à tout moment. Nous accordons beaucoup d\'importance au respect de votre vie privée. Plus de détails ici.',
           check_link: 'En savoir plus ici.',
           continue: 'continuer',
           skip: 'Passer cette étape',
           f_name: 'Prénom',
           l_name: 'Nom de famille',
           email: 'Email',
-          back: 'Arrière'
+          back: 'Précédent',
+          privacy_policy: 'http://www.medecinssansfrontieres.ca/avis-de-confidentialit%C3%A9'
         },
       profile:
         {
           header: 'Votre profil de travailleur humanitaire est',
-          tell: 'Dis à tes amis que tu es',
+          tell: 'Dites à vos amis que vous êtes',
           share: 'PARTAGEZ MAINTENANT',
           saveShare: 'SAUVER PARTAGER',
           copyLink: 'Copier le lien',
