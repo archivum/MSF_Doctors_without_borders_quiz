@@ -641,7 +641,7 @@ input[type="radio"] {
 
 .results .content {
   margin-top: 30vh;
-  padding-bottom: 100px;
+  padding-bottom: 5rem;
 }
 
 .results h3 {
