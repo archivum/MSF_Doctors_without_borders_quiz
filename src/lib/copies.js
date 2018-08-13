@@ -91,7 +91,7 @@ const copies = {
         },
       profile:
         {
-          header: 'Vous êtes',
+          header: 'Vous êtes un',
           tell: 'Dites à vos amis que vous êtes',
           share: 'PARTAGEZ MAINTENANT',
           saveShare: 'SAUVER PARTAGER',
