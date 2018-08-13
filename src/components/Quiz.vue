@@ -813,7 +813,7 @@ label > .label-body {
   .results .skip {
     width: 100%;
     display: block;
-    padding: 0;
+    padding: 0 0 5rem;
     float: none;
   }
 }
