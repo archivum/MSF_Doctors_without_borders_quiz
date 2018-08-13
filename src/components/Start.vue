@@ -83,6 +83,10 @@ export default {
     },
     changeLanguage() {
       this.$i18n.locale === 'en' ? this.$i18n.locale = 'fr' : this.$i18n.locale = 'en'
+      this.setLangParam()
+    },
+    setLangParam() {
+      this.$i18n.locale === 'en' ? this.$router.push({ query: { lang: 'en' } }) : this.$router.push({ query: { lang: 'fr' } })
     }
   },
   beforeDestroy: function() {

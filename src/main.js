@@ -17,6 +17,7 @@ import VueI18n from 'vue-i18n'
 Vue.use(VModal)
 Vue.use(VueI18n)
 
+
 Vue.config.productionTip = false
 
 // if(window.location.pathname === '/' || window.location.pathname === '/profile') {

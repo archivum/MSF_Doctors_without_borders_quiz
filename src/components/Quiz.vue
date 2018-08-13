@@ -124,6 +124,7 @@
     },
     mounted() {
       console.log(this.$i18n.locale)
+      this.setLangParam()
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout / 2)
@@ -321,6 +322,9 @@
         this.tl_pre_right.addPause(0)
         this.tl_pre_left.addPause(0)
         this.tl_form.addPause(0);
+      },
+      setLangParam() {
+        this.$i18n.locale === 'en' ? this.$router.push({ query: { lang: 'en' } }) : this.$router.push({ query: { lang: 'fr' } })
       },
       resetAnimation() {
         $('.question').css('opacity', '0')
