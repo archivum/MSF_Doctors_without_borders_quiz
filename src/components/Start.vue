@@ -21,10 +21,10 @@
               <router-link to="/quiz">{{ $t('start.cta') }}</router-link>
             </button>
             <div class="info-black">
-              <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>{{ $t('start.disclaimer') }}<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">{{ $t('start.disclaimer_cta') }}</a></span>
+              <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>{{ $t('start.disclaimer') }}<br><a v-bind:href="$t('start.privacy_policy')" target="_blank">{{ $t('start.disclaimer_cta') }}</a></span>
             </div>
             <div class="info-black-mobile">
-              <span>{{ $t('start.disclaimer') }}<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>{{ $t('start.disclaimer_cta') }}</u></a></span>
+              <span>{{ $t('start.disclaimer') }}<br><a v-bind:href="$t('start.privacy_policy')" target="_blank"><u>{{ $t('start.disclaimer_cta') }}</u></a></span>
             </div>
           </div>
           <div class="darken"></div>
@@ -279,6 +279,7 @@ button {
   font-style: normal;
   margin-top: 20px;
   margin-left: -10px;
+  margin-right: -20%;
 }
 
 button:hover,
@@ -414,7 +415,7 @@ button:active {
     background-size: cover;
   }
   button {
-    margin-top: 0.5rem;
+    margin: 0.5rem 0;
     margin-bottom: 2rem;
   }
   .overlay {

@@ -48,14 +48,14 @@
                 <p>{{ $t('quiz_form.line2') }}</p>
               </div>
               <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
-                <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput" v-model="$v.cons_first_name.$model">
-                <input class="u-full-width" type="email" placeholder="Last Name" id="lastnameInput" v-model="cons_last_name">
-                <input class="u-full-width" type="email" placeholder="Email" id="emailInput" v-model="$v.cons_email.$model">
+                <input class="u-full-width " type="email" v-bind:placeholder="$t('quiz_form.f_name')" id="firstnameInput" v-model="$v.cons_first_name.$model">
+                <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
+                <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
                 <span v-show="$v.cons_first_name.$error || $v.cons_email.$error"  style="color: #ea0029">Name and Email fields are required</span>
                 <span v-show="error"  style="color: #ea0029">{{error}}</span>
                 <label class="agree">
                   <input type="checkbox" checked>
-                    <span class="label-body">{{ $t('quiz_form.check') }} <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
+                    <span class="label-body">{{ $t('quiz_form.check') }} <a v-bind:href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
                 </label>
                 <button @click="proceed()" :disabled="$v.validationGroup.$invalid || FormBusy" :style="$v.validationGroup.$invalid || formBusy ? 'background-color: grey' : ''">
                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
