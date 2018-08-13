@@ -91,7 +91,7 @@ const copies = {
         },
       profile:
         {
-          header: 'Votre profil de travailleur humanitaire est',
+          header: 'Vous êtes',
           tell: 'Dites à vos amis que vous êtes',
           share: 'PARTAGEZ MAINTENANT',
           saveShare: 'SAUVER PARTAGER',
