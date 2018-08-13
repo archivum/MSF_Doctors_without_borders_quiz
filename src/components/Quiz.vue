@@ -346,7 +346,7 @@
           this.tl_right.restart(true, false)
         } else {
           this.tl_form.restart(true,false)
-          if(window.innerWidth <= 320) this.setScrollable()
+          if(window.innerWidth <= 320 || (window.innerWidth < 420 && this.$i18n.locale == 'fr')) this.setScrollable()
           let quiz = this.quiz;
           let userChoice = this.userChoice;
 
@@ -641,7 +641,7 @@ input[type="radio"] {
 
 .results .content {
   margin-top: 30vh;
-  padding-bottom: 100px;
+  padding-bottom: 5rem;
 }
 
 .results h3 {
