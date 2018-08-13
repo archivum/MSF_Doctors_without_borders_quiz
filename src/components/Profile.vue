@@ -62,7 +62,7 @@ import {profiles, profiles_fr} from '../lib/utils.js'
         },
         profileName() {
             let result = this.profile.title.split(' ')
-            let pre = this.profile.prefix;
+            let pre = this.profile.prefix.toLowerCase();
             let string = result[0];
 
             for (let i = 1; i < result.length; i++) {

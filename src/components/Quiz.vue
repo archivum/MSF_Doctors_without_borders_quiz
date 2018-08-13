@@ -377,6 +377,7 @@ a {
     font-weight: 500;
     font-style: normal;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 button a {
@@ -577,94 +578,95 @@ input[type="radio"] {
   }
 
 .answer:active {
-    background-color: #ea0029;
-    color: white;
+  background-color: #ea0029;
+  color: white;
 }
 
 .progress-and-button {
-    display: inline-block;
-    float: left;
-    opacity: 0;
+  display: inline-block;
+  float: left;
+  opacity: 0;
 }
 
 .progress-container {
-    margin-top: 20px;
-    margin-left: 20px;
-    position: relative;
-    float: left;
+  margin-top: 20px;
+  margin-left: 20px;
+  position: relative;
+  float: left;
 }
 
 .progress {
-    z-index: 3;
-    position: absolute;
-    height: 5px;
-    background-color: #ea0029;
-    float: left;
+  z-index: 3;
+  position: absolute;
+  height: 5px;
+  background-color: #ea0029;
+  float: left;
 }
 
 .progress-bar {
-    height: 5px;
-    width: 250px;
-    background-color: white;
-    float: left;
+  height: 5px;
+  width: 250px;
+  background-color: white;
+  float: left;
 }
 
-  .full-bg {
-    background: url("/static/img/form.jpg");
-    min-height: 100vh;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-    background-attachment: fixed !important;
-    background-position: center center;
+.full-bg {
+  background: url("/static/img/form.jpg");
+  min-height: 100vh;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-position: center center;
 }
 
 
 #bg-img {
-    /*    background: url("../../static/img/form.jpg") center center;*/
-    height: 100%;
-    background-size: cover;
-    background-position: center center;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
-    /*     z-index: -1; */
-    position: fixed;
-    top: 0;
-    left: 0;
+  /*    background: url("../../static/img/form.jpg") center center;*/
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  /*     z-index: -1; */
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 /*Results almost in*/
 .results {
-    color: white;
-    text-align: left;
+  color: white;
+  text-align: left;
 }
 
 .results .content {
   margin-top: 30vh;
+  padding-bottom: 100px;
 }
 
 .results h3 {
-    font-size: 3rem;
-    font-weight: bold;
-    font-family: 'FreightSans Pro';
-    font-weight: bold;
-    font-style: normal;
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: 'FreightSans Pro';
+  font-weight: bold;
+  font-style: normal;
 }
 
 .results p {
-    font-size: 2rem;
-    font-family: 'FreightSans Pro';
-    font-weight: 500;
-    font-style: normal;
-    line-height: 2.2rem;
+  font-size: 2rem;
+  font-family: 'FreightSans Pro';
+  font-weight: 500;
+  font-style: normal;
+  line-height: 2.2rem;
 }
 
 .results .u-full-width {
-    height: 50px;
-    border-radius: 0px;
-    margin-bottom: 5px;
-    font-family: 'FreightSans Pro';
-    font-weight: 500;
-    font-style: normal;
+  height: 50px;
+  border-radius: 0px;
+  margin-bottom: 5px;
+  font-family: 'FreightSans Pro';
+  font-weight: 500;
+  font-style: normal;
 }
 
 input[type="email"] {
@@ -672,17 +674,19 @@ input[type="email"] {
 }
 
 input[type="checkbox"] {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .results .skip {
-    clear: left;
-    float: left;
-    font-weight: 500;
-    font-size: 1.6rem;
-    padding-left: 82px;
-    text-transform: uppercase;
-    text-decoration: underline;
+  width: 275px;
+  text-align: center;
+  clear: left;
+  float: left;
+  font-weight: 500;
+  font-size: 1.6rem;
+  /* padding-left: 82px; */
+  text-transform: uppercase;
+  text-decoration: underline;
 }
 
 .results .quizLogo {
@@ -739,7 +743,6 @@ label > .label-body {
   }
   .results .content{
     margin-top: 120px;
-    padding-bottom: 100px;
   }
   .results h3{
     font-size: 2.5rem;
@@ -808,6 +811,7 @@ label > .label-body {
     text-align: left;
   }
   .results .skip {
+    width: 100%;
     display: block;
     padding: 0;
     float: none;

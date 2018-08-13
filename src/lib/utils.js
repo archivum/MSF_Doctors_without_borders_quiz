@@ -339,7 +339,7 @@ const quiz_fr = {
   const profiles_fr = {
 
     profile: [{
-      prefix: "Une",
+      prefix: "Un",
       title: "Premier répondant",
       desc: 'Vous comprenez l\'importance d\'évaluer rapidement une situation et de réagir de la façon appropriée. Vous avez une capacité unique à évaluer les circonstances rapidement et à prendre des mesures responsables pour réduire la souffrance.',
       paragraph: 'Médecins Sans Frontières réagit rapidement et efficacement en cas d\'urgence. Nos équipes sont souvent les premières sur les lieux, par exemple pour répondre à la dévastatrice épidémie d\'Ebola en Afrique de l\'Ouest, ou pour prodiguer des soins médicaux aux déplacés rohingyas au Myanmar.',
@@ -347,7 +347,7 @@ const quiz_fr = {
       author: 'Dr. James Orbinski'
     },
     {
-      prefix: "Une",
+      prefix: "Un",
       title: "Négociateur",
       desc: 'Vous savez qu\'établir la confiance est la clé pour résoudre les conflits. Vous voulez voir tous les côtés d\'une discussion. Vous appréciez chaque occasion de développer votre compréhension et n\'avez pas peur de vous engager dans des conversations difficiles.',
       paragraph: 'Pour Médecins Sans Frontières, la confiance, le respect et la neutralité sont des éléments essentiels pour obtenir l\'acceptation nécessaire afin de fournir des soins médicaux aux personnes touchées par un conflit. C\'est grâce à ces principes que nous sommes capables de travailler dans des environnements difficiles tels que l\'Irak, le Yémen ou la République démocratique du Congo.',
@@ -363,7 +363,7 @@ const quiz_fr = {
       author: 'Dr. James Orbinski'
     },
     {
-      prefix: "Une",
+      prefix: "Un",
       title: "Réseauteur",
       desc: 'En tant que Réseauteur, vous appréciez la valeur des rapports humains — ils sont au cœur de tout ce que vous faites. Vous aimez collaborer et travailler avec les autres pour partager notre humanité commune.',
       paragraph: 'Les rapports humains sont au cœur du travail de Médecins Sans Frontières; notre personnel médical arrive à soigner des millions de patients chaque année grâce à un vaste réseau de travailleurs humanitaires et de supporteurs. Ces réseaux sont essentiels pour attirer l\'attention sur les problèmes de santé les plus complexes, les plus dangereux et les plus négligés du monde.',
