@@ -71,7 +71,8 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             return pre + ' ' + string
         },
         twitterMessage() {
-            return `https://twitter.com/intent/tweet?text=I%20am%20` + this.profileName + `.%20Take%20the%20Doctors%20Without%20Borders%20Quiz%20and%20find%20out%20what%20kind%20of%20humanitarian%20aid%20worker%20you%20are.http%3A//msfquiz.candy-staging.com`
+            let twitterBlurb = (this.$i18n.locale === 'en') ? `I%20am%20` + this.profileName + `.%20Take%20the%20Doctors%20Without%20Borders%20Quiz%20and%20find%20out%20what%20kind%20of%20humanitarian%20aid%20worker%20you%20are.` : `Je%20suis%20` + this.profileName + `R%C3%A9pondez+au+jeu-questionnaire+de+M%C3%A9decins+Sans+Fronti%C3%A8res+et+d%C3%A9couvrez+quel+type+de+travailleur+humanitaire+vous+%C3%AAtes.`
+            return `https://twitter.com/intent/tweet?text=` + twitterBlurb + `%20http%3A//msfquiz.candy-staging.com`;
         }
     },
     methods: {
@@ -79,31 +80,32 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             this.$modal.show('share-modal');
         },
         shareFb () {
-            let newTitle = this.profileName
+            let newTitle = (this.$i18n.locale === 'en') ? `I%20am%20` + this.profileName : `Je%20suis%20` + this.profileName
+            let desc = (this.$i18n.locale === 'en') ? 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.' : 'Quel type de travailleur humanitaire êtes-vous? Jeu-questionnaire de Médecins Sans Frontières.'
+
             // Facebook share option 1
-            // FB.ui({
-            //     method: 'share_open_graph',
-            //     action_type: 'og.shares',
-            //     action_properties: JSON.stringify({
-            //         object: {
-            //             'og:url': document.location.origin,
-            //             'og:title': `I am ` + newTitle + `.`,
-            //             'og:description': 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.',
-            //             'og:image': document.location.origin + '/static/img/share-picture.jpg',
-            //         }
-            //     })
-            // },
-            // function (response) {
-            // // Action after response
-            // });
-            // Facebook share option 2
             FB.ui({
-                method: 'feed',
-                link: document.location.origin
+                method: 'share_open_graph',
+                action_type: 'og.shares',
+                action_properties: JSON.stringify({
+                    object: {
+                        'og:url': document.location.origin,
+                        'og:title': newTitle,
+                        'og:description': desc,
+                    }
+                })
             },
             function (response) {
             // Action after response
             });
+            // Facebook share option 2
+            // FB.ui({
+            //     method: 'feed',
+            //     link: document.location.origin
+            // },
+            // function (response) {
+            // // Action after response
+            // });
         },
         copyClipboard () {
             const el = document.createElement('textarea');
