@@ -80,8 +80,8 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             this.$modal.show('share-modal');
         },
         shareFb () {
-            let newTitle = (this.$i18n.locale === 'en') ? `I%20am%20` + this.profileName : `Je%20suis%20` + this.profileName
-            let desc = (this.$i18n.locale === 'en') ? 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.' : 'Quel type de travailleur humanitaire êtes-vous? Jeu-questionnaire de Médecins Sans Frontières.'
+            let newTitle = (this.$i18n.locale === 'en') ? 'I am ' + this.profileName : 'Je suis ' + this.profileName
+            let desc = (this.$i18n.locale === 'en') ? 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.' : 'Quel type de travailleur humanitaire êtes-vous? Jeu-questionnaire de Médecins Sans Frontières.' + this.profileName
 
             // Facebook share option 1
             FB.ui({
@@ -92,6 +92,7 @@ import {profiles, profiles_fr} from '../lib/utils.js'
                         'og:url': document.location.origin,
                         'og:title': newTitle,
                         'og:description': desc,
+                        'og:image': document.location.origin + '/static/img/share-picture.jpg',
                     }
                 })
             },
