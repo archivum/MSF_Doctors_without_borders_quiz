@@ -208,6 +208,7 @@
         let vm = this
         let randomString = Math.random().toString()
         this.formBusy = true
+        let language = this.$i18n.locale === 'en' ? 'en_CA' : 'fr_CA'
         luminateExtend.global.update('cons_first_name', this.cons_first_name)
         luminateExtend.global.update('cons_last_name', this.cons_last_name)
         luminateExtend.global.update('cons_email', this.cons_email)
@@ -216,6 +217,7 @@
 
         luminateExtend.init({
             useCache: false,
+            locale: vm.language,
             apiKey: 'wDB09SQODRpVIOvX',
             path: {
                 // nonsecure: 'http://www.grassriots.com/msfcan/site/',
