@@ -209,6 +209,7 @@
         let randomString = Math.random().toString()
         this.formBusy = true
         let language = this.$i18n.locale === 'en' ? 'en_CA' : 'fr_CA'
+        console.log(language)
         luminateExtend.global.update('cons_first_name', this.cons_first_name)
         luminateExtend.global.update('cons_last_name', this.cons_last_name)
         luminateExtend.global.update('cons_email', this.cons_email)
@@ -232,8 +233,8 @@
         async: false,
         useCache: false,
         api: 'survey',
-
-        data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
+        locale: vm.language,
+        data: `method=submitSurvey&survey_id=1565&s_locale=${vm.language}${vm.formVars}`,
         requiresAuth: true,
         callback: {
           success: vm.callbackSucess,
