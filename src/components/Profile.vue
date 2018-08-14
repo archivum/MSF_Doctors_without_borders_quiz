@@ -91,7 +91,7 @@ import {profiles, profiles_fr} from '../lib/utils.js'
                 action_type: 'og.shares',
                 action_properties: JSON.stringify({
                     object: {
-                        'og:url': document.location.origin,
+                        'og:url': newURL,
                         'og:title': newTitle,
                         'og:description': desc,
                         'og:image': document.location.origin + '/static/img/share-picture.jpg',
