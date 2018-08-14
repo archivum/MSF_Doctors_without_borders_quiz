@@ -71,7 +71,7 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             return pre + ' ' + string
         },
         twitterMessage() {
-            let twitterBlurb = (this.$i18n.locale === 'en') ? `I%20am%20` + this.profileName + `.%20Take%20the%20Doctors%20Without%20Borders%20Quiz%20and%20find%20out%20what%20kind%20of%20humanitarian%20aid%20worker%20you%20are.` : `Je%20suis%20` + this.profileName + `R%C3%A9pondez+au+jeu-questionnaire+de+M%C3%A9decins+Sans+Fronti%C3%A8res+et+d%C3%A9couvrez+quel+type+de+travailleur+humanitaire+vous+%C3%AAtes.`
+            let twitterBlurb = (this.$i18n.locale === 'en') ? `I%20am%20` + this.profileName + `.%20Take%20the%20Doctors%20Without%20Borders%20Quiz%20and%20find%20out%20what%20kind%20of%20humanitarian%20aid%20worker%20you%20are.` : `Je%20suis%20` + this.profileName + `.%20R%C3%A9pondez+au+jeu-questionnaire+de+M%C3%A9decins+Sans+Fronti%C3%A8res+et+d%C3%A9couvrez+quel+type+de+travailleur+humanitaire+vous+%C3%AAtes.`
             return `https://twitter.com/intent/tweet?text=` + twitterBlurb + `%20http%3A//msfquiz.candy-staging.com`;
         }
     },
@@ -80,8 +80,9 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             this.$modal.show('share-modal');
         },
         shareFb () {
-            let newTitle = (this.$i18n.locale === 'en') ? 'I am ' + this.profileName : 'Je suis ' + this.profileName
-            let desc = (this.$i18n.locale === 'en') ? 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.' : 'Quel type de travailleur humanitaire êtes-vous? Jeu-questionnaire de Médecins Sans Frontières.' + this.profileName
+            // let newTitle = (this.$i18n.locale === 'en') ? 'I am ' + this.profileName : 'Je suis ' + this.profileName
+            let newTitle = (this.$i18n.locale === 'en') ? 'What kind of humanitarian are you?' : 'Quel type de travailleur humanitaire êtes-vous?'
+            let desc = (this.$i18n.locale === 'en') ? 'Take the Doctors Without Borders Quiz to find out.' : 'Jeu-questionnaire de Médecins Sans Frontières.'
 
             // Facebook share option 1
             FB.ui({
