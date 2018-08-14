@@ -73,6 +73,7 @@ export default {
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
     $("body").css("overflow", "hidden");
+    this.setLangParam()
   },
   methods: {
     toggleOverlay() {
@@ -82,11 +83,17 @@ export default {
       this.bigScreen = window.innerWidth >= 1000;
     },
     changeLanguage() {
-      this.$i18n.locale === 'en' ? this.$i18n.locale = 'fr' : this.$i18n.locale = 'en'
+      this.$route.query.lang === 'en' ? this.$router.push({ query: { lang: 'fr' }}) : this.$router.push({ query: { lang: 'en' }})
       this.setLangParam()
     },
     setLangParam() {
-      this.$i18n.locale === 'en' ? this.$router.push({ query: { lang: 'en' } }) : this.$router.push({ query: { lang: 'fr' } })
+      if (this.$route.query.lang === 'fr') {
+        this.$i18n.locale = 'fr'
+      }
+      else if ( this.$route.query.lang === undefined || this.$route.query.lang === 'en') {
+        this.$router.push({ query: { lang: 'en' }})
+        this.$i18n.locale = 'en'
+      }
     }
   },
   beforeDestroy: function() {
