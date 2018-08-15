@@ -133,15 +133,12 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             setPos = 100 - setPos;
             if(setPos >= 0 && setPos <= 100) $(elem).css('background-position','center '+setPos+'%');
         },
-        changeLanguage() {
-            this.$route.query.lang === 'en' ? this.$router.push({ query: { lang: 'fr' }}) : this.$router.push({ query: { lang: 'en' }})
-            this.setLangParam()
-        },
         setLangParam() {
-            if (this.$route.query.lang === 'fr') {
+            if (this.$route.query.lang === 'fr' || this.$i18n.locale === 'fr') {
+              this.$router.push({ query: { lang: 'fr' }})
               this.$i18n.locale = 'fr'
             }
-            else if ( this.$route.query.lang === undefined || this.$route.query.lang === 'en') {
+            else if ( this.$route.query.lang === undefined || this.$route.query.lang === 'en' || this.$i18n.locale === 'en') {
               this.$router.push({ query: { lang: 'en' }})
               this.$i18n.locale = 'en'
             }
