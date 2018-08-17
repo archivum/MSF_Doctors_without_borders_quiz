@@ -89,10 +89,12 @@ export default {
     setLangParam() {
       if (this.$route.query.lang === 'fr') {
         this.$i18n.locale = 'fr'
+        document.title = 'JEU-QUESTIONNAIRE DE MÉDECINS SANS FRONTIÈRE';
       }
       else if ( this.$route.query.lang === undefined || this.$route.query.lang === 'en') {
         this.$router.push({ query: { lang: 'en' }})
         this.$i18n.locale = 'en'
+        document.title = 'TAKE THE DOCTORS WITHOUT BORDERS QUIZ';
       }
     }
   },
