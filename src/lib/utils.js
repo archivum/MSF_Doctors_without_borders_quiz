@@ -208,22 +208,22 @@ const quiz_fr = {
       images: '/static/img/img1.jpg',
       imagesMobile: '/static/img/img1_mobile.jpg',
       responses: [{
-        text: 'Vous êtes enthousiaste à l\'idée d\'élargir votre vision du monde.',
+        text: 'Vous êtes enthousiaste à l\'idée d\'élargir votre vision du monde',
         value: 6,
         val_2: 'Get excited about expanding your world-view'
       },
         {
-          text: 'Vous vous lancez dans un débat animé —\n vous aimez une bonne discussion.',
+          text: 'Vous vous lancez dans un débat animé —\n vous aimez une bonne discussion',
           value: 8,
           val_2: 'Gear up for a vocal debate -- you love a good discussion'
         },
         {
-          text: 'Vous écoutez attentivement, en essayant de comprendre toutes les perspectives.',
+          text: 'Vous écoutez attentivement, en essayant de comprendre toutes les perspectives',
           value: 2,
           val_2: 'Listen carefully, trying to understand all perspectives'
         },
         {
-          text: 'Vous écoutez bien, vous donnez souvent votre avis, vous invitez tout le monde à s\'exprimer.',
+          text: 'Vous écoutez bien, vous donnez souvent votre avis, vous invitez tout le monde à s\'exprimer',
           value: 4,
           val_2: 'Listen well, weigh-in often, invite everyone to have their say'
         }
@@ -234,22 +234,22 @@ const quiz_fr = {
         images: '/static/img/img2.jpg',
         imagesMobile: '/static/img/img2_mobile.jpg',
         responses: [{
-          text: 'Vous parcourez le web pour trouver des articles provenant de diverses sources.',
+          text: 'Vous parcourez le web pour trouver des articles provenant de diverses sources',
           value: 6,
           val_2: 'Scour the web for articles from a variety of sources'
         },
           {
-            text: 'Vous lisez et commentez tout ce que vous pouvez trouver.',
+            text: 'Vous lisez et commentez tout ce que vous pouvez trouver',
             value: 4,
             val_2: 'Read (and comment on) anything you can get your hands on'
           },
           {
-            text: 'Allez toujours vers vos sources favorites, qui sont les plus réputées.',
+            text: 'Allez toujours vers vos sources favorites, qui sont les plus réputées',
             value: 8,
             val_2: 'Stick to your favourite, reputable news outlets'
           },
           {
-            text: 'Vous lisez et partagez beaucoup sur les médias sociaux dans le but de faire connaître les grands enjeux.',
+            text: 'Vous lisez et partagez beaucoup sur les médias sociaux dans le but de faire connaître les grands enjeux',
             value: 2,
             val_2: 'Read and share a lot on social media to spread awareness on big issues'
           }
@@ -265,17 +265,17 @@ const quiz_fr = {
           val_2: 'Volunteer'
         },
           {
-            text: 'proposez de lancer une campagne de collecte de fonds.',
+            text: 'Proposez de lancer une campagne de collecte de fonds',
             value: 4,
             val_2: 'Start a peer-to-peer fundraising campaign'
           },
           {
-            text: 'consultez la section « À propos de nous » de leur site web.',
+            text: 'Consultez la section « À propos de nous » de leur site web',
             value: 2,
             val_2: 'Review the organization’s “About Us” section of their website'
           },
           {
-            text: 'proposez de faire du porte-à-porte avec une pétition pour sensibiliser le public.',
+            text: 'Proposez de faire du porte-à-porte avec une pétition pour sensibiliser le public',
             value: 8,
             val_2: 'Go door-to-door with a petition, raising awareness'
           }
@@ -291,17 +291,17 @@ const quiz_fr = {
           val_2: 'Immediately sign without reading'
         },
           {
-            text: 'signez et offrez de partager la pétition avec vos amis sur les réseaux sociaux.',
+            text: 'Signez et offrez de partager la pétition avec vos amis sur les réseaux sociaux',
             value: 4,
             val_2: 'Sign and offer to share with your friends on social media'
           },
           {
-            text: 'proposez de lire la pétition et de réfléchir aux implications de la signature.',
+            text: 'Proposez de lire la pétition et de réfléchir aux implications de la signature',
             value: 2,
             val_2: 'Offer to read the petition and think about the implications of signing'
           },
           {
-            text: 'signez, puis frappez aux portes pour recruter plus de voisins en soutien à la cause.',
+            text: 'Signez, puis frappez aux portes pour recruter plus de voisins en soutien à la cause',
             value: 8,
             val_2: 'Sign, then knock on doors to recruit your neighbours to the cause'
           }
@@ -312,22 +312,22 @@ const quiz_fr = {
         images: '/static/img/img5.jpg',
         imagesMobile: '/static/img/img5_mobile.jpg',
         responses: [{
-          text: 'Un projecteur portatif pour regarder vos films préférés.',
+          text: 'Un projecteur portatif pour regarder vos films préférés',
           value: 6,
           val_2: 'A portable movie projector'
         },
           {
-            text: 'Des haut-parleurs pour votre lecteur de musique.',
+            text: 'Des haut-parleurs pour votre lecteur de musique',
             value: 8,
             val_2: 'Speakers for your music player'
           },
           {
-            text: 'Vos romans préférés.',
+            text: 'Vos romans préférés',
             value: 2,
             val_2: 'Your favourite novels'
           },
           {
-            text: 'Un jeu de cartes.',
+            text: 'Un jeu de cartes',
             value: 4,
             val_2: 'A deck of cards'
           }
