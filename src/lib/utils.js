@@ -260,7 +260,7 @@ const quiz_fr = {
         images: '/static/img/img3.jpg',
         imagesMobile: '/static/img/img3_mobile.jpg',
         responses: [{
-          text: 'proposez de devenir bénévole.',
+          text: 'Proposez de devenir bénévole',
           value: 6,
           val_2: 'Volunteer'
         },
@@ -286,7 +286,7 @@ const quiz_fr = {
         images: '/static/img/img4.jpg',
         imagesMobile: '/static/img/img4_mobile.jpg',
         responses: [{
-          text: 'signez immédiatement la pétition sans la lire.',
+          text: 'Signez immédiatement la pétition sans la lire',
           value: 6,
           val_2: 'Immediately sign without reading'
         },
