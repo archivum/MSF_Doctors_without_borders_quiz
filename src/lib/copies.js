@@ -79,8 +79,8 @@ const copies = {
         {
           line1: 'Vos résultats sont en cours de comptabilisation!',
           line2: 'Vous tiendrez-vous à nos côtés? Nous avons besoin de gens comme vous qui prendront la parole lorsque le monde a besoin d\'actions concrètes. Inscrivez-vous dès maintenant.',
-          check: 'Choisissez de rejoindre notre communauté d\'humanitaires. Vous pouvez vous désinscrire à tout moment. Nous accordons beaucoup d\'importance au respect de votre vie privée. Plus de détails ici.',
-          check_link: 'En savoir plus ici.',
+          check: 'Choisissez de rejoindre notre communauté d\'humanitaires. Vous pouvez vous désinscrire à tout moment. Nous accordons beaucoup d\'importance au respect de votre vie privée.',
+          check_link: 'Plus de détails ici.',
           continue: 'continuer',
           skip: 'Passer cette étape',
           f_name: 'Prénom',

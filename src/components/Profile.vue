@@ -22,7 +22,7 @@
     <div class="row block-quote">
       <div class="eight offset-by-two columns">
         <div class="quote">
-          “{{ profile.quote }}”<span> – {{ profile.author }}</span>
+          {{ profile.quote }}<span v-html="profile.author">{{ profile.author }}</span>
         </div>
         <h4>{{ $t('profile.tell') }}<span class="profile-title">{{ profile.prefix }} {{ profile.title }}</span></h4>
         <button @click="showModal">{{ $t('profile.share') }}</button>
