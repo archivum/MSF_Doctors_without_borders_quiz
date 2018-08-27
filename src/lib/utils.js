@@ -240,7 +240,6 @@ const quiz_fr = {
         },
           {
             text: 'Vous allez toujours lisez et commentez tout ce que vous pouvez trouver',
-            text: 'Vous lisez et commentez tout ce que vous pouvez trouver',
             value: 4,
             val_2: 'Read (and comment on) anything you can get your hands on'
           },
