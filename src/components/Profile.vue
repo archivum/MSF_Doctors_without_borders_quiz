@@ -73,7 +73,7 @@ import {profiles, profiles_fr} from '../lib/utils.js'
         },
         twitterMessage() {
             let twitterBlurb = (this.$i18n.locale === 'en') ? `I%20am%20` + this.profileName + `.%20Take%20this%20quiz%20by%20Doctors%20Without%20Borders%20to%20find%20out%20what%20kind%20of%20humanitarian%20aid%20worker%20you%20are%3a` : `Je%20suis%20` + this.profileName + `.%20R%C3%A9pondez+au+jeu-questionnaire+de+M%C3%A9decins+Sans+Fronti%C3%A8res+et+d%C3%A9couvrez+quel+type+de+travailleur+humanitaire+vous+%C3%AAtes.`
-            return (this.$i18n.locale === 'en') ? `https://twitter.com/intent/tweet?text=` + twitterBlurb + `%20http%3A//quiz.doctorswithoutborders.ca%20via%20%40MSF%20Canada` : `https://twitter.com/intent/tweet?text=` + twitterBlurb + `%20http%3A//quiz.doctorswithoutborders.ca/?lang=fr%20via%20%40MSF%20Canada`;
+            return (this.$i18n.locale === 'en') ? `https://twitter.com/intent/tweet?text=` + twitterBlurb + `%20http%3A//quiz.doctorswithoutborders.ca%20via%20%40MSF_Canada` : `https://twitter.com/intent/tweet?text=` + twitterBlurb + `%20http%3A//quiz.doctorswithoutborders.ca/?lang=fr%20via%20%40MSF_Canada`;
         }
     },
     methods: {
