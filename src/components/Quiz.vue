@@ -243,6 +243,13 @@
       }]);
       },
       callbackSucess: function(data) {
+        window.dataLayer = window.dataLayer || [];
+        var dataObject = {
+          'event': 'msf-lead-quiz'
+        };
+        if(typeof dataLayer != 'undefined'){
+          dataLayer.push(dataObject);
+        }       
         this.formBusy = false
         console.log(data)
         if (data.submitSurveyResponse.success === 'false') {
