@@ -48,16 +48,16 @@
                 <p>{{ $t('quiz_form.line2') }}</p>
               </div>
               <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
-                <input class="u-full-width " type="email" placeholder="First Name" id="firstnameInput" v-model="$v.cons_first_name.$model">
-                <input class="u-full-width" type="email" placeholder="Last Name" id="lastnameInput" v-model="cons_last_name">
-                <input class="u-full-width" type="email" placeholder="Email" id="emailInput" v-model="$v.cons_email.$model">
-                <span v-show="$v.cons_first_name.$error || $v.cons_email.$error"  style="color: #ea0029">Name and Email fields are required</span>
+                <input class="u-full-width " type="email" v-bind:placeholder="$t('quiz_form.f_name')" id="firstnameInput" v-model="$v.cons_first_name.$model">
+                <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
+                <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
+                <span v-show="$v.cons_first_name.$error || $v.cons_email.$error"  style="color: #ea0029">Name and Email fields are required<br></span>
                 <span v-show="error"  style="color: #ea0029">{{error}}</span>
                 <label class="agree">
                   <input type="checkbox" checked>
-                    <span class="label-body">{{ $t('quiz_form.check') }} <a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
+                    <span class="label-body">{{ $t('quiz_form.check') }} <a v-bind:href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
                 </label>
-                <button @click="proceed()" :disabled="$v.validationGroup.$invalid || FormBusy" :style="$v.validationGroup.$invalid || formBusy ? 'background-color: grey' : ''">
+                <button @click="proceed()" :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''">
                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
                   {{ $t('quiz_form.continue') }}
                 </button>
@@ -90,6 +90,7 @@
       return {
         copies: copies,
         quiz: this.$i18n.locale === 'en' ? quiz : quiz_fr,
+        language: '',
         questionIndex: 0,
         newQuestion: true,
         userResponses: Array(),
@@ -124,6 +125,7 @@
     },
     mounted() {
       console.log(this.$i18n.locale)
+      this.setLangParam()
       this.handleResize()
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout / 2)
@@ -206,7 +208,8 @@
       proceed: function() {
         let vm = this
         let randomString = Math.random().toString()
-        this.formBusy = true
+        vm.formBusy = true
+        this.language = this.$i18n.locale === 'en' ? 'en_CA' : 'fr_CA'
         luminateExtend.global.update('cons_first_name', this.cons_first_name)
         luminateExtend.global.update('cons_last_name', this.cons_last_name)
         luminateExtend.global.update('cons_email', this.cons_email)
@@ -215,6 +218,7 @@
 
         luminateExtend.init({
             useCache: false,
+            locale: vm.language,
             apiKey: 'wDB09SQODRpVIOvX',
             path: {
                 // nonsecure: 'http://www.grassriots.com/msfcan/site/',
@@ -229,8 +233,8 @@
         async: false,
         useCache: false,
         api: 'survey',
-
-        data: 'method=submitSurvey&survey_id=1565' + vm.formVars,
+        locale: vm.language,
+        data: `method=submitSurvey&survey_id=1565&s_locale=${vm.language}${vm.formVars}`,
         requiresAuth: true,
         callback: {
           success: vm.callbackSucess,
@@ -239,23 +243,30 @@
       }]);
       },
       callbackSucess: function(data) {
-        this.formBusy = false
-        console.log(data)
+        var vm = this
+        window.dataLayer = window.dataLayer || [];
+        var dataObject = {
+          'event': 'msf-lead-quiz'
+        };
+        if(typeof dataLayer != 'undefined'){
+          dataLayer.push(dataObject);
+        }       
+        vm.formBusy = false
         if (data.submitSurveyResponse.success === 'false') {
-          this.callbackError()
+          this.callbackError(data.submitSurveyResponse)
         } else {
           this.$router.push({ path: 'profile/'+this.profile })
         }
       },
       callbackError: function(data) {
-        console.log(data)
+        let vm = this
         this.formBusy = false
-        let errorId = data.errorResponse.code
-        if (errorId === '1725') {
-          this.error = 'This email has already been registered. Please use another email.'
-        } else {
-          this.error = 'Please enter a valid email address to proceed'
-        }
+        let errorMessage = data.errors.errorMessage
+        vm.error=  errorMessage
+        setTimeout(() => {
+          vm.error = ''
+        }, 5000);
+
       },
       computeScore() {
         let score = 0
@@ -322,6 +333,9 @@
         this.tl_pre_left.addPause(0)
         this.tl_form.addPause(0);
       },
+      setLangParam() {
+        this.$i18n.locale === 'en' ? this.$router.push({ query: { lang: 'en' } }) : this.$router.push({ query: { lang: 'fr' } })
+      },
       resetAnimation() {
         $('.question').css('opacity', '0')
         $('.questions-input').css('opacity', '0')
@@ -346,7 +360,7 @@
           this.tl_right.restart(true, false)
         } else {
           this.tl_form.restart(true,false)
-          if(window.innerWidth <= 320) this.setScrollable()
+          if(window.innerWidth <= 320 || (window.innerWidth < 420 && this.$i18n.locale == 'fr')) this.setScrollable()
           let quiz = this.quiz;
           let userChoice = this.userChoice;
 
@@ -377,6 +391,7 @@ a {
     font-weight: 500;
     font-style: normal;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 button a {
@@ -577,94 +592,95 @@ input[type="radio"] {
   }
 
 .answer:active {
-    background-color: #ea0029;
-    color: white;
+  background-color: #ea0029;
+  color: white;
 }
 
 .progress-and-button {
-    display: inline-block;
-    float: left;
-    opacity: 0;
+  display: inline-block;
+  float: left;
+  opacity: 0;
 }
 
 .progress-container {
-    margin-top: 20px;
-    margin-left: 20px;
-    position: relative;
-    float: left;
+  margin-top: 20px;
+  margin-left: 20px;
+  position: relative;
+  float: left;
 }
 
 .progress {
-    z-index: 3;
-    position: absolute;
-    height: 5px;
-    background-color: #ea0029;
-    float: left;
+  z-index: 3;
+  position: absolute;
+  height: 5px;
+  background-color: #ea0029;
+  float: left;
 }
 
 .progress-bar {
-    height: 5px;
-    width: 250px;
-    background-color: white;
-    float: left;
+  height: 5px;
+  width: 250px;
+  background-color: white;
+  float: left;
 }
 
-  .full-bg {
-    background: url("/static/img/form.jpg");
-    min-height: 100vh;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-    background-attachment: fixed !important;
-    background-position: center center;
+.full-bg {
+  background: url("/static/img/form.jpg");
+  min-height: 100vh;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-position: center center;
 }
 
 
 #bg-img {
-    /*    background: url("../../static/img/form.jpg") center center;*/
-    height: 100%;
-    background-size: cover;
-    background-position: center center;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
-    /*     z-index: -1; */
-    position: fixed;
-    top: 0;
-    left: 0;
+  /*    background: url("../../static/img/form.jpg") center center;*/
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  /*     z-index: -1; */
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 /*Results almost in*/
 .results {
-    color: white;
-    text-align: left;
+  color: white;
+  text-align: left;
 }
 
 .results .content {
   margin-top: 30vh;
+  padding-bottom: 5rem;
 }
 
 .results h3 {
-    font-size: 3rem;
-    font-weight: bold;
-    font-family: 'FreightSans Pro';
-    font-weight: bold;
-    font-style: normal;
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: 'FreightSans Pro';
+  font-weight: bold;
+  font-style: normal;
 }
 
 .results p {
-    font-size: 2rem;
-    font-family: 'FreightSans Pro';
-    font-weight: 500;
-    font-style: normal;
-    line-height: 2.2rem;
+  font-size: 2rem;
+  font-family: 'FreightSans Pro';
+  font-weight: 500;
+  font-style: normal;
+  line-height: 2.2rem;
 }
 
 .results .u-full-width {
-    height: 50px;
-    border-radius: 0px;
-    margin-bottom: 5px;
-    font-family: 'FreightSans Pro';
-    font-weight: 500;
-    font-style: normal;
+  height: 50px;
+  border-radius: 0px;
+  margin-bottom: 5px;
+  font-family: 'FreightSans Pro';
+  font-weight: 500;
+  font-style: normal;
 }
 
 input[type="email"] {
@@ -672,17 +688,19 @@ input[type="email"] {
 }
 
 input[type="checkbox"] {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .results .skip {
-    clear: left;
-    float: left;
-    font-weight: 500;
-    font-size: 1.6rem;
-    padding-left: 82px;
-    text-transform: uppercase;
-    text-decoration: underline;
+  width: 275px;
+  text-align: center;
+  clear: left;
+  float: left;
+  font-weight: 500;
+  font-size: 1.6rem;
+  /* padding-left: 82px; */
+  text-transform: uppercase;
+  text-decoration: underline;
 }
 
 .results .quizLogo {
@@ -739,7 +757,6 @@ label > .label-body {
   }
   .results .content{
     margin-top: 120px;
-    padding-bottom: 100px;
   }
   .results h3{
     font-size: 2.5rem;
@@ -808,6 +825,7 @@ label > .label-body {
     text-align: left;
   }
   .results .skip {
+    width: 100%;
     display: block;
     padding: 0;
     float: none;

@@ -22,7 +22,7 @@
     <div class="row block-quote">
       <div class="eight offset-by-two columns">
         <div class="quote">
-          “{{ profile.quote }}”<span> – {{ profile.author }}</span>
+          {{ profile.quote }}<span v-html="profile.author">{{ profile.author }}</span>
         </div>
         <h4>{{ $t('profile.tell') }}<span class="profile-title">{{ profile.prefix }} {{ profile.title }}</span></h4>
         <button @click="showModal">{{ $t('profile.share') }}</button>
@@ -55,6 +55,7 @@ import {profiles, profiles_fr} from '../lib/utils.js'
         $('body').css('background','transparent');
         $(window).scrollTop(0);
         if(window.innerWidth > 420) $(window).on('scroll',this.scrollFunction);
+        this.setLangParam()
     },
     computed: {
         profile() {
@@ -62,7 +63,7 @@ import {profiles, profiles_fr} from '../lib/utils.js'
         },
         profileName() {
             let result = this.profile.title.split(' ')
-            let pre = this.profile.prefix;
+            let pre = this.profile.prefix.toLowerCase();
             let string = result[0];
 
             for (let i = 1; i < result.length; i++) {
@@ -71,7 +72,9 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             return pre + ' ' + string
         },
         twitterMessage() {
-            return `https://twitter.com/intent/tweet?text=I%20am%20` + this.profileName + `.%20Take%20the%20Doctors%20Without%20Borders%20Quiz%20and%20find%20out%20what%20kind%20of%20humanitarian%20aid%20worker%20you%20are.http%3A//msfquiz.candy-staging.com`
+            //twitter blurb
+            let twitterBlurb = (this.$i18n.locale === 'en') ? `I%20am%20` + this.profileName + `.%20Take%20this%20quiz%20by%20Doctors%20Without%20Borders%20to%20find%20out%20what%20kind%20of%20humanitarian%20aid%20worker%20you%20are%3a` : `Je%20suis%20` + this.profileName + `.%20R%C3%A9pondez+au+jeu-questionnaire+de+M%C3%A9decins+Sans+Fronti%C3%A8res+et+d%C3%A9couvrez+quel+type+de+travailleur+humanitaire+vous+%C3%AAtes.`
+            return (this.$i18n.locale === 'en') ? `https://twitter.com/intent/tweet?text=` + twitterBlurb + `%20http%3A//quiz.doctorswithoutborders.ca%20via%20%40MSF_Canada` : `https://twitter.com/intent/tweet?text=` + twitterBlurb + `%20http%3A//quiz.doctorswithoutborders.ca/?lang=fr%20via%20%40MSF_Canada`;
         }
     },
     methods: {
@@ -79,31 +82,35 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             this.$modal.show('share-modal');
         },
         shareFb () {
-            let newTitle = this.profileName
+            // let newTitle = (this.$i18n.locale === 'en') ? 'I am ' + this.profileName : 'Je suis ' + this.profileName
+            let newTitle = (this.$i18n.locale === 'en') ? 'What kind of humanitarian are you?' : 'Quel type de travailleur humanitaire êtes-vous?'
+            let desc = (this.$i18n.locale === 'en') ? 'Take the Doctors Without Borders Quiz to find out.' : 'Jeu-questionnaire de Médecins Sans Frontières.'
+            let newURL = (this.$i18n.locale === 'en') ? document.location.origin : document.location.origin + '/?lang=fr'
+
             // Facebook share option 1
-            // FB.ui({
-            //     method: 'share_open_graph',
-            //     action_type: 'og.shares',
-            //     action_properties: JSON.stringify({
-            //         object: {
-            //             'og:url': document.location.origin,
-            //             'og:title': `I am ` + newTitle + `.`,
-            //             'og:description': 'What kind of humanitarian are you? Take the Doctors Without Borders Quiz to find out.',
-            //             'og:image': document.location.origin + '/static/img/share-picture.jpg',
-            //         }
-            //     })
-            // },
-            // function (response) {
-            // // Action after response
-            // });
-            // Facebook share option 2
             FB.ui({
-                method: 'feed',
-                link: document.location.origin
+                method: 'share_open_graph',
+                action_type: 'og.shares',
+                action_properties: JSON.stringify({
+                    object: {
+                        'og:url': newURL,
+                        'og:title': newTitle,
+                        'og:description': desc,
+                        'og:image': document.location.origin + '/static/img/share-picture.jpg',
+                    }
+                })
             },
             function (response) {
             // Action after response
             });
+            // Facebook share option 2
+            // FB.ui({
+            //     method: 'feed',
+            //     link: document.location.origin
+            // },
+            // function (response) {
+            // // Action after response
+            // });
         },
         copyClipboard () {
             const el = document.createElement('textarea');
@@ -126,6 +133,16 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             var setPos = (Math.abs(e.top-winHeight)/(winHeight+e.height))*100;
             setPos = 100 - setPos;
             if(setPos >= 0 && setPos <= 100) $(elem).css('background-position','center '+setPos+'%');
+        },
+        setLangParam() {
+            if (this.$route.query.lang === 'fr' || this.$i18n.locale === 'fr') {
+              this.$router.push({ query: { lang: 'fr' }})
+              this.$i18n.locale = 'fr'
+            }
+            else if ( this.$route.query.lang === undefined || this.$route.query.lang === 'en' || this.$i18n.locale === 'en') {
+              this.$router.push({ query: { lang: 'en' }})
+              this.$i18n.locale = 'en'
+            }
         }
     }
   }

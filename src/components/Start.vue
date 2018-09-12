@@ -21,10 +21,10 @@
               <router-link to="/quiz">{{ $t('start.cta') }}</router-link>
             </button>
             <div class="info-black">
-              <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>{{ $t('start.disclaimer') }}<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank">{{ $t('start.disclaimer_cta') }}</a></span>
+              <img class="info-icon-black" src="../../static/img/info-w.svg" alt=""><span>{{ $t('start.disclaimer') }}<br><a v-bind:href="$t('start.privacy_policy')" target="_blank">{{ $t('start.disclaimer_cta') }}</a></span>
             </div>
             <div class="info-black-mobile">
-              <span>{{ $t('start.disclaimer') }}<br><a href="http://www.doctorswithoutborders.ca/privacy-notice" target="_blank"><u>{{ $t('start.disclaimer_cta') }}</u></a></span>
+              <span>{{ $t('start.disclaimer') }}<br><a v-bind:href="$t('start.privacy_policy')" target="_blank"><u>{{ $t('start.disclaimer_cta') }}</u></a></span>
             </div>
           </div>
           <div class="darken"></div>
@@ -73,6 +73,7 @@ export default {
     this.handleResize();
     window.addEventListener("resize", this.handleResize);
     $("body").css("overflow", "hidden");
+    this.setLangParam()
   },
   methods: {
     toggleOverlay() {
@@ -82,7 +83,19 @@ export default {
       this.bigScreen = window.innerWidth >= 1000;
     },
     changeLanguage() {
-      this.$i18n.locale === 'en' ? this.$i18n.locale = 'fr' : this.$i18n.locale = 'en'
+
+      this.$route.query.lang === 'en' || this.$route.query.lang === undefined ? this.$router.push({ query: { lang: 'fr' }}) : this.$router.push({ query: { lang: 'en' }})
+      this.setLangParam()
+    },
+    setLangParam() {
+      if (this.$route.query.lang === 'fr') {
+        this.$i18n.locale = 'fr'
+        document.title = 'JEU-QUESTIONNAIRE DE MÉDECINS SANS FRONTIÈRE';
+      }
+      else if ( this.$route.query.lang === undefined || this.$route.query.lang === 'en') {
+        this.$i18n.locale = 'en'
+        document.title = 'TAKE THE DOCTORS WITHOUT BORDERS QUIZ';
+      }
     }
   },
   beforeDestroy: function() {
@@ -279,6 +292,7 @@ button {
   font-style: normal;
   margin-top: 20px;
   margin-left: -10px;
+  margin-right: -20%;
 }
 
 button:hover,
@@ -414,7 +428,7 @@ button:active {
     background-size: cover;
   }
   button {
-    margin-top: 0.5rem;
+    margin: 0.5rem 0;
     margin-bottom: 2rem;
   }
   .overlay {
