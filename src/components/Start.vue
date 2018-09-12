@@ -83,7 +83,8 @@ export default {
       this.bigScreen = window.innerWidth >= 1000;
     },
     changeLanguage() {
-      this.$route.query.lang === 'en' ? this.$router.push({ query: { lang: 'fr' }}) : this.$router.push({ query: { lang: 'en' }})
+
+      this.$route.query.lang === 'en' || this.$route.query.lang === undefined ? this.$router.push({ query: { lang: 'fr' }}) : this.$router.push({ query: { lang: 'en' }})
       this.setLangParam()
     },
     setLangParam() {
@@ -92,7 +93,6 @@ export default {
         document.title = 'JEU-QUESTIONNAIRE DE MÉDECINS SANS FRONTIÈRE';
       }
       else if ( this.$route.query.lang === undefined || this.$route.query.lang === 'en') {
-        this.$router.push({ query: { lang: 'en' }})
         this.$i18n.locale = 'en'
         document.title = 'TAKE THE DOCTORS WITHOUT BORDERS QUIZ';
       }

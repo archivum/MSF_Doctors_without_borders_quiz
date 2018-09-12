@@ -51,13 +51,13 @@
                 <input class="u-full-width " type="email" v-bind:placeholder="$t('quiz_form.f_name')" id="firstnameInput" v-model="$v.cons_first_name.$model">
                 <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
                 <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
-                <span v-show="$v.cons_first_name.$error || $v.cons_email.$error"  style="color: #ea0029">Name and Email fields are required</span>
+                <span v-show="$v.cons_first_name.$error || $v.cons_email.$error"  style="color: #ea0029">Name and Email fields are required<br></span>
                 <span v-show="error"  style="color: #ea0029">{{error}}</span>
                 <label class="agree">
                   <input type="checkbox" checked>
                     <span class="label-body">{{ $t('quiz_form.check') }} <a v-bind:href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
                 </label>
-                <button @click="proceed()" :disabled="$v.validationGroup.$invalid || FormBusy" :style="$v.validationGroup.$invalid || formBusy ? 'background-color: grey' : ''">
+                <button @click="proceed()" :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''">
                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
                   {{ $t('quiz_form.continue') }}
                 </button>
@@ -208,7 +208,7 @@
       proceed: function() {
         let vm = this
         let randomString = Math.random().toString()
-        this.formBusy = true
+        vm.formBusy = true
         this.language = this.$i18n.locale === 'en' ? 'en_CA' : 'fr_CA'
         luminateExtend.global.update('cons_first_name', this.cons_first_name)
         luminateExtend.global.update('cons_last_name', this.cons_last_name)
@@ -243,6 +243,7 @@
       }]);
       },
       callbackSucess: function(data) {
+        var vm = this
         window.dataLayer = window.dataLayer || [];
         var dataObject = {
           'event': 'msf-lead-quiz'
@@ -250,23 +251,22 @@
         if(typeof dataLayer != 'undefined'){
           dataLayer.push(dataObject);
         }       
-        this.formBusy = false
-        console.log(data)
+        vm.formBusy = false
         if (data.submitSurveyResponse.success === 'false') {
-          this.callbackError()
+          this.callbackError(data.submitSurveyResponse)
         } else {
           this.$router.push({ path: 'profile/'+this.profile })
         }
       },
       callbackError: function(data) {
-        console.log(data)
+        let vm = this
         this.formBusy = false
-        let errorId = data.errorResponse.code
-        if (errorId === '1725') {
-          this.error = 'This email has already been registered. Please use another email.'
-        } else {
-          this.error = 'Please enter a valid email address to proceed'
-        }
+        let errorMessage = data.errors.errorMessage
+        vm.error=  errorMessage
+        setTimeout(() => {
+          vm.error = ''
+        }, 5000);
+
       },
       computeScore() {
         let score = 0
