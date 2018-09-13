@@ -8,7 +8,7 @@ import './css/fonts.css'
 import './css/normalize.css'
 import './css/skeleton.css'
 import {copies} from './lib/copies.js'
-require('es6-object-assign').polyfill();
+require('es6-object-assign').polyfill()
 
 // Plugins
 import VModal from 'vue-js-modal'
@@ -16,7 +16,6 @@ import VueI18n from 'vue-i18n'
 
 Vue.use(VModal)
 Vue.use(VueI18n)
-
 
 Vue.config.productionTip = false
 
@@ -48,10 +47,9 @@ new Vue({
   template: '<App/>'
 })
 
-ga('set', 'page', router.currentRoute.path)
-ga('send', 'pageview')
-
-router.afterEach((to, from) => {
-  ga('set', 'page', to.path)
-  ga('send', 'pageview')
-});
+// ga('set', 'page', router.currentRoute.path)
+// ga('send', 'pageview')
+// router.afterEach((to, from) => {
+//   ga('set', 'page', to.path)
+//   ga('send', 'pageview')
+// })
