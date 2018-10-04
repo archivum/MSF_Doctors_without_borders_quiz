@@ -9,7 +9,7 @@ const copies = {
           cta: "Start Quiz",
           cta_info: "Click for more information",
           cta_info_mobile: "Tap here for more information",
-          info_part1: "Doctors Without Borders/MSF humanitarian aid workers are compassionate, adventurous, and should be able to think on their feet. In addition, each of them has a unique perspective which make them well-suited for their particular roles.",
+          info_part1: "Doctors Without Borders / Médecins Sans Frontières (MSF) humanitarian aid workers are compassionate, adventurous, and should be able to think on their feet. In addition, each of them has a unique perspective which make them well-suited for their particular roles.",
           info_part2: "What kind of humanitarian aid worker are you? Take our quick quiz to find out. It’s fun, it’s short, you’ll learn more about MSF, and you’ll find your fit in the work we do.",
           info_num_of_q: {
             part1: "Questions:",
@@ -60,7 +60,7 @@ const copies = {
           cta: "COMMENCEZ LE JEU-QUESTIONNAIRE",
           cta_info: "Cliquez ici pour plus d’informations",
           cta_info_mobile: "Appuyez ici pour plus d'informations",
-          info_part1: "Les travailleurs humanitaires de Médecins Sans Frontières/MSF sont pleins de compassion, ont soif d'aventure et doivent être réactifs. De plus, chacun d'entre eux a une perspective unique qui le rend bien adapté à son rôle.",
+        info_part1: "Les travailleurs humanitaires de Médecins Sans Frontières (MSF) / Doctors Without Borders sont pleins de compassion, ont soif d'aventure et doivent être réactifs. De plus, chacun d'entre eux a une perspective unique qui le rend bien adapté à son rôle.",
           info_part2: "Quel est type de travailleur humanitaire êtes-vous ? Répondez à notre petit jeu-questionnaire pour le savoir. C'est amusant et rapide ! Puis, vous en apprendrez plus sur MSF, et vous pourrez imaginer votre place dans notre travail.",
           info_num_of_q: {
             part1: "Nombre de questions :",

@@ -85,7 +85,7 @@ import {profiles, profiles_fr} from '../lib/utils.js'
             // let newTitle = (this.$i18n.locale === 'en') ? 'I am ' + this.profileName : 'Je suis ' + this.profileName
             let newTitle = (this.$i18n.locale === 'en') ? 'What kind of humanitarian are you?' : 'Quel type de travailleur humanitaire êtes-vous?'
             let desc = (this.$i18n.locale === 'en') ? 'Take the Doctors Without Borders Quiz to find out.' : 'Jeu-questionnaire de Médecins Sans Frontières.'
-            let newURL = (this.$i18n.locale === 'en') ? 'https://quiz.doctorswithoutborders.ca/?lang=fr&utm_campaign=QUIZ18&utm_source=quiz&utm_medium=postaction&utm_content=fbshare&s_src=postaction&s_subsrc=fbshare': 'https://quiz.doctorswithoutborders.ca/?lang=fr&utm_campaign=QUIZ18&utm_source=quiz&utm_medium=postaction&utm_content=fbshare&s_src=postaction&s_subsrc=fbshare'
+            let newURL = (this.$i18n.locale === 'en') ? 'https://quiz.doctorswithoutborders.ca/?lang=en&utm_campaign=QUIZ18&utm_source=quiz&utm_medium=postaction&utm_content=fbshare&s_src=postaction&s_subsrc=fbshare': 'https://quiz.doctorswithoutborders.ca/?lang=fr&utm_campaign=QUIZ18&utm_source=quiz&utm_medium=postaction&utm_content=fbshare&s_src=postaction&s_subsrc=fbshare'
 
             // Facebook share option 1
             FB.ui({
@@ -114,7 +114,7 @@ import {profiles, profiles_fr} from '../lib/utils.js'
         },
         copyClipboard () {
             const el = document.createElement('textarea');
-            el.value = (this.$i18n.locale === 'en') ? 'https://quiz.doctorswithoutborders.ca/?lang=en&utm_campaign=QUIZ18&utm_source=quiz&utm_medium=postaction&utm_content=copyshare&s_src=postaction&s_subsrc=copyshare': 'https://quiz.doctorswithoutborders.ca/?lang=fr&utm_campaign=QUIZ18&utm_source=quiz&utm_medium=postaction&utm_content=copyshare&s_src=postaction&s_subsrc=copyshare'
+            el.value = (this.$i18n.locale === 'en') ? 'https://quiz.doctorswithoutborders.ca/?lang=en&utm_campaign=QUIZ18&utm_source=quiz&utm_medium=postaction&utm_content=copyshare&s_src=postaction&s_subsrc=copyshare' : 'https://quiz.doctorswithoutborders.ca/?lang=fr&utm_campaign=QUIZ18&utm_source=quiz&utm_medium=postaction&utm_content=copyshare&s_src=postaction&s_subsrc=copyshare'
             document.body.appendChild(el);
             el.select();
             document.execCommand('copy');
