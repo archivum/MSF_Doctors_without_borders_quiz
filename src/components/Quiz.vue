@@ -51,6 +51,7 @@
                 <input class="u-full-width " type="email" v-bind:placeholder="$t('quiz_form.f_name')" id="firstnameInput" v-model="$v.cons_first_name.$model">
                 <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
                 <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
+                <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model">
                 <span v-show="$v.cons_first_name.$error || $v.cons_email.$error"  style="color: #ea0029">Name and Email fields are required<br></span>
                 <span v-show="error"  style="color: #ea0029">{{error}}</span>
                 <label class="agree">
@@ -112,6 +113,7 @@
         cons_first_name: '',
         cons_last_name: '',
         cons_email: '',
+        cons_number: '',
         error: '',
         formBusy: false,
         formVars: ''
@@ -139,6 +141,9 @@
       window.removeEventListener('resize', this.handleResize)
     },
     validations: {
+      cons_number : {
+       
+      },
       cons_email : {
         required,
         email
@@ -213,7 +218,8 @@
         luminateExtend.global.update('cons_first_name', this.cons_first_name)
         luminateExtend.global.update('cons_last_name', this.cons_last_name)
         luminateExtend.global.update('cons_email', this.cons_email)
-        this.formVars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+luminateExtend.global.cons_first_name+"&cons_last_name="+luminateExtend.global.cons_last_name+"&cons_email="+luminateExtend.global.cons_email
+        // luminateExtend.global.update('cons_number', this.cons_number)
+        this.formVars = "&question_1480="+this.userChoice[0]+"&question_1481="+this.userChoice[1]+"&question_1482="+this.userChoice[2]+"&question_1483="+this.userChoice[3]+"&question_1484="+this.userChoice[4]+"&cons_first_name="+luminateExtend.global.cons_first_name+"&cons_last_name="+luminateExtend.global.cons_last_name+"&cons_email="+luminateExtend.global.cons_email+"&cons_number="+luminateExtend.global.cons_number
 
 
         luminateExtend.init({

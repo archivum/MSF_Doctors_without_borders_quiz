@@ -28,13 +28,14 @@ const copies = {
         {
           line1: 'Your results are almost in!',
           line2: 'Will you stand with us? We need people like you to help us respond to crises around the world. Sign up now.',
-          check: 'Join our supporters so you\'ll be the first to know when a crisis occurs. You can unsubscribe at any time. Your privacy is important to us.',
+          check: 'Join our supporters so you\'ll be the first to know when a crisis occurs. MSF may contact you via email and phone about different opportunities to help. You can unsubscribe at any time. Your privacy is important to us.',
           check_link: 'Learn more here.',
           continue: 'continue',
           skip: 'Skip this step',
           f_name: 'First Name',
           l_name: 'Last Name',
           email: 'Email',
+          number: 'Phone Number',
           back: 'Back',
           privacy_policy: 'http://www.doctorswithoutborders.ca/privacy-notice'
         },
@@ -79,13 +80,14 @@ const copies = {
         {
           line1: 'Vos résultats sont en cours de comptabilisation !',
           line2: 'Serez-vous à nos côtés ? Nous avons besoin de gens comme vous qui prendront la parole lorsque le monde a besoin d\'actions concrètes. Inscrivez-vous dès maintenant.',
-          check: 'Choisissez de rejoindre notre communauté d\'humanitaires. Vous pouvez vous désinscrire à tout moment. Nous accordons beaucoup d\'importance au respect de votre vie privée.',
+          check: 'Inscrivez-vous à titre de supporteur et nous vous informerons dès qu\'une crise surviendra. MSF pourrait vous contacter par courriel ou par téléphone pour vous informer des différentes façons dont vous pouvez aider. Vous pouvez vous désinscrire de la liste à tout moment. Nous accordons beaucoup d\'importance au respect de votre vie privée.',
           check_link: 'Plus de détails ici.',
           continue: 'continuer',
           skip: 'Passer cette étape',
           f_name: 'Prénom',
           l_name: 'Nom de famille',
           email: 'Email',
+          number: 'Phone Number',
           back: 'Précédent',
           privacy_policy: 'http://www.medecinssansfrontieres.ca/avis-de-confidentialit%C3%A9'
         },
