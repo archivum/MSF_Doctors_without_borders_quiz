@@ -777,8 +777,8 @@
  }
  
  .results .content {
-  margin-top: 30vh;
-  padding-bottom: 5rem;
+  margin-top: 35vh;
+  /* padding-bottom: 5rem; */
  }
  
  .results h3 {
@@ -846,7 +846,7 @@
  
  .agree {
   display: inline-flex;
-  margin-bottom: 40px;
+  margin-bottom: 1rem;
  }
  
  .agree input {
