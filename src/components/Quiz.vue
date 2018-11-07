@@ -57,7 +57,7 @@
          <span v-show="error" style="color: #ea0029">{{error}}</span>
          <label class="agree">
                    <input type="checkbox" checked>
-                     <span class="label-body">{{ $t('quiz_form.check') }} <a v-bind:href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
+                     <span class="label-body" id="confirmation-body">{{ $t('quiz_form.check') }} <a v-bind:href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
                  </label>
          <button @click="proceed()" :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''">
                    <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
