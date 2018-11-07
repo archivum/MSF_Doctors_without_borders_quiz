@@ -87,7 +87,7 @@ const copies = {
           f_name: 'Prénom',
           l_name: 'Nom de famille',
           email: 'Email',
-          number: 'Phone Number',
+          number: 'Numéro de téléphone',
           back: 'Précédent',
           privacy_policy: 'http://www.medecinssansfrontieres.ca/avis-de-confidentialit%C3%A9'
         },
