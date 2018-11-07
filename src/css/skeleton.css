@@ -231,6 +231,7 @@ input[type="button"].button-primary:focus {
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 input[type="email"],
+input[type="numeric"],
 input[type="number"],
 input[type="search"],
 input[type="text"],
@@ -249,6 +250,7 @@ select {
   box-sizing: border-box; }
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
+input[type="numeric"],
 input[type="number"],
 input[type="search"],
 input[type="text"],
@@ -264,6 +266,7 @@ textarea {
   padding-top: 6px;
   padding-bottom: 6px; }
 input[type="email"]:focus,
+input[type="numeric"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
 input[type="text"]:focus,

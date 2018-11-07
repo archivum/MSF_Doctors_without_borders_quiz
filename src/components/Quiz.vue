@@ -157,6 +157,7 @@
   },
   validations: {
    cons_number: {
+    required,
     numeric,
     minLength: minLength(10)
    },
