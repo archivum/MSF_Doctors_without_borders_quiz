@@ -39,7 +39,7 @@
       </div>
      </div>
      <!-- SIGN UP FORM SECTION -->
-     <div class='results' v-show="questionIndex === quiz.questions.length">
+     <div class='results' v-show="showForm">
       <div class="row row-v-align full-bg">
        <div class='quizLogo'><img :src="quiz.logo2" /></div>
        <!--UPDATE-->
@@ -132,7 +132,7 @@
         error: '',
         formBusy: false,
         formVars: '',
-        phoneHidden: false,
+        phoneHidden: false
       }
     },
     components: {
@@ -148,7 +148,6 @@
 
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout / 2)
-      window.setInterval(this.updateCheckText, 2000)
       if (this.is_touch_device()) {
         document.addEventListener('touchstart', this.handleTouchStart, false);
         document.addEventListener('touchmove', this.handleTouchMove, false);
@@ -461,7 +460,18 @@
         } catch (e) {
           return false;
         }
-      }
+      },
+      updateCheckText() {
+        setTimeout(() => {
+            console.log('phoneHidden:', this.phoneHidden)
+            console.log('numberInputisHidden: ', $('#numberInput').is(":hidden"))
+            if ($('#numberInput').is(":hidden")) {
+              this.phoneHidden = true
+            } else {
+              this.phoneHidden = false
+            }
+          }, 800);
+        }
     },
     watch: {
       showLoader(newValue, oldValue) {
@@ -485,17 +495,13 @@
             })
           }
         }
-      },
-      updateCheckText() {
-        console.log('phoneHidden:', this.phoneHidden)
-        console.log('numberInput: ', $('#numberInput').is(":hidden"))
-        if($('#numberInput').is(":hidden"))
-          {
-            this.phoneHidden = true
-          }
-        else {
-          this.phoneHidden = false
-        }
+      }
+    },
+    computed: {
+      showForm() {
+        console.log('watcher is running')
+        this.updateCheckText()
+        return this.questionIndex === this.quiz.questions.length
       }
     }
   }
