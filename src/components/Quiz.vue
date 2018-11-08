@@ -148,6 +148,7 @@
 
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout / 2)
+      window.setInterval(this.updateCheckText, 2000)
       if (this.is_touch_device()) {
         document.addEventListener('touchstart', this.handleTouchStart, false);
         document.addEventListener('touchmove', this.handleTouchMove, false);
@@ -339,16 +340,7 @@
         // $('body').css('background','#0f0f0f');
       },
       handleResize() {
-        console.log('phoneHidden:', this.phoneHidden)
         this.bigScreen = window.innerWidth >= 1000
-        console.log('numberInput: ', $('#numberInput').is(":hidden"))
-        if($('#numberInput').is(":hidden"))
-          {
-            this.phoneHidden = true
-          }
-        else {
-          this.phoneHidden = false
-        }
 
       },
       animateQuiz(delay = .2) {
@@ -492,6 +484,17 @@
               })
             })
           }
+        }
+      },
+      updateCheckText() {
+        console.log('phoneHidden:', this.phoneHidden)
+        console.log('numberInput: ', $('#numberInput').is(":hidden"))
+        if($('#numberInput').is(":hidden"))
+          {
+            this.phoneHidden = true
+          }
+        else {
+          this.phoneHidden = false
         }
       }
     }
