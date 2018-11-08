@@ -159,6 +159,7 @@
     },
     validations: {
       cons_number: {
+        required : (this.phoneHidden) ? false : true,
         numeric,
         minLength: minLength(10)
       },
@@ -463,8 +464,6 @@
       },
       updateCheckText() {
         setTimeout(() => {
-            console.log('phoneHidden:', this.phoneHidden)
-            console.log('numberInputisHidden: ', $('#numberInput').is(":hidden"))
             if ($('#numberInput').is(":hidden")) {
               this.phoneHidden = true
             } else {
