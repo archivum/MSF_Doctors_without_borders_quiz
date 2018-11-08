@@ -51,13 +51,13 @@
         <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
          <input class="u-full-width " type="email" v-bind:placeholder="$t('quiz_form.f_name')" id="firstnameInput" v-model="$v.cons_first_name.$model">
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
-         <input class="u-full-width" type="numeric" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model" v-on:keypress="isNumber" required>
+         <input class="u-full-width" type="numeric" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model" v-on:keypress="isNumber">
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
          <span v-show="$v.cons_first_name.$error || $v.cons_email.$error" style="color: #ea0029">Name and Email fields are required<br></span>
          <span v-show="error" style="color: #ea0029">{{error}}</span>
          <label class="agree">
                    <input type="checkbox" checked>
-                     <span class="label-body" id="confirmation-body">{{ $t('quiz_form.check') }} <a v-bind:href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
+                     <span class="label-body" id="confirmation-body">{{ (phoneHidden) ? $t('quiz_form.check_phone_removed') : $t('quiz_form.check') }} <a v-bind:href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
                  </label>
          <button @click="proceed()" :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''">
                    <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
@@ -131,7 +131,8 @@
         cons_number: '',
         error: '',
         formBusy: false,
-        formVars: ''
+        formVars: '',
+        phoneHidden: false,
       }
     },
     components: {
@@ -144,6 +145,10 @@
       console.log(this.$i18n.locale)
       this.setLangParam()
       this.handleResize()
+      if($('#numberInput').is(":hidden"))
+      {
+        this.phoneHidden = true
+      }
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout / 2)
       if (this.is_touch_device()) {
