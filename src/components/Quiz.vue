@@ -132,7 +132,7 @@
         error: '',
         formBusy: false,
         formVars: '',
-        phoneHidden: false
+        phoneHidden: false,
       }
     },
     components: {
@@ -159,7 +159,7 @@
     },
     validations: {
       cons_number: {
-        required: (!this.phoneHidden) ? required : false,
+        required: this.phoneRequired,
         numeric,
         minLength: minLength(10)
       },
@@ -466,10 +466,8 @@
         setTimeout(() => {
             if ($('#numberInput').is(":hidden")) {
               this.phoneHidden = true
-                setTimeout(() => { this.$v.$reset() }, 0)
             } else {
               this.phoneHidden = false
-                setTimeout(() => { this.$v.$reset() }, 0)
             }
           }, 800);
         }
