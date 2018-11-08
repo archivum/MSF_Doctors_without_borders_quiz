@@ -339,7 +339,9 @@
         // $('body').css('background','#0f0f0f');
       },
       handleResize() {
+        console.log('phoneHidden:', this.phoneHidden)
         this.bigScreen = window.innerWidth >= 1000
+        console.log('numberInput: ', $('#numberInput').is(":hidden"))
         if($('#numberInput').is(":hidden"))
           {
             this.phoneHidden = true
