@@ -51,7 +51,7 @@
         <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
          <input class="u-full-width " type="email" v-bind:placeholder="$t('quiz_form.f_name')" id="firstnameInput" v-model="$v.cons_first_name.$model">
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
-         <input class="u-full-width" type="numeric" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model" v-on:keypress="isNumber">
+         <input class="u-full-width" type="numeric" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model" v-on:keypress="isNumber" required>
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
          <span v-show="$v.cons_first_name.$error || $v.cons_email.$error" style="color: #ea0029">Name and Email fields are required<br></span>
          <span v-show="error" style="color: #ea0029">{{error}}</span>
@@ -102,389 +102,388 @@
  
  export default {
   mixins: [validationMixin],
-  data() {
-   return {
-    copies: copies,
-    quiz: this.$i18n.locale === 'en' ? quiz : quiz_fr,
-    language: '',
-    questionIndex: 0,
-    newQuestion: true,
-    userResponses: Array(),
-    userChoice: Array(),
-    showLoader: false,
-    loaderTimeout: 1000,
-    loaderBackground: '',
-    property: window.innerWidth >= 768 ? 'images' : 'imagesMobile',
-    bigScreen: true,
-    profile: 0,
-    swippable: false,
-    tl_pre_left: '',
-    tl_left: '',
-    tl_pre_right: '',
-    tl_right: '',
-    direction: 'left',
-    tl_form: '',
-    xDown: null,
-    cons_first_name: '',
-    cons_last_name: '',
-    cons_email: '',
-    cons_number: '',
-    error: '',
-    formBusy: false,
-    formVars: ''
-   }
-  },
-  components: {
-   QuizLoader
-  },
-  created() {
-   this.loaderBackground = window.innerWidth >= 768 ? this.quiz.questions[0].images : this.quiz.questions[0].imagesMobile
-  },
-  mounted() {
-   console.log(this.$i18n.locale)
-   this.setLangParam()
-   this.handleResize()
-   window.addEventListener('resize', this.handleResize)
-   setTimeout(this.animateQuiz, this.loaderTimeout / 2)
-   if (this.is_touch_device()) {
-    document.addEventListener('touchstart', this.handleTouchStart, false);
-    document.addEventListener('touchmove', this.handleTouchMove, false);
-   }
-   $('body').css('overflow', 'hidden');
-  },
-  beforeDestroy: function() {
-   window.removeEventListener('resize', this.handleResize)
-  },
-  validations: {
-   cons_number: {
-    required,
-    numeric,
-    minLength: minLength(10)
-   },
-   cons_email: {
-    required,
-    email
-   },
-   cons_first_name: {
-    required
-   },
-   validationGroup: ['cons_email', 'cons_first_name', 'cons_number']
-  },
-  methods: {
-   handleTouchStart: function(evt) {
-    this.xDown = evt.touches[0].clientX;
-   },
-   handleTouchMove: function(evt) {
-    if (this.questionIndex > 0 && this.questionIndex < this.quiz.questions.length) {
-     if (!this.xDown) {
-      return;
-     }
-     var xUp = evt.touches[0].clientX;
-     var xDiff = this.xDown - xUp;
-     console.log(xDiff)
-     if (xDiff > 5) {
-      //left
-     } else if (xDiff < -5) {
-      //right
-      this.prev();
-     }
-     this.xDown = null;
-    }
-   },
-   isNumber: function(evt) {
-      evt = (evt) ? evt : window.event;
-      var charCode = (evt.which) ? evt.which : evt.keyCode;
-      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-        evt.preventDefault();;
-      } else {
-        return true;
+    data() {
+      return {
+        copies: copies,
+        quiz: this.$i18n.locale === 'en' ? quiz : quiz_fr,
+        language: '',
+        questionIndex: 0,
+        newQuestion: true,
+        userResponses: Array(),
+        userChoice: Array(),
+        showLoader: false,
+        loaderTimeout: 1000,
+        loaderBackground: '',
+        property: window.innerWidth >= 768 ? 'images' : 'imagesMobile',
+        bigScreen: true,
+        profile: 0,
+        swippable: false,
+        tl_pre_left: '',
+        tl_left: '',
+        tl_pre_right: '',
+        tl_right: '',
+        direction: 'left',
+        tl_form: '',
+        xDown: null,
+        cons_first_name: '',
+        cons_last_name: '',
+        cons_email: '',
+        cons_number: '',
+        error: '',
+        formBusy: false,
+        formVars: ''
       }
     },
-   // Go to next question
-   next: function() {
-    if (this.newQuestion) {
-     this.direction = 'left'
-     let vm = this
-     this.tl_pre_left.restart(true, false)
-     this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
-     if (!(this.questionIndex + 1 < this.quiz.questions.length)) this.direction = 'form';
-     setTimeout(function() {
-      vm.showLoader = true
-     }, vm.loaderTimeout / 2)
-     this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
-     setTimeout(function() {
-      vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length)
-      vm.questionIndex === vm.quiz.questions.length ? vm.computeScore() : ''
-     }, vm.loaderTimeout / 2)
-    }
-    this.newQuestion = false
-   },
-   // Go to previous question
-   prev: function() {
-    if (this.newQuestion) {
-     this.direction = 'right'
-     let vm = this
-     this.tl_pre_right.restart(true, false)
-     this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
-     setTimeout(function() {
-      vm.showLoader = true
-     }, vm.loaderTimeout / 2)
-     this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
-     setTimeout(function() {
-      vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
-     }, vm.loaderTimeout / 2)
-    }
-    this.newQuestion = false
-   },
-   proceed: function() {
-    let vm = this
-    let randomString = Math.random().toString()
-    vm.formBusy = true
-    this.language = this.$i18n.locale === 'en' ? 'en_CA' : 'fr_CA'
-    luminateExtend.global.update('cons_first_name', this.cons_first_name)
-    luminateExtend.global.update('cons_last_name', this.cons_last_name)
-    luminateExtend.global.update('cons_email', this.cons_email)
-    // luminateExtend.global.update('cons_number', this.cons_number)
-    this.formVars = "&question_1480=" + this.userChoice[0] + "&question_1481=" + this.userChoice[1] + "&question_1482=" + this.userChoice[2] + "&question_1483=" + this.userChoice[3] + "&question_1484=" + this.userChoice[4] + "&cons_first_name=" + luminateExtend.global.cons_first_name + "&cons_last_name=" + luminateExtend.global.cons_last_name + "&cons_email=" + luminateExtend.global.cons_email + "&cons_number=" + luminateExtend.global.cons_number
- 
- 
-    luminateExtend.init({
-     useCache: false,
-     locale: vm.language,
-     apiKey: 'wDB09SQODRpVIOvX',
-     path: {
-      // nonsecure: 'http://www.grassriots.com/msfcan/site/',
-      nonsecure: 'https://secure3.convio.net/msfcan/site/',
-      secure: 'https://secure3.convio.net/msfcan/site/'
-     }
-    });
- 
- 
- 
-    luminateExtend.api.request([{
-     async: false,
-     useCache: false,
-     api: 'survey',
-     locale: vm.language,
-     data: `method=submitSurvey&survey_id=1565&s_locale=${vm.language}${vm.formVars}`,
-     requiresAuth: true,
-     callback: {
-      success: vm.callbackSucess,
-      error: vm.callbackError
-     }
-    }]);
-   },
-   callbackSucess: function(data) {
-    var vm = this
-    window.dataLayer = window.dataLayer || [];
-    var dataObject = {
-     'event': 'msf-lead-quiz'
-    };
-    if (typeof dataLayer != 'undefined') {
-     dataLayer.push(dataObject);
-    }
-    vm.formBusy = false
-    if (data.submitSurveyResponse.success === 'false') {
-     this.callbackError(data.submitSurveyResponse)
-    } else {
-     this.$router.push({
-      path: 'profile/' + this.profile
-     })
-    }
-   },
-   callbackError: function(data) {
-    let vm = this
-    this.formBusy = false
-    let errorMessage = data.errors.errorMessage
-    vm.error = errorMessage
-    setTimeout(() => {
-     vm.error = ''
-    }, 5000);
- 
-   },
-   computeScore() {
-    let score = 0
-    let categories = []
-    this.userResponses.map((answer) => {
-     score += answer
-     let index = categories.findIndex((element) => element.value === answer)
-     index !== -1 ? categories[index].count++ : categories.push({
-      value: answer,
-      count: 1
-     })
-    })
- 
-    categories.sort((a, b) => {
-     return b.count - a.count
-    })
- 
-    if (categories.length === 1 || categories[0].count > categories[1].count) {
-     let categoryIndex = profiles.categories.findIndex((element) => {
-      return element.value === categories[0].value
-     })
-     this.profile = profiles.categories[categoryIndex].id
-    } else {
-     let vm = this
-     profiles.categories.map((item) => {
-      if (score >= item.min && score <= item.max) {
-       vm.profile = item.id
-       return
+    components: {
+      QuizLoader
+    },
+    created() {
+      this.loaderBackground = window.innerWidth >= 768 ? this.quiz.questions[0].images : this.quiz.questions[0].imagesMobile
+    },
+    mounted() {
+      console.log(this.$i18n.locale)
+      this.setLangParam()
+      this.handleResize()
+      window.addEventListener('resize', this.handleResize)
+      setTimeout(this.animateQuiz, this.loaderTimeout / 2)
+      if (this.is_touch_device()) {
+        document.addEventListener('touchstart', this.handleTouchStart, false);
+        document.addEventListener('touchmove', this.handleTouchMove, false);
       }
-     })
+      $('body').css('overflow', 'hidden');
+    },
+    beforeDestroy: function () {
+      window.removeEventListener('resize', this.handleResize)
+    },
+    validations: {
+      cons_number: {
+        numeric,
+        minLength: minLength(10)
+      },
+      cons_email: {
+        required,
+        email
+      },
+      cons_first_name: {
+        required
+      },
+      validationGroup: ['cons_email', 'cons_first_name', 'cons_number']
+    },
+    methods: {
+      handleTouchStart: function (evt) {
+        this.xDown = evt.touches[0].clientX;
+      },
+      handleTouchMove: function (evt) {
+        if (this.questionIndex > 0 && this.questionIndex < this.quiz.questions.length) {
+          if (!this.xDown) {
+            return;
+          }
+          var xUp = evt.touches[0].clientX;
+          var xDiff = this.xDown - xUp;
+          console.log(xDiff)
+          if (xDiff > 5) {
+            //left
+          } else if (xDiff < -5) {
+            //right
+            this.prev();
+          }
+          this.xDown = null;
+        }
+      },
+      isNumber: function (evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+          evt.preventDefault();;
+        } else {
+          return true;
+        }
+      },
+      // Go to next question
+      next: function () {
+        if (this.newQuestion) {
+          this.direction = 'left'
+          let vm = this
+          this.tl_pre_left.restart(true, false)
+          this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
+          if (!(this.questionIndex + 1 < this.quiz.questions.length)) this.direction = 'form';
+          setTimeout(function () {
+            vm.showLoader = true
+          }, vm.loaderTimeout / 2)
+          this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
+          setTimeout(function () {
+            vm.questionIndex = Math.min(vm.questionIndex + 1, vm.quiz.questions.length)
+            vm.questionIndex === vm.quiz.questions.length ? vm.computeScore() : ''
+          }, vm.loaderTimeout / 2)
+        }
+        this.newQuestion = false
+      },
+      // Go to previous question
+      prev: function () {
+        if (this.newQuestion) {
+          this.direction = 'right'
+          let vm = this
+          this.tl_pre_right.restart(true, false)
+          this.loaderBackground = this.quiz.questions[Math.max(0, this.questionIndex - 1)][this.property]
+          setTimeout(function () {
+            vm.showLoader = true
+          }, vm.loaderTimeout / 2)
+          this.property = window.innerWidth >= 768 ? 'images' : 'imagesMobile'
+          setTimeout(function () {
+            vm.questionIndex = Math.max(vm.questionIndex - 1, 0)
+          }, vm.loaderTimeout / 2)
+        }
+        this.newQuestion = false
+      },
+      proceed: function () {
+        let vm = this
+        let randomString = Math.random().toString()
+        vm.formBusy = true
+        this.language = this.$i18n.locale === 'en' ? 'en_CA' : 'fr_CA'
+        luminateExtend.global.update('cons_first_name', this.cons_first_name)
+        luminateExtend.global.update('cons_last_name', this.cons_last_name)
+        luminateExtend.global.update('cons_email', this.cons_email)
+        // luminateExtend.global.update('cons_number', this.cons_number)
+        this.formVars = "&question_1480=" + this.userChoice[0] + "&question_1481=" + this.userChoice[1] + "&question_1482=" + this.userChoice[2] + "&question_1483=" + this.userChoice[3] + "&question_1484=" + this.userChoice[4] + "&cons_first_name=" + luminateExtend.global.cons_first_name + "&cons_last_name=" + luminateExtend.global.cons_last_name + "&cons_email=" + luminateExtend.global.cons_email + "&cons_number=" + luminateExtend.global.cons_number
+
+
+        luminateExtend.init({
+          useCache: false,
+          locale: vm.language,
+          apiKey: 'wDB09SQODRpVIOvX',
+          path: {
+            // nonsecure: 'http://www.grassriots.com/msfcan/site/',
+            nonsecure: 'https://secure3.convio.net/msfcan/site/',
+            secure: 'https://secure3.convio.net/msfcan/site/'
+          }
+        });
+
+
+
+        luminateExtend.api.request([{
+          async: false,
+          useCache: false,
+          api: 'survey',
+          locale: vm.language,
+          data: `method=submitSurvey&survey_id=1565&s_locale=${vm.language}${vm.formVars}`,
+          requiresAuth: true,
+          callback: {
+            success: vm.callbackSucess,
+            error: vm.callbackError
+          }
+        }]);
+      },
+      callbackSucess: function (data) {
+        var vm = this
+        window.dataLayer = window.dataLayer || [];
+        var dataObject = {
+          'event': 'msf-lead-quiz'
+        };
+        if (typeof dataLayer != 'undefined') {
+          dataLayer.push(dataObject);
+        }
+        vm.formBusy = false
+        if (data.submitSurveyResponse.success === 'false') {
+          this.callbackError(data.submitSurveyResponse)
+        } else {
+          this.$router.push({
+            path: 'profile/' + this.profile
+          })
+        }
+      },
+      callbackError: function (data) {
+        let vm = this
+        this.formBusy = false
+        let errorMessage = data.errors.errorMessage
+        vm.error = errorMessage
+        setTimeout(() => {
+          vm.error = ''
+        }, 5000);
+
+      },
+      computeScore() {
+        let score = 0
+        let categories = []
+        this.userResponses.map((answer) => {
+          score += answer
+          let index = categories.findIndex((element) => element.value === answer)
+          index !== -1 ? categories[index].count++ : categories.push({
+            value: answer,
+            count: 1
+          })
+        })
+
+        categories.sort((a, b) => {
+          return b.count - a.count
+        })
+
+        if (categories.length === 1 || categories[0].count > categories[1].count) {
+          let categoryIndex = profiles.categories.findIndex((element) => {
+            return element.value === categories[0].value
+          })
+          this.profile = profiles.categories[categoryIndex].id
+        } else {
+          let vm = this
+          profiles.categories.map((item) => {
+            if (score >= item.min && score <= item.max) {
+              vm.profile = item.id
+              return
+            }
+          })
+        }
+      },
+      setScrollable() {
+        $('body').css('overflow', 'auto');
+        // $('body').css('background','#0f0f0f');
+      },
+      handleResize() {
+        this.bigScreen = window.innerWidth >= 1000
+      },
+      animateQuiz(delay = .2) {
+        this.tl_pre_left = new TimelineMax()
+        this.tl_left = new TimelineMax()
+        this.tl_pre_right = new TimelineMax()
+        this.tl_right = new TimelineMax()
+        this.tl_form = new TimelineMax()
+
+        this.tl_form.to([$(".quiz-loader .progress-container"), $(".quiz-loader .quizLogo")], 0.01, {
+          opacity: 0
+        });
+        this.tl_form.to($(".results .content"), 1, {
+          opacity: 1
+        });
+        TweenMax.set($(".results .content"), {
+          opacity: 0
+        })
+
+        if (this.is_touch_device()) {
+          TweenMax.set($(".progress-and-button"), {
+            x: 0,
+            opacity: 1
+          })
+
+          this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input")], .4, {
+            x: 0,
+            opacity: 1
+          }, {
+            x: -50,
+            opacity: 0,
+            ease: Power1.easeOut
+          }, delay)
+          this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input")], .4, {
+            x: 0,
+            opacity: 1
+          }, {
+            x: 50,
+            opacity: 0,
+            ease: Power1.easeOut
+          }, delay)
+          this.tl_left.staggerFromTo([$(".question"), $(".questions-input")], .8, {
+            x: 50,
+            opacity: 0
+          }, {
+            x: 0,
+            opacity: 1,
+            ease: Power1.easeOut
+          }, delay)
+          this.tl_right.staggerFromTo([$(".question"), $(".questions-input")], .8, {
+            x: -50,
+            opacity: 0
+          }, {
+            x: 0,
+            opacity: 1,
+            ease: Power1.easeOut
+          }, delay)
+        } else {
+          this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .4, {
+            x: 0,
+            opacity: 1
+          }, {
+            x: -50,
+            opacity: 0,
+            ease: Power1.easeOut
+          }, delay)
+          this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .4, {
+            x: 0,
+            opacity: 1
+          }, {
+            x: 50,
+            opacity: 0,
+            ease: Power1.easeOut
+          }, delay)
+          this.tl_left.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, {
+            x: 50,
+            opacity: 0
+          }, {
+            x: 0,
+            opacity: 1,
+            ease: Power1.easeOut
+          }, delay)
+          this.tl_right.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, {
+            x: -50,
+            opacity: 0
+          }, {
+            x: 0,
+            opacity: 1,
+            ease: Power1.easeOut
+          }, delay)
+        }
+        this.tl_right.addPause(0)
+        this.tl_pre_right.addPause(0)
+        this.tl_pre_left.addPause(0)
+        this.tl_form.addPause(0);
+      },
+      setLangParam() {
+        this.$i18n.locale === 'en' ? this.$router.push({
+          query: {
+            lang: 'en'
+          }
+        }) : this.$router.push({
+          query: {
+            lang: 'fr'
+          }
+        })
+      },
+      resetAnimation() {
+        $('.question').css('opacity', '0')
+        $('.questions-input').css('opacity', '0')
+        if (!this.is_touch_device)
+          $('.progress-and-button').css('opacity', '0')
+      },
+      is_touch_device() {
+        try {
+          document.createEvent("TouchEvent");
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+    },
+    watch: {
+      showLoader(newValue, oldValue) {
+        if (!newValue) {
+          if (this.direction == 'left') {
+            this.tl_left.restart(true, false)
+          } else if (this.direction == 'right') {
+            this.tl_right.restart(true, false)
+          } else {
+            this.tl_form.restart(true, false)
+            if (window.innerWidth <= 320 || (window.innerWidth < 420 && this.$i18n.locale == 'fr')) this.setScrollable()
+            let quiz = this.quiz;
+            let userChoice = this.userChoice;
+
+            $(this.userResponses).each(function (i) {
+              let x = i;
+              let choice = this;
+              $(quiz.questions[x].responses).each(function () {
+                if (this.value == choice) userChoice[x] = this.val_2;
+              })
+            })
+          }
+        }
+      }
     }
-   },
-   setScrollable() {
-    $('body').css('overflow', 'auto');
-    // $('body').css('background','#0f0f0f');
-   },
-   handleResize() {
-    this.bigScreen = window.innerWidth >= 1000
-   },
-   animateQuiz(delay = .2) {
-    this.tl_pre_left = new TimelineMax()
-    this.tl_left = new TimelineMax()
-    this.tl_pre_right = new TimelineMax()
-    this.tl_right = new TimelineMax()
-    this.tl_form = new TimelineMax()
- 
-    this.tl_form.to([$(".quiz-loader .progress-container"), $(".quiz-loader .quizLogo")], 0.01, {
-     opacity: 0
-    });
-    this.tl_form.to($(".results .content"), 1, {
-     opacity: 1
-    });
-    TweenMax.set($(".results .content"), {
-     opacity: 0
-    })
- 
-    if (this.is_touch_device()) {
-     TweenMax.set($(".progress-and-button"), {
-      x: 0,
-      opacity: 1
-     })
- 
-     this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input")], .4, {
-      x: 0,
-      opacity: 1
-     }, {
-      x: -50,
-      opacity: 0,
-      ease: Power1.easeOut
-     }, delay)
-     this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input")], .4, {
-      x: 0,
-      opacity: 1
-     }, {
-      x: 50,
-      opacity: 0,
-      ease: Power1.easeOut
-     }, delay)
-     this.tl_left.staggerFromTo([$(".question"), $(".questions-input")], .8, {
-      x: 50,
-      opacity: 0
-     }, {
-      x: 0,
-      opacity: 1,
-      ease: Power1.easeOut
-     }, delay)
-     this.tl_right.staggerFromTo([$(".question"), $(".questions-input")], .8, {
-      x: -50,
-      opacity: 0
-     }, {
-      x: 0,
-      opacity: 1,
-      ease: Power1.easeOut
-     }, delay)
-    } else {
-     this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .4, {
-      x: 0,
-      opacity: 1
-     }, {
-      x: -50,
-      opacity: 0,
-      ease: Power1.easeOut
-     }, delay)
-     this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .4, {
-      x: 0,
-      opacity: 1
-     }, {
-      x: 50,
-      opacity: 0,
-      ease: Power1.easeOut
-     }, delay)
-     this.tl_left.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, {
-      x: 50,
-      opacity: 0
-     }, {
-      x: 0,
-      opacity: 1,
-      ease: Power1.easeOut
-     }, delay)
-     this.tl_right.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, {
-      x: -50,
-      opacity: 0
-     }, {
-      x: 0,
-      opacity: 1,
-      ease: Power1.easeOut
-     }, delay)
-    }
-    this.tl_right.addPause(0)
-    this.tl_pre_right.addPause(0)
-    this.tl_pre_left.addPause(0)
-    this.tl_form.addPause(0);
-   },
-   setLangParam() {
-    this.$i18n.locale === 'en' ? this.$router.push({
-     query: {
-      lang: 'en'
-     }
-    }) : this.$router.push({
-     query: {
-      lang: 'fr'
-     }
-    })
-   },
-   resetAnimation() {
-    $('.question').css('opacity', '0')
-    $('.questions-input').css('opacity', '0')
-    if (!this.is_touch_device)
-     $('.progress-and-button').css('opacity', '0')
-   },
-   is_touch_device() {
-    try {
-     document.createEvent("TouchEvent");
-     return true;
-    } catch (e) {
-     return false;
-    }
-   }
-  },
-  watch: {
-   showLoader(newValue, oldValue) {
-    if (!newValue) {
-     if (this.direction == 'left') {
-      this.tl_left.restart(true, false)
-     } else if (this.direction == 'right') {
-      this.tl_right.restart(true, false)
-     } else {
-      this.tl_form.restart(true, false)
-      if (window.innerWidth <= 320 || (window.innerWidth < 420 && this.$i18n.locale == 'fr')) this.setScrollable()
-      let quiz = this.quiz;
-      let userChoice = this.userChoice;
- 
-      $(this.userResponses).each(function(i) {
-       let x = i;
-       let choice = this;
-       $(quiz.questions[x].responses).each(function() {
-        if (this.value == choice) userChoice[x] = this.val_2;
-       })
-      })
-     }
-    }
-   }
   }
- }
 </script>
 
 <style scoped>
