@@ -53,7 +53,7 @@
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
          <input class="u-full-width" type="numeric" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model" v-on:keypress="isNumber">
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
-         <span v-show="$v.cons_first_name.$error || $v.cons_email.$error" style="color: #ea0029">Name and Email fields are required<br></span>
+         <span v-show="$v.cons_first_name.$error || $v.cons_email.$error || formInfo" style="color: #ea0029">*Name and Email fields are required</span>
          <span v-show="error" style="color: #ea0029">{{error}}</span>
          <label class="agree">
                    <input type="checkbox" checked>
@@ -341,7 +341,6 @@
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
-
       },
       animateQuiz(delay = .2) {
         this.tl_pre_left = new TimelineMax()
@@ -501,6 +500,11 @@
         console.log('watcher is running')
         this.updateCheckText()
         return this.questionIndex === this.quiz.questions.length
+      },
+      formInfo() {
+       let fname = this.cons_first_name.length
+       let eml = this.cons_email.length
+       return fname > 0 && eml > 0 ? false : true 
       }
     }
   }
