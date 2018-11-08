@@ -145,10 +145,7 @@
       console.log(this.$i18n.locale)
       this.setLangParam()
       this.handleResize()
-      if($('#numberInput').is(":hidden"))
-      {
-        this.phoneHidden = true
-      }
+
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout / 2)
       if (this.is_touch_device()) {
@@ -343,6 +340,14 @@
       },
       handleResize() {
         this.bigScreen = window.innerWidth >= 1000
+        if($('#numberInput').is(":hidden"))
+          {
+            this.phoneHidden = true
+          }
+        else {
+          this.phoneHidden = false
+        }
+
       },
       animateQuiz(delay = .2) {
         this.tl_pre_left = new TimelineMax()
