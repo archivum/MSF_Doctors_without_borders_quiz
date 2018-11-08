@@ -159,7 +159,7 @@
     },
     validations: {
       cons_number: {
-        required: (!this.phoneHidden) ? required : '',
+        required: (!this.phoneHidden) ? required : false,
         numeric,
         minLength: minLength(10)
       },
