@@ -159,7 +159,7 @@
     },
     validations: {
       cons_number: {
-        required : (this.phoneHidden) ? false : true,
+        required: (!this.phoneHidden) ? required : '',
         numeric,
         minLength: minLength(10)
       },
@@ -466,8 +466,10 @@
         setTimeout(() => {
             if ($('#numberInput').is(":hidden")) {
               this.phoneHidden = true
+                setTimeout(() => { this.$v.$reset() }, 0)
             } else {
               this.phoneHidden = false
+                setTimeout(() => { this.$v.$reset() }, 0)
             }
           }, 800);
         }
