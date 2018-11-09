@@ -53,7 +53,7 @@
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
          <input class="u-full-width" type="numeric" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model">
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
-         <span v-show="$v.cons_first_name.$error || $v.cons_email.$error || formInfo" style="color: #ea0029">*Name and Email fields are required</span>
+         <span v-show="$v.cons_first_name.$error || $v.cons_email.$error || formInfo" style="color: #ea0029">{{ $t('quiz_form.warning') }}</span>
          <span v-show="error" style="color: #ea0029">{{error}}</span>
          <label class="agree">
                    <input type="checkbox" checked>
@@ -169,7 +169,10 @@
       cons_first_name: {
         required
       },
-      validationGroup: ['cons_email', 'cons_first_name', 'cons_number']
+      cons_last_name: {
+        required
+      },
+      validationGroup: ['cons_email', 'cons_first_name', 'cons_last_name','cons_number']
     },
     methods: {
       handleTouchStart: function (evt) {
@@ -502,8 +505,9 @@
       },
       formInfo() {
        let fname = this.cons_first_name.length
+       let lname = this.cons_last_name.length
        let eml = this.cons_email.length
-       return (fname > 0 && eml > 0) ? false : true 
+       return (fname > 0 && lname > 0 && eml > 0) ? false : true 
       }
     }
   }

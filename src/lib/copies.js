@@ -34,11 +34,12 @@ const copies = {
           continue: 'continue',
           skip: 'Skip this step',
           f_name: 'First Name*',
-          l_name: 'Last Name',
+          l_name: 'Last Name*',
           email: 'Email*',
-          number: 'Phone Number (Optional)',
+          number: 'Phone Number',
           back: 'Back',
-          privacy_policy: 'http://www.doctorswithoutborders.ca/privacy-notice'
+          privacy_policy: 'http://www.doctorswithoutborders.ca/privacy-notice',
+          warning: '*Name and Email fields are required'
         },
     profile:
         {
@@ -87,11 +88,12 @@ const copies = {
           continue: 'continuer',
           skip: 'Passer cette étape',
           f_name: 'Prénom*',
-          l_name: 'Nom de famille',
+          l_name: 'Nom de famille*',
           email: 'Email*',
-          number: 'Numéro de téléphone (Optionnel)',
+          number: 'Numéro de téléphone',
           back: 'Précédent',
-          privacy_policy: 'http://www.medecinssansfrontieres.ca/avis-de-confidentialit%C3%A9'
+          privacy_policy: 'http://www.medecinssansfrontieres.ca/avis-de-confidentialit%C3%A9',
+          warning: '*Nom et Courriel sont des champs obligatoires'
         },
     profile:
         {
