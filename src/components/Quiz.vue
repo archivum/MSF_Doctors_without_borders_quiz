@@ -51,7 +51,7 @@
         <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
          <input class="u-full-width " type="email" v-bind:placeholder="$t('quiz_form.f_name')" id="firstnameInput" v-model="$v.cons_first_name.$model">
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
-         <input class="u-full-width" type="numeric" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model">
+         <input class="u-full-width" type="numeric" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model" @keypress="isNumber">
          <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
          <span v-show="$v.cons_first_name.$error || $v.cons_email.$error || formInfo" style="color: #ea0029">{{ $t('quiz_form.warning') }}</span>
          <span v-show="error" style="color: #ea0029">{{error}}</span>
