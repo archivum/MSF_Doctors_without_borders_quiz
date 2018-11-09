@@ -35,7 +35,7 @@ const copies = {
           skip: 'Skip this step',
           f_name: 'First Name*',
           l_name: 'Last Name',
-          email: 'Email',
+          email: 'Email*',
           number: 'Phone Number (Optional)',
           back: 'Back',
           privacy_policy: 'http://www.doctorswithoutborders.ca/privacy-notice'
