@@ -227,7 +227,7 @@ ul span {
 
 h2 {
   display: inline;
-  box-shadow: 10px 0 0 rgba(238, 0, 0, 1), -10px 0 0 rgba(238, 0, 0, 1);
+  /* box-shadow: 10px 0 0 rgba(238, 0, 0, 1), -10px 0 0 rgba(238, 0, 0, 1); */
   color: white;
   /*    font-size: 38px;*/
   /*    line-height: 58px;*/
@@ -239,16 +239,18 @@ h2 {
   font-family: "FreightSans Pro";
   font-weight: bold;
   font-style: normal;
+  padding: 0 10px 0 10px;
+  margin-left: -10px;
 }
 
 h2.opacity-70 {
-  box-shadow: 10px 0 0 rgba(238, 0, 0, 0.7), -10px 0 0 rgba(238, 0, 0, 0.7);
+  /* box-shadow: 10px 0 0 rgba(238, 0, 0, 0.7), -10px 0 0 rgba(238, 0, 0, 0.7); */
   background-color: rgba(238, 0, 0, 0.7);
 }
 
 h3 {
   display: inline;
-  box-shadow: 10px 0 0 rgba(35, 31, 32, 1), -10px 0 0 rgba(35, 31, 32, 1);
+  /* box-shadow: 10px 0 0 rgba(35, 31, 32, 1), -10px 0 0 rgba(35, 31, 32, 1); */
   color: white;
   font-size: 3.7rem;
   line-height: 5.5rem;
@@ -259,10 +261,12 @@ h3 {
   font-family: "FreightSans Pro";
   font-weight: 500;
   font-style: normal;
+  padding: 0 10px 0 10px;
+  margin-left: -10px;
 }
 
 h3.opacity-58 {
-  box-shadow: 10px 0 0 rgba(35, 31, 32, 0.58), -10px 0 0 rgba(35, 31, 32, 0.58);
+  /* box-shadow: 10px 0 0 rgba(35, 31, 32, 0.58), -10px 0 0 rgba(35, 31, 32, 0.58); */
   background: rgba(35, 31, 32, 0.58);
 }
 
