@@ -251,7 +251,7 @@
         luminateExtend.global.update('cons_email', this.cons_email)
         luminateExtend.global.update('cons_number', this.cons_number)
         luminateExtend.global.update('opt_in', this.opt_in)
-        this.formVars = "&question_1480=" + this.userChoice[0] + "&question_1481=" + this.userChoice[1] + "&question_1482=" + this.userChoice[2] + "&question_1483=" + this.userChoice[3] + "&question_1484=" + this.userChoice[4] + "&cons_first_name=" + luminateExtend.global.cons_first_name + "&cons_last_name=" + luminateExtend.global.cons_last_name + "&cons_email=" + luminateExtend.global.cons_email + "&cons_number=" + luminateExtend.global.cons_number + "&opt_in=" + luminateExtend.global.opt_in
+        this.formVars = "&question_1480=" + this.userChoice[0] + "&question_1481=" + this.userChoice[1] + "&question_1482=" + this.userChoice[2] + "&question_1483=" + this.userChoice[3] + "&question_1484=" + this.userChoice[4] + "&cons_first_name=" + luminateExtend.global.cons_first_name + "&cons_last_name=" + luminateExtend.global.cons_last_name + "&cons_email=" + luminateExtend.global.cons_email + "&cons_phone=" + luminateExtend.global.cons_number + "&cons_email_opt_in=" + luminateExtend.global.opt_in
 
         console.log('>>', this.formVars)
 
