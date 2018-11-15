@@ -56,7 +56,7 @@
          <span v-show="$v.cons_first_name.$error || $v.cons_email.$error || formInfo" style="color: #ea0029">{{ $t('quiz_form.warning') }}</span>
          <span v-show="error" style="color: #ea0029">{{error}}</span>
          <label class="agree">
-                   <input type="checkbox" checked>
+                   <input type="checkbox" v-model="opt_in">
                      <span class="label-body" id="confirmation-body">{{ $t('quiz_form.check') }} <a v-bind:href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
                  </label>
          <button @click="proceed()" :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''">
@@ -129,6 +129,7 @@
         cons_last_name: '',
         cons_email: '',
         cons_number: '',
+        opt_in: true,
         error: '',
         formBusy: false,
         formVars: '',
@@ -248,9 +249,11 @@
         luminateExtend.global.update('cons_first_name', this.cons_first_name)
         luminateExtend.global.update('cons_last_name', this.cons_last_name)
         luminateExtend.global.update('cons_email', this.cons_email)
-        // luminateExtend.global.update('cons_number', this.cons_number)
-        this.formVars = "&question_1480=" + this.userChoice[0] + "&question_1481=" + this.userChoice[1] + "&question_1482=" + this.userChoice[2] + "&question_1483=" + this.userChoice[3] + "&question_1484=" + this.userChoice[4] + "&cons_first_name=" + luminateExtend.global.cons_first_name + "&cons_last_name=" + luminateExtend.global.cons_last_name + "&cons_email=" + luminateExtend.global.cons_email + "&cons_number=" + luminateExtend.global.cons_number
+        luminateExtend.global.update('cons_number', this.cons_number)
+        luminateExtend.global.update('opt_in', this.opt_in)
+        this.formVars = "&question_1480=" + this.userChoice[0] + "&question_1481=" + this.userChoice[1] + "&question_1482=" + this.userChoice[2] + "&question_1483=" + this.userChoice[3] + "&question_1484=" + this.userChoice[4] + "&cons_first_name=" + luminateExtend.global.cons_first_name + "&cons_last_name=" + luminateExtend.global.cons_last_name + "&cons_email=" + luminateExtend.global.cons_email + "&cons_number=" + luminateExtend.global.cons_number + "&opt_in=" + luminateExtend.global.opt_in
 
+        console.log('>>', this.formVars)
 
         luminateExtend.init({
           useCache: false,
