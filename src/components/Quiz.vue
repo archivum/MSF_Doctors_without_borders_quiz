@@ -1,104 +1,105 @@
 <template>
- <transition name="fade">
-  <div id="quiz">
-   <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :backgroundUrl="loaderBackground" :quizLogo="quiz.logo" :progress="(questionIndex + 1) / quiz.questions.length * 100"></quiz-loader>
-   <div class="quiz-container">
-    <div class="full-width-container container">
-     <!-- QUIZ SECTION -->
-     <div v-for="(question, index) in quiz.questions" :key="index">
-      <div v-show="index === questionIndex" v-bind:style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url(' + question[property] + ')'}" class="row full-bg ">
-       <div class="eight columns offset-by-two quiz">
-        <div class='quizLogo'><img :src="quiz.logo" alt="" /></div>
-        <h3 class="question">{{ question.text }}</h3>
-        <ul class="questions-input">
-         <li v-for="response in question.responses">
-          <label>
-                     <input type="radio"
-                            v-bind:value="response.value"
-                            v-bind:name="index"
-                            v-model="userResponses[index]" v-on:click="next">
-                     <div class="answer" :class="userResponses[index] === response.value ? `response-selected` : ``"><p>
-                       {{ response.text }}</p></div>
-                   </label>
-         </li>
-        </ul>
-        <div class="progress-and-button">
-         <div class="button-back" v-on:click="prev" v-if="questionIndex > 0">
-          &#60; {{ $t('quiz_form.back') }}
-         </div>
-         <router-link class="button-back" to="/" v-else>
-          &#60; {{ $t('quiz_form.back') }}
-         </router-link>
-         <div class="progress-container">
-          <div class="progress" v-bind:style="{ width: (questionIndex + 1) / quiz.questions.length * 100 + '%' }"></div>
-          <div class="progress-bar"></div>
-         </div>
- 
+  <transition name="fade">
+    <div id="quiz">
+      <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :background-url="loaderBackground" :quiz-logo="quiz.logo" :progress="(questionIndex + 1) / quiz.questions.length * 100"/>
+      <div class="quiz-container">
+        <div class="full-width-container container">
+          <!-- QUIZ SECTION -->
+          <div v-for="(question, index) in quiz.questions" :key="index">
+            <div v-show="index === questionIndex" :style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url(' + question[property] + ')'}" class="row full-bg ">
+              <div class="eight columns offset-by-two quiz">
+                <div class="quizLogo"><img :src="quiz.logo" alt="" ></div>
+                <h3 class="question">{{ question.text }}</h3>
+                <ul class="questions-input">
+                  <li v-for="response in question.responses">
+                    <label>
+                      <input
+                        :value="response.value"
+                        :name="index"
+                        v-model="userResponses[index]"
+                        type="radio"
+                        @click="next">
+                      <div :class="userResponses[index] === response.value ? `response-selected` : ``" class="answer"><p>
+                        {{ response.text }}</p></div>
+                    </label>
+                  </li>
+                </ul>
+                <div class="progress-and-button">
+                  <div v-if="questionIndex > 0" class="button-back" @click="prev">
+                    &#60; {{ $t('quiz_form.back') }}
+                  </div>
+                  <router-link v-else class="button-back" to="/">
+                    &#60; {{ $t('quiz_form.back') }}
+                  </router-link>
+                  <div class="progress-container">
+                    <div :style="{ width: (questionIndex + 1) / quiz.questions.length * 100 + '%' }" class="progress"/>
+                    <div class="progress-bar"/>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- SIGN UP FORM SECTION -->
+          <div v-show="showForm" class="results">
+            <div class="row row-v-align full-bg">
+              <div class="quizLogo"><img :src="quiz.logo2" ></div>
+              <!--UPDATE-->
+              <div class="content">
+                <div :class="bigScreen ? `three offset-by-two` : `six offset-by-two`" class="columns">
+                  <h3>{{ $t('quiz_form.line1') }}</h3>
+                  <p>{{ $t('quiz_form.line2') }}</p>
+                </div>
+                <div :class="bigScreen ? `four` : `eight offset-by-two`" class="columns">
+                  <input id="firstnameInput" :placeholder="$t('quiz_form.f_name')" v-model="$v.cons_first_name.$model" class="u-full-width " type="email">
+                  <input id="lastnameInput" :placeholder="$t('quiz_form.l_name')" v-model="cons_last_name" class="u-full-width" type="email">
+                  <input id="numberInput" :placeholder="$t('quiz_form.number')" v-model="$v.cons_number.$model" class="u-full-width" type="numeric" @keypress="isNumber">
+                  <input id="emailInput" :placeholder="$t('quiz_form.email')" v-model="$v.cons_email.$model" class="u-full-width" type="email">
+                  <span v-show="$v.cons_first_name.$error || $v.cons_email.$error || formInfo" style="color: #ea0029">{{ $t('quiz_form.warning') }}</span>
+                  <span v-show="error" style="color: #ea0029">{{ error }}</span>
+                  <label class="agree">
+                    <input v-model="opt_in" type="checkbox">
+                    <span id="confirmation-body" class="label-body">{{ $t('quiz_form.check') }} <a :href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
+                  </label>
+                  <button :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''" @click="proceed()">
+                    <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
+                    {{ $t('quiz_form.continue') }}
+                  </button>
+                  <span class="skip"><router-link :to="{ path: 'profile/' + profile }">{{ $t('quiz_form.skip') }}</router-link></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-       </div>
+        <div v-show="questionIndex === quiz.questions.length"/>
       </div>
-     </div>
-     <!-- SIGN UP FORM SECTION -->
-     <div class='results' v-show="showForm">
-      <div class="row row-v-align full-bg">
-       <div class='quizLogo'><img :src="quiz.logo2" /></div>
-       <!--UPDATE-->
-       <div class="content">
-        <div class="columns" :class="bigScreen ? `three offset-by-two` : `six offset-by-two`">
-         <h3>{{ $t('quiz_form.line1') }}</h3>
-         <p>{{ $t('quiz_form.line2') }}</p>
-        </div>
-        <div class="columns" :class="bigScreen ? `four` : `eight offset-by-two`">
-         <input class="u-full-width " type="email" v-bind:placeholder="$t('quiz_form.f_name')" id="firstnameInput" v-model="$v.cons_first_name.$model">
-         <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.l_name')" id="lastnameInput" v-model="cons_last_name">
-         <input class="u-full-width" type="numeric" v-bind:placeholder="$t('quiz_form.number')" id="numberInput" v-model="$v.cons_number.$model" @keypress="isNumber">
-         <input class="u-full-width" type="email" v-bind:placeholder="$t('quiz_form.email')" id="emailInput" v-model="$v.cons_email.$model">
-         <span v-show="$v.cons_first_name.$error || $v.cons_email.$error || formInfo" style="color: #ea0029">{{ $t('quiz_form.warning') }}</span>
-         <span v-show="error" style="color: #ea0029">{{error}}</span>
-         <label class="agree">
-                   <input type="checkbox" v-model="opt_in">
-                     <span class="label-body" id="confirmation-body">{{ $t('quiz_form.check') }} <a v-bind:href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
-                 </label>
-         <button @click="proceed()" :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''">
-                   <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
-                   {{ $t('quiz_form.continue') }}
-                 </button>
-         <span class="skip"><router-link :to="{ path: 'profile/' + profile }">{{ $t('quiz_form.skip') }}</router-link></span>
-        </div>
-       </div>
-      </div>
-     </div>
+
     </div>
-    <div v-show="questionIndex === quiz.questions.length">
-    </div>
-   </div>
- 
-  </div>
- </transition>
+  </transition>
 </template>
 
 <script>
- import QuizLoader from './QuizLoader.vue'
- import {
+import QuizLoader from './QuizLoader.vue'
+import {
   quiz,
   profiles,
   quiz_fr,
   profiles_fr
- } from '../lib/utils.js'
- import {
+} from '../lib/utils.js'
+import {
   copies
- } from '../lib/copies.js'
- import {
+} from '../lib/copies.js'
+import {
   validationMixin
- } from 'vuelidate'
- import {
+} from 'vuelidate'
+import {
   required,
   email,
   numeric,
   minLength
- } from 'vuelidate/lib/validators'
- import axios from 'axios'
- /* eslint-disable */
+} from 'vuelidate/lib/validators'
+import axios from 'axios'
+/* eslint-disable */
  
  export default {
   mixins: [validationMixin],
@@ -161,6 +162,7 @@
     validations: {
       cons_number: {
         numeric,
+        required,
         minLength: minLength(10)
       },
       cons_email: {

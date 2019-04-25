@@ -36,7 +36,7 @@ const copies = {
           f_name: 'First Name*',
           l_name: 'Last Name*',
           email: 'Email*',
-          number: 'Phone Number',
+          number: 'Phone Number*',
           back: 'Back',
           privacy_policy: 'http://www.doctorswithoutborders.ca/privacy-notice',
           warning: '*Name and Email fields are required'
@@ -90,7 +90,7 @@ const copies = {
           f_name: 'Prénom*',
           l_name: 'Nom de famille*',
           email: 'Email*',
-          number: 'Numéro de téléphone',
+          number: 'Numéro de téléphone*',
           back: 'Précédent',
           privacy_policy: 'http://www.medecinssansfrontieres.ca/avis-de-confidentialit%C3%A9',
           warning: '*Nom et Courriel sont des champs obligatoires'
@@ -109,4 +109,4 @@ const copies = {
   }
 }
 
-export {copies}
+export { copies }
