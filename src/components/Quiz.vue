@@ -1,14 +1,17 @@
 <template>
   <transition name="fade">
     <div id="quiz">
-      <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :background-url="loaderBackground" :quiz-logo="quiz.logo" :progress="(questionIndex + 1) / quiz.questions.length * 100"/>
+      <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :background-url="loaderBackground"
+                   :quiz-logo="quiz.logo" :progress="(questionIndex + 1) / quiz.questions.length * 100"/>
       <div class="quiz-container">
         <div class="full-width-container container">
           <!-- QUIZ SECTION -->
           <div v-for="(question, index) in quiz.questions" :key="index">
-            <div v-show="index === questionIndex" :style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url(' + question[property] + ')'}" class="row full-bg ">
+            <div v-show="index === questionIndex"
+                 :style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url(' + question[property] + ')'}"
+                 class="row full-bg ">
               <div class="eight columns offset-by-two quiz">
-                <div class="quizLogo"><img :src="quiz.logo" alt="" ></div>
+                <div class="quizLogo"><img :src="quiz.logo" alt=""></div>
                 <h3 class="question">{{ question.text }}</h3>
                 <ul class="questions-input">
                   <li v-for="response in question.responses">
@@ -19,8 +22,9 @@
                         v-model="userResponses[index]"
                         type="radio"
                         @click="next">
-                      <div :class="userResponses[index] === response.value ? `response-selected` : ``" class="answer"><p>
-                        {{ response.text }}</p></div>
+                      <div :class="userResponses[index] === response.value ? `response-selected` : ``" class="answer">
+                        <p>
+                          {{ response.text }}</p></div>
                     </label>
                   </li>
                 </ul>
@@ -43,7 +47,7 @@
           <!-- SIGN UP FORM SECTION -->
           <div v-show="showForm" class="results">
             <div class="row row-v-align full-bg">
-              <div class="quizLogo"><img :src="quiz.logo2" ></div>
+              <div class="quizLogo"><img :src="quiz.logo2"></div>
               <!--UPDATE-->
               <div class="content">
                 <div :class="bigScreen ? `three offset-by-two` : `six offset-by-two`" class="columns">
@@ -51,21 +55,30 @@
                   <p>{{ $t('quiz_form.line2') }}</p>
                 </div>
                 <div :class="bigScreen ? `four` : `eight offset-by-two`" class="columns">
-                  <input id="firstnameInput" :placeholder="$t('quiz_form.f_name')" v-model="$v.cons_first_name.$model" class="u-full-width " type="email">
-                  <input id="lastnameInput" :placeholder="$t('quiz_form.l_name')" v-model="cons_last_name" class="u-full-width" type="email">
-                  <input id="numberInput" :placeholder="$t('quiz_form.number')" v-model="$v.cons_number.$model" class="u-full-width" type="numeric" @keypress="isNumber">
-                  <input id="emailInput" :placeholder="$t('quiz_form.email')" v-model="$v.cons_email.$model" class="u-full-width" type="email">
-                  <span v-show="$v.cons_first_name.$error || $v.cons_email.$error || formInfo" style="color: #ea0029">{{ $t('quiz_form.warning') }}</span>
+                  <input id="firstnameInput" :placeholder="$t('quiz_form.f_name')" v-model="$v.cons_first_name.$model"
+                         class="u-full-width " type="text">
+                  <input id="lastnameInput" :placeholder="$t('quiz_form.l_name')" v-model="cons_last_name"
+                         class="u-full-width" type="text">
+                  <input id="numberInput" :placeholder="$t('quiz_form.number')" v-model="$v.cons_number.$model"
+                         class="u-full-width" type="numeric" @keypress="isNumber">
+                  <input id="emailInput" :placeholder="$t('quiz_form.email')" v-model="$v.cons_email.$model"
+                         class="u-full-width" type="email">
+                  <span
+                    v-show="formInfo"
+                    style="color: #ea0029">{{ $t('quiz_form.warning') }}</span>
                   <span v-show="error" style="color: #ea0029">{{ error }}</span>
                   <label class="agree">
                     <input v-model="opt_in" type="checkbox">
-                    <span id="confirmation-body" class="label-body">{{ $t('quiz_form.check') }} <a :href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
+                    <span id="confirmation-body" class="label-body">{{ $t('quiz_form.check') }} <a
+                      :href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
                   </label>
-                  <button :disabled="$v.validationGroup.$invalid" :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''" @click="proceed()">
+                  <button :disabled="$v.validationGroup.$invalid"
+                          :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''" @click="proceed()">
                     <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
                     {{ $t('quiz_form.continue') }}
                   </button>
-                  <span class="skip"><router-link :to="{ path: 'profile/' + profile }">{{ $t('quiz_form.skip') }}</router-link></span>
+                  <span class="skip"><router-link
+                    :to="{ path: 'profile/' + profile }">{{ $t('quiz_form.skip') }}</router-link></span>
                 </div>
               </div>
             </div>
@@ -100,10 +113,10 @@ import {
 } from 'vuelidate/lib/validators'
 import axios from 'axios'
 /* eslint-disable */
- 
- export default {
-  mixins: [validationMixin],
-    data() {
+
+  export default {
+    mixins: [validationMixin],
+    data () {
       return {
         copies: copies,
         quiz: this.$i18n.locale === 'en' ? quiz : quiz_fr,
@@ -134,16 +147,16 @@ import axios from 'axios'
         error: '',
         formBusy: false,
         formVars: '',
-        phoneHidden: false,
+        phoneHidden: false
       }
     },
     components: {
       QuizLoader
     },
-    created() {
+    created () {
       this.loaderBackground = window.innerWidth >= 768 ? this.quiz.questions[0].images : this.quiz.questions[0].imagesMobile
     },
-    mounted() {
+    mounted () {
       console.log(this.$i18n.locale)
       this.setLangParam()
       this.handleResize()
@@ -151,18 +164,18 @@ import axios from 'axios'
       window.addEventListener('resize', this.handleResize)
       setTimeout(this.animateQuiz, this.loaderTimeout / 2)
       if (this.is_touch_device()) {
-        document.addEventListener('touchstart', this.handleTouchStart, false);
-        document.addEventListener('touchmove', this.handleTouchMove, false);
+        document.addEventListener('touchstart', this.handleTouchStart, false)
+        document.addEventListener('touchmove', this.handleTouchMove, false)
       }
-      $('body').css('overflow', 'hidden');
+      $('body').css('overflow', 'hidden')
     },
     beforeDestroy: function () {
       window.removeEventListener('resize', this.handleResize)
     },
     validations: {
       cons_number: {
-        numeric,
         required,
+        numeric,
         minLength: minLength(10)
       },
       cons_email: {
@@ -175,36 +188,37 @@ import axios from 'axios'
       cons_last_name: {
         required
       },
-      validationGroup: ['cons_email', 'cons_first_name', 'cons_last_name','cons_number']
+      validationGroup: ['cons_email', 'cons_first_name', 'cons_last_name', 'cons_number']
     },
     methods: {
       handleTouchStart: function (evt) {
-        this.xDown = evt.touches[0].clientX;
+        this.xDown = evt.touches[0].clientX
       },
       handleTouchMove: function (evt) {
         if (this.questionIndex > 0 && this.questionIndex < this.quiz.questions.length) {
           if (!this.xDown) {
-            return;
+            return
           }
-          var xUp = evt.touches[0].clientX;
-          var xDiff = this.xDown - xUp;
+          var xUp = evt.touches[0].clientX
+          var xDiff = this.xDown - xUp
           console.log(xDiff)
           if (xDiff > 5) {
             //left
           } else if (xDiff < -5) {
             //right
-            this.prev();
+            this.prev()
           }
-          this.xDown = null;
+          this.xDown = null
         }
       },
       isNumber: function (evt) {
-        evt = (evt) ? evt : window.event;
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        evt = (evt) ? evt : window.event
+        var charCode = (evt.which) ? evt.which : evt.keyCode
         if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-          evt.preventDefault();;
+          evt.preventDefault()
+
         } else {
-          return true;
+          return true
         }
       },
       // Go to next question
@@ -214,7 +228,7 @@ import axios from 'axios'
           let vm = this
           this.tl_pre_left.restart(true, false)
           this.loaderBackground = this.questionIndex + 1 < this.quiz.questions.length ? this.quiz.questions[this.questionIndex + 1][this.property] : window.innerWidth >= 768 ? '/static/img/form.jpg' : '/static/img/form_mobile.jpg'
-          if (!(this.questionIndex + 1 < this.quiz.questions.length)) this.direction = 'form';
+          if (!(this.questionIndex + 1 < this.quiz.questions.length)) this.direction = 'form'
           setTimeout(function () {
             vm.showLoader = true
           }, vm.loaderTimeout / 2)
@@ -253,7 +267,7 @@ import axios from 'axios'
         luminateExtend.global.update('cons_email', this.cons_email)
         luminateExtend.global.update('cons_number', this.cons_number)
         luminateExtend.global.update('opt_in', this.opt_in)
-        this.formVars = "&question_1480=" + this.userChoice[0] + "&question_1481=" + this.userChoice[1] + "&question_1482=" + this.userChoice[2] + "&question_1483=" + this.userChoice[3] + "&question_1484=" + this.userChoice[4] + "&cons_first_name=" + luminateExtend.global.cons_first_name + "&cons_last_name=" + luminateExtend.global.cons_last_name + "&cons_email=" + luminateExtend.global.cons_email + "&cons_phone=" + luminateExtend.global.cons_number + "&cons_email_opt_in=" + luminateExtend.global.opt_in
+        this.formVars = '&question_1480=' + this.userChoice[0] + '&question_1481=' + this.userChoice[1] + '&question_1482=' + this.userChoice[2] + '&question_1483=' + this.userChoice[3] + '&question_1484=' + this.userChoice[4] + '&cons_first_name=' + luminateExtend.global.cons_first_name + '&cons_last_name=' + luminateExtend.global.cons_last_name + '&cons_email=' + luminateExtend.global.cons_email + '&cons_phone=' + luminateExtend.global.cons_number + '&cons_email_opt_in=' + luminateExtend.global.opt_in
 
         console.log('>>', this.formVars)
 
@@ -266,9 +280,7 @@ import axios from 'axios'
             nonsecure: 'https://secure3.convio.net/msfcan/site/',
             secure: 'https://secure3.convio.net/msfcan/site/'
           }
-        });
-
-
+        })
 
         luminateExtend.api.request([{
           async: false,
@@ -281,16 +293,16 @@ import axios from 'axios'
             success: vm.callbackSucess,
             error: vm.callbackError
           }
-        }]);
+        }])
       },
       callbackSucess: function (data) {
         var vm = this
-        window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || []
         var dataObject = {
           'event': 'msf-lead-quiz'
-        };
+        }
         if (typeof dataLayer != 'undefined') {
-          dataLayer.push(dataObject);
+          dataLayer.push(dataObject)
         }
         vm.formBusy = false
         if (data.submitSurveyResponse.success === 'false') {
@@ -308,10 +320,10 @@ import axios from 'axios'
         vm.error = errorMessage
         setTimeout(() => {
           vm.error = ''
-        }, 5000);
+        }, 5000)
 
       },
-      computeScore() {
+      computeScore () {
         let score = 0
         let categories = []
         this.userResponses.map((answer) => {
@@ -342,37 +354,37 @@ import axios from 'axios'
           })
         }
       },
-      setScrollable() {
-        $('body').css('overflow', 'auto');
+      setScrollable () {
+        $('body').css('overflow', 'auto')
         // $('body').css('background','#0f0f0f');
       },
-      handleResize() {
+      handleResize () {
         this.bigScreen = window.innerWidth >= 1000
       },
-      animateQuiz(delay = .2) {
+      animateQuiz (delay = .2) {
         this.tl_pre_left = new TimelineMax()
         this.tl_left = new TimelineMax()
         this.tl_pre_right = new TimelineMax()
         this.tl_right = new TimelineMax()
         this.tl_form = new TimelineMax()
 
-        this.tl_form.to([$(".quiz-loader .progress-container"), $(".quiz-loader .quizLogo")], 0.01, {
+        this.tl_form.to([$('.quiz-loader .progress-container'), $('.quiz-loader .quizLogo')], 0.01, {
           opacity: 0
-        });
-        this.tl_form.to($(".results .content"), 1, {
+        })
+        this.tl_form.to($('.results .content'), 1, {
           opacity: 1
-        });
-        TweenMax.set($(".results .content"), {
+        })
+        TweenMax.set($('.results .content'), {
           opacity: 0
         })
 
         if (this.is_touch_device()) {
-          TweenMax.set($(".progress-and-button"), {
+          TweenMax.set($('.progress-and-button'), {
             x: 0,
             opacity: 1
           })
 
-          this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input")], .4, {
+          this.tl_pre_left.staggerFromTo([$('.question'), $('.questions-input')], .4, {
             x: 0,
             opacity: 1
           }, {
@@ -380,7 +392,7 @@ import axios from 'axios'
             opacity: 0,
             ease: Power1.easeOut
           }, delay)
-          this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input")], .4, {
+          this.tl_pre_right.staggerFromTo([$('.question'), $('.questions-input')], .4, {
             x: 0,
             opacity: 1
           }, {
@@ -388,7 +400,7 @@ import axios from 'axios'
             opacity: 0,
             ease: Power1.easeOut
           }, delay)
-          this.tl_left.staggerFromTo([$(".question"), $(".questions-input")], .8, {
+          this.tl_left.staggerFromTo([$('.question'), $('.questions-input')], .8, {
             x: 50,
             opacity: 0
           }, {
@@ -396,7 +408,7 @@ import axios from 'axios'
             opacity: 1,
             ease: Power1.easeOut
           }, delay)
-          this.tl_right.staggerFromTo([$(".question"), $(".questions-input")], .8, {
+          this.tl_right.staggerFromTo([$('.question'), $('.questions-input')], .8, {
             x: -50,
             opacity: 0
           }, {
@@ -405,7 +417,7 @@ import axios from 'axios'
             ease: Power1.easeOut
           }, delay)
         } else {
-          this.tl_pre_left.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .4, {
+          this.tl_pre_left.staggerFromTo([$('.question'), $('.questions-input'), $('.progress-and-button')], .4, {
             x: 0,
             opacity: 1
           }, {
@@ -413,7 +425,7 @@ import axios from 'axios'
             opacity: 0,
             ease: Power1.easeOut
           }, delay)
-          this.tl_pre_right.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .4, {
+          this.tl_pre_right.staggerFromTo([$('.question'), $('.questions-input'), $('.progress-and-button')], .4, {
             x: 0,
             opacity: 1
           }, {
@@ -421,7 +433,7 @@ import axios from 'axios'
             opacity: 0,
             ease: Power1.easeOut
           }, delay)
-          this.tl_left.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, {
+          this.tl_left.staggerFromTo([$('.question'), $('.questions-input'), $('.progress-and-button')], .8, {
             x: 50,
             opacity: 0
           }, {
@@ -429,7 +441,7 @@ import axios from 'axios'
             opacity: 1,
             ease: Power1.easeOut
           }, delay)
-          this.tl_right.staggerFromTo([$(".question"), $(".questions-input"), $(".progress-and-button")], .8, {
+          this.tl_right.staggerFromTo([$('.question'), $('.questions-input'), $('.progress-and-button')], .8, {
             x: -50,
             opacity: 0
           }, {
@@ -441,9 +453,9 @@ import axios from 'axios'
         this.tl_right.addPause(0)
         this.tl_pre_right.addPause(0)
         this.tl_pre_left.addPause(0)
-        this.tl_form.addPause(0);
+        this.tl_form.addPause(0)
       },
-      setLangParam() {
+      setLangParam () {
         this.$i18n.locale === 'en' ? this.$router.push({
           query: {
             lang: 'en'
@@ -454,32 +466,33 @@ import axios from 'axios'
           }
         })
       },
-      resetAnimation() {
+      resetAnimation () {
         $('.question').css('opacity', '0')
         $('.questions-input').css('opacity', '0')
-        if (!this.is_touch_device)
+        if (!this.is_touch_device) {
           $('.progress-and-button').css('opacity', '0')
+        }
       },
-      is_touch_device() {
+      is_touch_device () {
         try {
-          document.createEvent("TouchEvent");
-          return true;
+          document.createEvent('TouchEvent')
+          return true
         } catch (e) {
-          return false;
+          return false
         }
       },
-      updateCheckText() {
+      updateCheckText () {
         setTimeout(() => {
-            if ($('#numberInput').is(":hidden")) {
-              this.phoneHidden = true
-            } else {
-              this.phoneHidden = false
-            }
-          }, 800);
-        }
+          if ($('#numberInput').is(':hidden')) {
+            this.phoneHidden = true
+          } else {
+            this.phoneHidden = false
+          }
+        }, 800)
+      }
     },
     watch: {
-      showLoader(newValue, oldValue) {
+      showLoader (newValue, oldValue) {
         if (!newValue) {
           if (this.direction == 'left') {
             this.tl_left.restart(true, false)
@@ -488,14 +501,14 @@ import axios from 'axios'
           } else {
             this.tl_form.restart(true, false)
             if (window.innerWidth <= 320 || (window.innerWidth < 420 && this.$i18n.locale == 'fr')) this.setScrollable()
-            let quiz = this.quiz;
-            let userChoice = this.userChoice;
+            let quiz = this.quiz
+            let userChoice = this.userChoice
 
             $(this.userResponses).each(function (i) {
-              let x = i;
-              let choice = this;
+              let x = i
+              let choice = this
               $(quiz.questions[x].responses).each(function () {
-                if (this.value == choice) userChoice[x] = this.val_2;
+                if (this.value == choice) userChoice[x] = this.val_2
               })
             })
           }
@@ -503,581 +516,622 @@ import axios from 'axios'
       }
     },
     computed: {
-      showForm() {
+      showForm () {
         console.log('watcher is running')
         this.updateCheckText()
         return this.questionIndex === this.quiz.questions.length
       },
-      formInfo() {
-       let fname = this.cons_first_name.length
-       let lname = this.cons_last_name.length
-       let eml = this.cons_email.length
-       return (fname > 0 && lname > 0 && eml > 0) ? false : true 
+      formInfo () {
+        let fname = this.cons_first_name.length
+        let lname = this.cons_last_name.length
+        let eml = this.cons_email.length
+        let numb = this.cons_number.length
+        return (!(fname > 0 && lname > 0 && eml > 0 && numb > 0))
       }
     }
   }
 </script>
 
 <style scoped>
- body {
-  overflow: visible;
- }
- 
- 
- /*Links*/
- 
- a {
-  color: white;
-  text-decoration: none;
-  font-family: 'FreightSans Pro';
-  font-weight: 500;
-  font-style: normal;
-  cursor: pointer;
-  white-space: nowrap;
- }
- 
- button a {
-  font-weight: bold;
- }
- 
- .row {
-  padding-left: 20px !important;
-  padding-right: 20px !important;
- }
- 
- .row-v-align {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
- }
- 
- 
- /*Quiz*/
- 
- .img-cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(35, 31, 32, .8);
- }
- 
- #app {
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
- }
- 
- h1 {
-  margin-bottom: 20px;
- }
- 
- ul {
-  list-style-type: none;
- }
- 
- 
- /*Button styles*/
- 
- button {
-  height: 55px;
-  background-color: #ea0029;
-  border-radius: 50px;
-  border: none;
-  width: 275px;
-  font-size: 2.6rem;
-  color: white;
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  overflow: hidden;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: color, background-color;
-  transition-property: color, background-color;
-  font-family: 'FreightSans Pro';
-  font-weight: bold;
-  font-style: normal;
- }
- 
- button:hover,
- button:focus,
- button:active {
-  background-color: #b11515;
-  color: white;
- }
- 
- .button-back {
-  color: white;
-  float: left;
-  margin-top: 10px;
-  cursor: pointer;
-  font-family: 'FreightSans Pro';
-  font-weight: 500;
-  font-style: normal;
- }
- 
- [v-cloak] {
-  display: none;
- }
- 
- 
- /*answer boxes*/
- 
- input[type="radio"] {
-  display: none;
- }
- 
- .quiz {
-  padding-top: 100px;
- }
- 
- .quiz-container {
-  opacity: 0;
- }
- 
- .quizLogo {
-  float: left;
-  margin-bottom: 50px;
- }
- 
- .quizLogo img {
-  width: 10rem;
- }
- 
- .question {
-  clear: left;
-  text-align: left;
-  margin-left: 20px;
-  font-weight: bold;
-  padding-bottom: 10px;
-  max-width: 800px;
-  color: white;
-  font-family: 'FreightSans Pro';
-  font-weight: bold;
-  font-style: normal;
-  font-size: 3.4rem;
-  line-height: 3.6rem;
-  opacity: 0;
- }
- 
- .questions-input {
-  display: flex;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  -o-flex-direction: row;
-  -khtml-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  -o-flex-wrap: wrap;
-  -khtml-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-justify-content: space-around;
-  -moz-justify-content: space-around;
-  -ms-justify-content: space-around;
-  -o-justify-content: space-around;
-  -khtml-justify-content: space-around;
-  justify-content: space-around;
-  -webkit-align-items: stretch;
-  -moz-align-items: stretch;
-  -ms-align-items: stretch;
-  -o-align-items: stretch;
-  -khtml-align-items: stretch;
-  align-items: stretch;
-  opacity: 0;
- }
- 
- .questions-input li {
-  width: 48%;
- }
- 
- .inputs {
-  float: left;
- }
- 
- .answer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.05rem;
-  line-height: 2rem;
-  font-family: 'FreightSans Pro';
-  font-weight: 500;
-  font-style: normal;
-  background: rgba(255, 255, 255, 0.85);
-  min-height: 70px;
-  border-style: solid;
-  border-color: rgb(155, 7, 7);
-  border-width: thin;
-  min-width: 100%;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  overflow: hidden;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: color, background-color;
-  transition-property: color, background-color;
- }
- 
- .answer:after {
-  content: '';
-  min-height: inherit;
- }
- 
- .answer p {
-  margin-bottom: 0;
-  color: rgb(99, 8, 8);
-  padding-right: 10px;
-  padding-left: 10px;
- }
- 
- .answer:hover {
-  background: white;
-  opacity: 1;
-  cursor: pointer;
- }
- 
- .answer:active {
-  background-color: #ea0029;
-  color: white;
- }
- 
- .progress-and-button {
-  display: inline-block;
-  float: left;
-  opacity: 0;
- }
- 
- .progress-container {
-  margin-top: 20px;
-  margin-left: 20px;
-  position: relative;
-  float: left;
- }
- 
- .progress {
-  z-index: 3;
-  position: absolute;
-  height: 5px;
-  background-color: #ea0029;
-  float: left;
- }
- 
- .progress-bar {
-  height: 5px;
-  width: 250px;
-  background-color: white;
-  float: left;
- }
- 
- .full-bg {
-  background: url("/static/img/form.jpg");
-  min-height: 100vh;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-  background-position: center center;
- }
- 
- #bg-img {
-  /*    background: url("../../static/img/form.jpg") center center;*/
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*     z-index: -1; */
-  position: fixed;
-  top: 0;
-  left: 0;
- }
- 
- 
- /*Results almost in*/
- 
- .results {
-  color: white;
-  text-align: left;
- }
- 
- .results .content {
-  margin-top: 35vh;
-  /* padding-bottom: 5rem; */
- }
- 
- .results h3 {
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: 'FreightSans Pro';
-  font-weight: bold;
-  font-style: normal;
- }
- 
- .results p {
-  font-size: 2rem;
-  font-family: 'FreightSans Pro';
-  font-weight: 500;
-  font-style: normal;
-  line-height: 2.2rem;
- }
- 
- .results .u-full-width {
-  height: 50px;
-  border-radius: 0px;
-  margin-bottom: 5px;
-  font-family: 'FreightSans Pro';
-  font-weight: 500;
-  font-style: normal;
- }
- 
- input[type="email"],input[type="numeric"] {
-  color: black;
- }
- 
- input[type="checkbox"] {
-  margin-top: 1rem;
- }
- 
- .results .skip {
-  width: 275px;
-  text-align: center;
-  clear: left;
-  float: left;
-  font-weight: 500;
-  font-size: 1.6rem;
-  /* padding-left: 82px; */
-  text-transform: uppercase;
-  text-decoration: underline;
- }
- 
- .results .quizLogo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 2rem;
- }
- 
- label>.label-body {
-  display: inline;
-  font-family: 'FreightSans Pro';
-  font-weight: 500;
-  font-style: normal;
-  font-size: 1.7rem;
-  line-height: 1.7rem;
-  margin-top: .7rem;
-  margin-left: 1rem;
- }
- 
- .agree {
-  display: inline-flex;
-  margin-bottom: 1rem;
- }
- 
- .agree input {
-  zoom: 1.2;
-  -webkit-transform: scale(1.2);
-  margin-bottom: 0;
- }
- 
- .agree a:hover,
- .skip a:hover {
-  color: #ea0029;
- }
- 
- .response-selected {
-  background-color: #ea0029;
-  opacity: 1;
-  color: white;
- }
- 
- @media (max-width: 420px) {
-  .quizLogo {
-   position: absolute;
-   margin: auto 1rem 0;
+  body {
+    overflow: visible;
   }
-  .quizLogo img {
-   width: 8rem;
+
+
+  /*Links*/
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
+    cursor: pointer;
+    white-space: nowrap;
   }
-  .quiz .question {
-   margin: auto 2rem 2rem;
+
+  button a {
+    font-weight: bold;
   }
-  .results .content {
-   margin-top: 120px;
-  }
-  .results h3 {
-   font-size: 2.5rem;
-   line-height: 2.8rem;
-   margin-bottom: 0.5rem;
-  }
-  .result-head {
-   display: block;
-  }
-  .results p {
-   font-size: 1.6rem;
-   line-height: 2rem;
-  }
-  .agree {
-   margin-bottom: 30px;
-  }
-  label>.label-body {
-   font-size: 1.6rem;
-   line-height: 1.6rem;
-   margin-top: 1.8rem;
-  }
-  input[type="checkbox"] {
-   margin-top: 2rem;
-  }
-  .button-back {
-   display: none;
-  }
+
   .row {
-   padding-left: 0 !important;
-   padding-right: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
-  .progress-and-button {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-  }
-  .progress-container {
-   margin: 0;
-   width: 100%;
-  }
-  .progress-bar {
-   width: 100%;
-  }
-  .question {
-   margin: 0;
-  }
-  .questions-input {
-   margin-bottom: 0;
-  }
-  .quiz {
-   min-height: 100vh;
-   float: none;
-  }
-  .results .row {
-   padding-left: 20px !important;
-   padding-right: 20px !important;
-  }
-  .results .quizLogo {
-   display: none;
-  }
-  .results .columns.eight {
-   text-align: center;
-  }
-  .results .columns.eight .agree {
-   text-align: left;
-  }
-  .results .skip {
-   width: 100%;
-   display: block;
-   padding: 0;
-   float: none;
-  }
- }
- 
- @media only screen and (max-width: 768px) {
-  .results,
-  .full-width-container.container>div {
-   position: absolute;
-  }
-  .questions-input li {
-   width: 100%;
-  }
+
   .row-v-align {
-   flex-direction: row;
-   -webkit-flex-wrap: wrap;
-   -moz-flex-wrap: wrap;
-   -ms-flex-wrap: wrap;
-   -o-flex-wrap: wrap;
-   -khtml-flex-wrap: wrap;
-   flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
-  .row {
-   padding-left: 0;
-   padding-right: 0;
+
+
+  /*Quiz*/
+
+  .img-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(35, 31, 32, .8);
   }
+
+  #app {
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+
+  /*Button styles*/
+
+  button {
+    height: 55px;
+    background-color: #ea0029;
+    border-radius: 50px;
+    border: none;
+    width: 275px;
+    font-size: 2.6rem;
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    overflow: hidden;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: color, background-color;
+    transition-property: color, background-color;
+    font-family: 'FreightSans Pro';
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  button:hover,
+  button:focus,
+  button:active {
+    background-color: #b11515;
+    color: white;
+  }
+
+  .button-back {
+    color: white;
+    float: left;
+    margin-top: 10px;
+    cursor: pointer;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  [v-cloak] {
+    display: none;
+  }
+
+
+  /*answer boxes*/
+
+  input[type="radio"] {
+    display: none;
+  }
+
   .quiz {
-   padding-top: 2rem;
-   display: flex;
-   flex-direction: column;
+    padding-top: 100px;
   }
-  .answer {
-   box-sizing: border-box;
-   min-height: 90px;
+
+  .quiz-container {
+    opacity: 0;
   }
-  .full-bg {
-   background: url("/static/img/form_mobile.jpg");
-   background-position: center top;
-   overflow: hidden;
+
+  .quizLogo {
+    float: left;
+    margin-bottom: 50px;
   }
+
+  .quizLogo img {
+    width: 10rem;
+  }
+
   .question {
-   font-size: 2.5rem;
-   line-height: 2.6rem;
+    clear: left;
+    text-align: left;
+    margin-left: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    max-width: 800px;
+    color: white;
+    font-family: 'FreightSans Pro';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 3.4rem;
+    line-height: 3.6rem;
+    opacity: 0;
   }
-  .questions-input li,
-  .questions-input li label {
-   margin-bottom: 0;
+
+  .questions-input {
+    display: flex;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
+    -khtml-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    -khtml-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    -ms-justify-content: space-around;
+    -o-justify-content: space-around;
+    -khtml-justify-content: space-around;
+    justify-content: space-around;
+    -webkit-align-items: stretch;
+    -moz-align-items: stretch;
+    -ms-align-items: stretch;
+    -o-align-items: stretch;
+    -khtml-align-items: stretch;
+    align-items: stretch;
+    opacity: 0;
   }
+
+  .questions-input li {
+    width: 48%;
+  }
+
+  .inputs {
+    float: left;
+  }
+
+  .answer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.05rem;
+    line-height: 2rem;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
+    background: rgba(255, 255, 255, 0.85);
+    min-height: 70px;
+    border-style: solid;
+    border-color: rgb(155, 7, 7);
+    border-width: thin;
+    min-width: 100%;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    overflow: hidden;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: color, background-color;
+    transition-property: color, background-color;
+  }
+
+  .answer:after {
+    content: '';
+    min-height: inherit;
+  }
+
   .answer p {
-   color: #fff;
-   font-size: 1.8rem;
-   line-height: 1.8rem;
+    margin-bottom: 0;
+    color: rgb(99, 8, 8);
+    padding-right: 10px;
+    padding-left: 10px;
   }
-  .questions-input li:nth-child(1) .answer {
-   background-color: #780505;
+
+  .answer:hover {
+    background: white;
+    opacity: 1;
+    cursor: pointer;
   }
-  .questions-input li:nth-child(2) .answer {
-   background-color: #690505;
+
+  .answer:active {
+    background-color: #ea0029;
+    color: white;
   }
-  .questions-input li:nth-child(3) .answer {
-   background-color: #550505;
+
+  .progress-and-button {
+    display: inline-block;
+    float: left;
+    opacity: 0;
   }
-  .questions-input li:nth-child(4) .answer {
-   background-color: #460000;
+
+  .progress-container {
+    margin-top: 20px;
+    margin-left: 20px;
+    position: relative;
+    float: left;
   }
-  .answer.response-selected {
-   background-color: white !important;
-   opacity: 0.8;
+
+  .progress {
+    z-index: 3;
+    position: absolute;
+    height: 5px;
+    background-color: #ea0029;
+    float: left;
   }
-  .answer.response-selected p {
-   color: rgb(99, 8, 8) !important;
-  }
-  .progress,
+
   .progress-bar {
-   height: 10px;
+    height: 5px;
+    width: 250px;
+    background-color: white;
+    float: left;
   }
- }
- 
- @media (max-width: 320px) {
-  .question {
-   font-size: 1.8rem;
-   line-height: 1.8rem;
+
+  .full-bg {
+    background: url("/static/img/form.jpg");
+    min-height: 100vh;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-position: center center;
   }
-  .answer {
-   min-height: 50px;
+
+  #bg-img {
+    /*    background: url("../../static/img/form.jpg") center center;*/
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /*     z-index: -1; */
+    position: fixed;
+    top: 0;
+    left: 0;
   }
-  .answer p {
-   color: #fff;
-   font-size: 1.5rem;
-   line-height: 1.5rem;
+
+
+  /*Results almost in*/
+
+  .results {
+    color: white;
+    text-align: left;
   }
- }
- 
- .four.columns {
-  max-width: 700px;
- }
- 
- .fade-enter-active {
-  transition: opacity .5s;
- }
+
+  .results .content {
+    margin-top: 35vh;
+    /* padding-bottom: 5rem; */
+  }
+
+  .results h3 {
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: 'FreightSans Pro';
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  .results p {
+    font-size: 2rem;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
+    line-height: 2.2rem;
+  }
+
+  .results .u-full-width {
+    height: 50px;
+    border-radius: 0px;
+    margin-bottom: 5px;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  input[type="email"], input[type="text"], input[type="numeric"] {
+    color: black;
+  }
+
+  input[type="checkbox"] {
+    margin-top: 1rem;
+  }
+
+  .results .skip {
+    width: 275px;
+    text-align: center;
+    clear: left;
+    float: left;
+    font-weight: 500;
+    font-size: 1.6rem;
+    /* padding-left: 82px; */
+    text-transform: uppercase;
+    text-decoration: underline;
+  }
+
+  .results .quizLogo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2rem;
+  }
+
+  label > .label-body {
+    display: inline;
+    font-family: 'FreightSans Pro';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.7rem;
+    line-height: 1.7rem;
+    margin-top: .7rem;
+    margin-left: 1rem;
+  }
+
+  .agree {
+    display: inline-flex;
+    margin-bottom: 1rem;
+  }
+
+  .agree input {
+    zoom: 1.2;
+    -webkit-transform: scale(1.2);
+    margin-bottom: 0;
+  }
+
+  .agree a:hover,
+  .skip a:hover {
+    color: #ea0029;
+  }
+
+  .response-selected {
+    background-color: #ea0029;
+    opacity: 1;
+    color: white;
+  }
+
+  @media (max-width: 420px) {
+    .quizLogo {
+      position: absolute;
+      margin: auto 1rem 0;
+    }
+
+    .quizLogo img {
+      width: 8rem;
+    }
+
+    .quiz .question {
+      margin: auto 2rem 2rem;
+    }
+
+    .results .content {
+      margin-top: 120px;
+    }
+
+    .results h3 {
+      font-size: 2.5rem;
+      line-height: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-head {
+      display: block;
+    }
+
+    .results p {
+      font-size: 1.6rem;
+      line-height: 2rem;
+    }
+
+    .agree {
+      margin-bottom: 30px;
+    }
+
+    label > .label-body {
+      font-size: 1.6rem;
+      line-height: 1.6rem;
+      margin-top: 1.8rem;
+    }
+
+    input[type="checkbox"] {
+      margin-top: 2rem;
+    }
+
+    .button-back {
+      display: none;
+    }
+
+    .row {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    .progress-and-button {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .progress-container {
+      margin: 0;
+      width: 100%;
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    .question {
+      margin: 0;
+    }
+
+    .questions-input {
+      margin-bottom: 0;
+    }
+
+    .quiz {
+      min-height: 100vh;
+      float: none;
+    }
+
+    .results .row {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+
+    .results .quizLogo {
+      display: none;
+    }
+
+    .results .columns.eight {
+      text-align: center;
+    }
+
+    .results .columns.eight .agree {
+      text-align: left;
+    }
+
+    .results .skip {
+      width: 100%;
+      display: block;
+      padding: 0;
+      float: none;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .results,
+    .full-width-container.container > div {
+      position: absolute;
+    }
+
+    .questions-input li {
+      width: 100%;
+    }
+
+    .row-v-align {
+      flex-direction: row;
+      -webkit-flex-wrap: wrap;
+      -moz-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      -o-flex-wrap: wrap;
+      -khtml-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+
+    .row {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .quiz {
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .answer {
+      box-sizing: border-box;
+      min-height: 90px;
+    }
+
+    .full-bg {
+      background: url("/static/img/form_mobile.jpg");
+      background-position: center top;
+      overflow: hidden;
+    }
+
+    .question {
+      font-size: 2.5rem;
+      line-height: 2.6rem;
+    }
+
+    .questions-input li,
+    .questions-input li label {
+      margin-bottom: 0;
+    }
+
+    .answer p {
+      color: #fff;
+      font-size: 1.8rem;
+      line-height: 1.8rem;
+    }
+
+    .questions-input li:nth-child(1) .answer {
+      background-color: #780505;
+    }
+
+    .questions-input li:nth-child(2) .answer {
+      background-color: #690505;
+    }
+
+    .questions-input li:nth-child(3) .answer {
+      background-color: #550505;
+    }
+
+    .questions-input li:nth-child(4) .answer {
+      background-color: #460000;
+    }
+
+    .answer.response-selected {
+      background-color: white !important;
+      opacity: 0.8;
+    }
+
+    .answer.response-selected p {
+      color: rgb(99, 8, 8) !important;
+    }
+
+    .progress,
+    .progress-bar {
+      height: 10px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .question {
+      font-size: 1.8rem;
+      line-height: 1.8rem;
+    }
+
+    .answer {
+      min-height: 50px;
+    }
+
+    .answer p {
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  .four.columns {
+    max-width: 700px;
+  }
+
+  .fade-enter-active {
+    transition: opacity .5s;
+  }
 </style>
