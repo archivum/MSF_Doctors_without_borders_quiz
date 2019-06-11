@@ -1,15 +1,20 @@
 <template>
   <transition name="fade">
     <div id="quiz">
-      <quiz-loader :visible="showLoader" :timeout="loaderTimeout" :background-url="loaderBackground"
-                   :quiz-logo="quiz.logo" :progress="(questionIndex + 1) / quiz.questions.length * 100"/>
+      <quiz-loader
+        :visible="showLoader"
+        :timeout="loaderTimeout"
+        :background-url="loaderBackground"
+        :quiz-logo="quiz.logo"
+        :progress="(questionIndex + 1) / quiz.questions.length * 100"/>
       <div class="quiz-container">
         <div class="full-width-container container">
           <!-- QUIZ SECTION -->
           <div v-for="(question, index) in quiz.questions" :key="index">
-            <div v-show="index === questionIndex"
-                 :style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url(' + question[property] + ')'}"
-                 class="row full-bg ">
+            <div
+              v-show="index === questionIndex"
+              :style="{ 'background-image': 'radial-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url(' + question[property] + ')'}"
+              class="row full-bg ">
               <div class="eight columns offset-by-two quiz">
                 <div class="quizLogo"><img :src="quiz.logo" alt=""></div>
                 <h3 class="question">{{ question.text }}</h3>
@@ -55,14 +60,31 @@
                   <p>{{ $t('quiz_form.line2') }}</p>
                 </div>
                 <div :class="bigScreen ? `four` : `eight offset-by-two`" class="columns">
-                  <input id="firstnameInput" :placeholder="$t('quiz_form.f_name')" v-model="$v.cons_first_name.$model"
-                         class="u-full-width " type="text">
-                  <input id="lastnameInput" :placeholder="$t('quiz_form.l_name')" v-model="cons_last_name"
-                         class="u-full-width" type="text">
-                  <input id="numberInput" :placeholder="$t('quiz_form.number')" v-model="$v.cons_number.$model"
-                         class="u-full-width" type="numeric" @keypress="isNumber">
-                  <input id="emailInput" :placeholder="$t('quiz_form.email')" v-model="$v.cons_email.$model"
-                         class="u-full-width" type="email">
+                  <input
+                    id="firstnameInput"
+                    :placeholder="$t('quiz_form.f_name')"
+                    v-model="$v.cons_first_name.$model"
+                    class="u-full-width "
+                    type="text">
+                  <input
+                    id="lastnameInput"
+                    :placeholder="$t('quiz_form.l_name')"
+                    v-model="cons_last_name"
+                    class="u-full-width"
+                    type="text">
+                  <input
+                    id="numberInput"
+                    :placeholder="$t('quiz_form.number')"
+                    v-model="$v.cons_number.$model"
+                    class="u-full-width"
+                    type="numeric"
+                    @keypress="isNumber">
+                  <input
+                    id="emailInput"
+                    :placeholder="$t('quiz_form.email')"
+                    v-model="$v.cons_email.$model"
+                    class="u-full-width"
+                    type="email">
                   <span
                     v-show="formInfo"
                     style="color: #ea0029">{{ $t('quiz_form.warning') }}</span>
@@ -70,10 +92,13 @@
                   <label class="agree">
                     <input v-model="opt_in" type="checkbox">
                     <span id="confirmation-body" class="label-body">{{ $t('quiz_form.check') }} <a
-                      :href="$t('quiz_form.privacy_policy')" target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
+                      :href="$t('quiz_form.privacy_policy')"
+                      target="_blank"><u>{{ $t('quiz_form.check_link') }}</u></a></span>
                   </label>
-                  <button :disabled="$v.validationGroup.$invalid"
-                          :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''" @click="proceed()">
+                  <button
+                    :disabled="$v.validationGroup.$invalid"
+                    :style="$v.validationGroup.$invalid ? 'background-color: grey' : ''"
+                    @click="proceed()">
                     <!-- <router-link :to="{ path: 'profile/' + profile }">Continue</router-link> -->
                     {{ $t('quiz_form.continue') }}
                   </button>
@@ -111,6 +136,7 @@ import {
   numeric,
   minLength
 } from 'vuelidate/lib/validators'
+import { hasSpecialChar } from '../lib/validators'
 import axios from 'axios'
 /* eslint-disable */
 
@@ -180,7 +206,8 @@ import axios from 'axios'
       },
       cons_email: {
         required,
-        email
+        email,
+        hasSpecialChar
       },
       cons_first_name: {
         required
